@@ -72,11 +72,11 @@
     <ClCompile Include="src\XMLScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\DemoScene.h" />
+    <ClInclude Include="include\ExampleObject.h" />
     <ClInclude Include="include\tinystr.h" />
     <ClInclude Include="include\tinyxml.h" />
     <ClInclude Include="include\XMLScene.h" />
-    <ClInclude Include="src\DemoScene.h" />
-    <ClInclude Include="src\ExampleObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

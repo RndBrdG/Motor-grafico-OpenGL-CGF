@@ -29,12 +29,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\DemoScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ExampleObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\tinystr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -42,6 +36,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\XMLScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ExampleObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DemoScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -47,7 +47,7 @@ local.properties
 [Rr]elease/
 x64/
 build/
--[Bb]in/
+[Bb]in/
 [Oo]bj/
 
 # MSTest test Results
@@ -213,3 +213,9 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+#############
+## Exception for .xml
+#############
+
+!bin/demograph.xml

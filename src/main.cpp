@@ -1,5 +1,5 @@
 /* 
- * G0_Base: projeto inicial de CGra
+ * G0_Base: projeto inicial de LAIG
  * 
  */
 
@@ -12,7 +12,6 @@
 
 using std::cout;
 using std::exception;
-
 
 int main(int argc, char* argv[]) {
 
@@ -27,11 +26,11 @@ int main(int argc, char* argv[]) {
 		
 		app.run();
 	}
-	catch(GLexception& ex) {
+	catch (GLexception& ex) {
 		cout << "Error: " << ex.what();
 		return -1;
 	}
-	catch(exception& ex) {
+	catch (exception& ex) {
 		cout << "Unexpected error: " << ex.what();
 		return -1;
 	}

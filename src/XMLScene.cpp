@@ -23,7 +23,7 @@ XMLScene::XMLScene(char *filename)
 	}
 
 	globElement = dgxElement->FirstChildElement("globals");
-	camElement = dgxElement->FirstChildElement( "cameras" );
+	camElement = dgxElement->FirstChildElement("cameras");
 	/* A FAZER
 	textsElement =  dgxElement->FirstChildElement( "lights" );
 	leavesElement =  dgxElement->FirstChildElement( "textures" );
@@ -32,16 +32,14 @@ XMLScene::XMLScene(char *filename)
 
 	*/
 
-
-	// Init
-	// An example of well-known, required nodes
-
+	// Tag "globals"
 	if (globElement == NULL)
-		printf("Global block not found!\n");
+		printf("globals block not found!\n");
 	else
 	{
 		printf("Processing globals init:\n");
-		// tag drawing
+
+		// Tag "drawing"
 		TiXmlElement* drawingElement = globElement->FirstChildElement("drawing");
 		if (drawingElement)
 		{
@@ -62,7 +60,7 @@ XMLScene::XMLScene(char *filename)
 		else
 			printf("drawing not found\n");
 
-		// Tag culling
+		// Tag "culling"
 		TiXmlElement* cullingElement = globElement->FirstChildElement("culling");
 		if (cullingElement)
 		{
@@ -80,33 +78,32 @@ XMLScene::XMLScene(char *filename)
 		else
 			printf("culling not found\n");
 
-	// Tag lighting
-	TiXmlElement* lightingElement = globElement->FirstChildElement("lighting");
-	if (lightingElement)
-	{
-		char *doublesided = NULL, *local = NULL, *enabled = NULL, *ambient = NULL;
-		float r, g, b, a;
+		// Tag "lighting"
+		TiXmlElement* lightingElement = globElement->FirstChildElement("lighting");
+		if (lightingElement)
+		{
+			char *doublesided = NULL, *local = NULL, *enabled = NULL, *ambient = NULL;
+			float r, g, b, a;
 
-		doublesided = (char *)lightingElement->Attribute("doublesided");
-		local = (char *)lightingElement->Attribute("local");
-		enabled = (char *)lightingElement->Attribute("enabled");
-		ambient = (char *)lightingElement->Attribute("ambient");
+			doublesided = (char *)lightingElement->Attribute("doublesided");
+			local = (char *)lightingElement->Attribute("local");
+			enabled = (char *)lightingElement->Attribute("enabled");
+			ambient = (char *)lightingElement->Attribute("ambient");
 
-		if (doublesided != NULL && local != NULL && enabled != NULL && ambient != NULL && sscanf(ambient, "%f %f %f %f", &r, &g, &b, &a) == 4){
-			printf("  lighting attributes: %s %s %s\n", doublesided, local, enabled);
-			printf("  background values (RGBA): %f %f %f %f\n", r, g, b, a);
+			if (doublesided != NULL && local != NULL && enabled != NULL && ambient != NULL && sscanf(ambient, "%f %f %f %f", &r, &g, &b, &a) == 4){
+				printf("  lighting attributes: %s %s %s\n", doublesided, local, enabled);
+				printf("  background values (RGBA): %f %f %f %f\n", r, g, b, a);
+			}
+			else
+				printf("Error parsing lighting\n");
 		}
 		else
-			printf("Error parsing lighting\n");
-	}
-	else
-		printf("lighting not found\n");
+			printf("lighting not found\n");
 	}
 
-	// cam element
-
+	// Tag "cameras"
 	if (camElement == NULL)
-		printf("camElement block not found!\n");
+		printf("cameras block not found!\n");
 	else
 	{
 		printf("Processing cameras init:\n");
@@ -120,7 +117,7 @@ XMLScene::XMLScene(char *filename)
 		else
 			printf("Error parsing camera\n");
 
-		// tag perspective
+		// Tag "perspective"
 		TiXmlElement* perspElement = camElement->FirstChildElement("perspective");
 		if (perspElement)
 		{
@@ -131,18 +128,18 @@ XMLScene::XMLScene(char *filename)
 			position = (char *)perspElement->Attribute("pos");
 			target = (char *)perspElement->Attribute("target");
 
-			if (id != NULL && (perspElement->QueryFloatAttribute("near",&near) == TIXML_SUCCESS) &&
-					(perspElement->QueryFloatAttribute("far", &far) == TIXML_SUCCESS) && (perspElement->QueryFloatAttribute("angle", &angle) == TIXML_SUCCESS)
-					&& (position != NULL && sscanf(position, "%f %f %f", &posX, &posY, &posZ) == 3) && (target != NULL && sscanf(target, "%f %f %f", &targetX, &targetY, &targetZ) == 3) ){
-						printf("\n\n< - - - Values of perspective - - - - >\n");
-						printf(" Id : %s", id);
-						printf(" Valores >  %f %f %f %f %f %f %f %f", near, far, angle, posX, posY, posZ, targetX, targetY, targetZ );
+			if (id != NULL && (perspElement->QueryFloatAttribute("near", &near) == TIXML_SUCCESS) &&
+				(perspElement->QueryFloatAttribute("far", &far) == TIXML_SUCCESS) && (perspElement->QueryFloatAttribute("angle", &angle) == TIXML_SUCCESS)
+				&& (position != NULL && sscanf(position, "%f %f %f", &posX, &posY, &posZ) == 3) && (target != NULL && sscanf(target, "%f %f %f", &targetX, &targetY, &targetZ) == 3)){
+				printf("\n\n< - - - Values of perspective - - - - >\n");
+				printf(" Id : %s", id);
+				printf(" Valores >  %f %f %f %f %f %f %f %f", near, far, angle, posX, posY, posZ, targetX, targetY, targetZ);
 			}
 			else
-				printf ( "There was an error reading perspective tag ");
+				printf("There was an error reading perspective tag ");
 		}
 
-		// tag perspective
+		// Tag "ortho"
 		TiXmlElement* orthElement = camElement->FirstChildElement("ortho");
 		if (orthElement)
 		{
@@ -152,81 +149,81 @@ XMLScene::XMLScene(char *filename)
 			id = (char *)orthElement->Attribute("id");
 			dir = (char *)orthElement->Attribute("direction");
 
-			if ( id != NULL && dir != NULL && (orthElement->QueryFloatAttribute("near",&near) == TIXML_SUCCESS) && (orthElement->QueryFloatAttribute("left",&left) == TIXML_SUCCESS)
-				&& (orthElement->QueryFloatAttribute("far",&far) == TIXML_SUCCESS) && (orthElement->QueryFloatAttribute("right",&right) == TIXML_SUCCESS)
-				 && (orthElement->QueryFloatAttribute("top",&top) == TIXML_SUCCESS) && (orthElement->QueryFloatAttribute("bottom",&bottom) == TIXML_SUCCESS)){
-					 printf("\n\n< - - - Values of ortho - - - - >\n");
-					 printf(" Id : %s \n", id);
-					 printf(" Dir : %s \n", dir);
-					 printf(" Valores >>  %f - %f - %f - %f - %f - %f \n", near, far, left, right, top, bottom);
+			if (id != NULL && dir != NULL && (orthElement->QueryFloatAttribute("near", &near) == TIXML_SUCCESS) && (orthElement->QueryFloatAttribute("left", &left) == TIXML_SUCCESS)
+				&& (orthElement->QueryFloatAttribute("far", &far) == TIXML_SUCCESS) && (orthElement->QueryFloatAttribute("right", &right) == TIXML_SUCCESS)
+				&& (orthElement->QueryFloatAttribute("top", &top) == TIXML_SUCCESS) && (orthElement->QueryFloatAttribute("bottom", &bottom) == TIXML_SUCCESS)){
+				printf("\n\n< - - - Values of ortho - - - - >\n");
+				printf(" Id : %s \n", id);
+				printf(" Dir : %s \n", dir);
+				printf(" Valores >>  %f - %f - %f - %f - %f - %f \n", near, far, left, right, top, bottom);
 			}
 			else
-				printf ( " - - -  -> There was an error reading perspective tag ");
+				printf(" - - -  -> There was an error reading perspective tag ");
 		}
 	}
 
-/*
-// Other blocks could be validated/processed here
+	/*
+	// Other blocks could be validated/processed here
 
 
-// graph section
-if (graphElement == NULL)
-printf("Graph block not found!\n");
-else
-{
-char *prefix="  -";
-TiXmlElement *node=graphElement->FirstChildElement();
+	// graph section
+	if (graphElement == NULL)
+	printf("Graph block not found!\n");
+	else
+	{
+	char *prefix="  -";
+	TiXmlElement *node=graphElement->FirstChildElement();
 
-while (node)
-{
-printf("Node id '%s' - Descendants:\n",node->Attribute("id"));
-TiXmlElement *child=node->FirstChildElement();
-while (child)
-{
-if (strcmp(child->Value(),"Node")==0)
-{
-// access node data by searching for its id in the nodes section
+	while (node)
+	{
+	printf("Node id '%s' - Descendants:\n",node->Attribute("id"));
+	TiXmlElement *child=node->FirstChildElement();
+	while (child)
+	{
+	if (strcmp(child->Value(),"Node")==0)
+	{
+	// access node data by searching for its id in the nodes section
 
-TiXmlElement *noderef=findChildByAttribute(nodesElement,"id",child->Attribute("id"));
+	TiXmlElement *noderef=findChildByAttribute(nodesElement,"id",child->Attribute("id"));
 
-if (noderef)
-{
-// print id
-printf("  - Node id: '%s'\n", child->Attribute("id"));
+	if (noderef)
+	{
+	// print id
+	printf("  - Node id: '%s'\n", child->Attribute("id"));
 
-// prints some of the data
-printf("    - Material id: '%s' \n", noderef->FirstChildElement("material")->Attribute("id"));
-printf("    - Texture id: '%s' \n", noderef->FirstChildElement("texture")->Attribute("id"));
+	// prints some of the data
+	printf("    - Material id: '%s' \n", noderef->FirstChildElement("material")->Attribute("id"));
+	printf("    - Texture id: '%s' \n", noderef->FirstChildElement("texture")->Attribute("id"));
 
-// repeat for other leaf details
-}
-else
-printf("  - Node id: '%s': NOT FOUND IN THE NODES SECTION\n", child->Attribute("id"));
+	// repeat for other leaf details
+	}
+	else
+	printf("  - Node id: '%s': NOT FOUND IN THE NODES SECTION\n", child->Attribute("id"));
 
-}
-if (strcmp(child->Value(),"Leaf")==0)
-{
-// access leaf data by searching for its id in the leaves section
-TiXmlElement *leaf=findChildByAttribute(leavesElement,"id",child->Attribute("id"));
+	}
+	if (strcmp(child->Value(),"Leaf")==0)
+	{
+	// access leaf data by searching for its id in the leaves section
+	TiXmlElement *leaf=findChildByAttribute(leavesElement,"id",child->Attribute("id"));
 
-if (leaf)
-{
-// it is a leaf and it is present in the leaves section
-printf("  - Leaf id: '%s' ; type: '%s'\n", child->Attribute("id"), leaf->Attribute("type"));
+	if (leaf)
+	{
+	// it is a leaf and it is present in the leaves section
+	printf("  - Leaf id: '%s' ; type: '%s'\n", child->Attribute("id"), leaf->Attribute("type"));
 
-// repeat for other leaf details
-}
-else
-printf("  - Leaf id: '%s' - NOT FOUND IN THE LEAVES SECTION\n",child->Attribute("id"));
-}
+	// repeat for other leaf details
+	}
+	else
+	printf("  - Leaf id: '%s' - NOT FOUND IN THE LEAVES SECTION\n",child->Attribute("id"));
+	}
 
-child=child->NextSiblingElement();
-}
-node=node->NextSiblingElement();
-}
+	child=child->NextSiblingElement();
+	}
+	node=node->NextSiblingElement();
+	}
 
-}
-*/
+	}
+	*/
 }
 
 XMLScene::~XMLScene()
@@ -251,5 +248,3 @@ TiXmlElement *XMLScene::findChildByAttribute(TiXmlElement *parent, const char * 
 
 	return child;
 }
-
-

@@ -10,7 +10,8 @@ public:
 	~XMLScene();
 
 	static TiXmlElement *findChildByAttribute(TiXmlElement *parent,const char * attr, const char *val);
-	
+	void parserLights();
+
 protected:
 
 	TiXmlDocument* doc;

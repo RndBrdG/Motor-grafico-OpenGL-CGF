@@ -1,12 +1,10 @@
-#include "DemoScene.h"
-#include "CGFaxis.h"
+#include "CGFappearance.h"
 #include "CGFapplication.h"
-
+#include "CGFaxis.h"
+#include "DemoScene.h"
 #include "ExampleObject.h"
 
 #include <math.h>
-
-#include "CGFappearance.h"
 
 void DemoScene::init() 
 {
@@ -27,8 +25,8 @@ void DemoScene::init()
 
 	obj=new ExampleObject();
 	materialAppearance=new CGFappearance();
-	textureAppearance=new CGFappearance("../data/pyramid.jpg",GL_REPEAT, GL_REPEAT);
-	shader=new CGFshader("../data/texshader.vert","../data/texshader.frag");
+	textureAppearance=new CGFappearance("../res/pyramid.jpg", GL_REPEAT, GL_REPEAT);
+	shader=new CGFshader("../res/texshader.vert", "../res/texshader.frag");
 
 	setUpdatePeriod(30);
 }

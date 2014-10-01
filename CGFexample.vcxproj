@@ -78,6 +78,12 @@
     <ClInclude Include="include\tinyxml.h" />
     <ClInclude Include="include\XMLScene.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="res\pyramid.jpg" />
+    <None Include="res\scene.xml" />
+    <None Include="res\texshader.frag" />
+    <None Include="res\texshader.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

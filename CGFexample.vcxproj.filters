@@ -30,7 +30,10 @@
     <ClCompile Include="src\parserGlobals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="parserCameras.cpp">
+    <ClCompile Include="src\parserLights.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\parserCameras.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

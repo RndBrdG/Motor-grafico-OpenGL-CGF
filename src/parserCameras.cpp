@@ -1,7 +1,6 @@
 #include "XMLScene.h"
 
-
-void XMLScene::parsingCamera(){
+void XMLScene::parserCameras() {
 	if (camElement == NULL)
 		printf("cameras block not found!\n");
 	else
@@ -22,10 +21,10 @@ void XMLScene::parsingCamera(){
 
 		do {
 			if (camInstElement->ValueTStr() == "perspective") { // Tag "perspective"
-				parsingCameraPerspective();
+				parserCamerasPerspective();
 			}
 			else if (camInstElement->ValueTStr() == "ortho") { // Tag "ortho"
-				parsingCameraOrtho();
+				parserCamerasOrtho();
 			}
 			else {
 				printf("Unknown camera tag found\n");
@@ -34,7 +33,7 @@ void XMLScene::parsingCamera(){
 	}
 }
 
-void XMLScene::parsingCameraPerspective(){
+void XMLScene::parserCamerasOrtho() {
 	TiXmlElement* perspElement = camElement->FirstChildElement("perspective");
 	if (perspElement)
 	{
@@ -57,7 +56,7 @@ void XMLScene::parsingCameraPerspective(){
 	}
 }
 
-void XMLScene::parsingCameraOrtho(){
+void XMLScene::parserCamerasOrtho() {
 	TiXmlElement* orthElement = camElement->FirstChildElement("ortho");
 	if (orthElement)
 	{

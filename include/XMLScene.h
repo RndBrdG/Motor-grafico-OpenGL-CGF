@@ -10,7 +10,15 @@ public:
 	~XMLScene();
 
 	static TiXmlElement *findChildByAttribute(TiXmlElement *parent,const char * attr, const char *val);
-	
+	// globals tag
+	void parsingGlobal();
+	void parsingGlobalCulling();
+	void parsingGloballighting();
+	void parsingGlobalGlobals();
+	// camera tag
+	void parsingCamera();
+	void parsingCameraPerspective();
+	void parsingCameraOrtho();
 protected:
 
 	TiXmlDocument* doc;

@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 	try {
 		app.init(&argc, argv);
 
-		new XMLScene("/../res/demograph.xml");
+		new XMLScene("../res/scene.xml");
 		app.setScene(new DemoScene());
 		app.setInterface(new CGFinterface());
 		

@@ -1,4 +1,4 @@
-#include "XMLSCene.h"
+#include "XMLScene.h"
 
 
 void XMLScene::parsingCamera(){

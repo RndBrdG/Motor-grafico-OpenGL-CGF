@@ -32,10 +32,10 @@ XMLScene::XMLScene(char *filename)
 	*/
 
 	// TAG GLOBAL
-	parsingGlobal();
+	parserGlobals();
 
 	// TAG CAMERAS
-	parsingCamera();
+	parserCameras();
 
 	/*
 	// Other blocks could be validated/processed here

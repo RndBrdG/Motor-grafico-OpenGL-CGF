@@ -33,7 +33,7 @@ void XMLScene::parserCameras() {
 	}
 }
 
-void XMLScene::parserCamerasOrtho() {
+void XMLScene::parserCamerasPerspective() {
 	TiXmlElement* perspElement = camElement->FirstChildElement("perspective");
 	if (perspElement)
 	{

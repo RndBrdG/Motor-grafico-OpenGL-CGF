@@ -1,4 +1,5 @@
 #include "XMLScene.h"
+#include "Camera.h"
 
 void XMLScene::parserCameras() {
 	if (camElement == NULL)
@@ -53,6 +54,8 @@ void XMLScene::parserCamerasPerspective() {
 		}
 		else
 			printf("Error reading perspective tag\n");
+
+		CameraPerspective a1 = CameraPerspective(id, near, far, angle, posX, posY, posZ, targetX, targetY, targetZ);
 	}
 }
 

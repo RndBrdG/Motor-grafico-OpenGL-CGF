@@ -19,11 +19,21 @@ void XMLScene::parserGlobalsDrawing() {	// Tag "drawing"
 		float r, g, b, a;
 
 		mode = (char *)drawingElement->Attribute("mode");
+		GLenum drawingMode;
+
 		shading = (char *)drawingElement->Attribute("shading");
 		bkgValues = (char *)drawingElement->Attribute("background");
 
 		if (mode != NULL && shading != NULL && bkgValues != NULL && sscanf(bkgValues, "%f %f %f %f", &r, &g, &b, &a) == 4){
 			printf("  drawing attributes: %s %s\n", mode, shading);
+
+			if (mode == "fill")
+				drawingMode = GL_FILL;
+			else if (mode == "line")
+				drawingMode = GL_LINE;
+			else if (mode == "point")
+				drawingMode = GL_POINT;
+
 			printf("  background values (RGBA): %f %f %f %f\n", r, g, b, a);
 		}
 		else

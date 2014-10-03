@@ -2,6 +2,7 @@
 #define _XMLSCENE_H_
 
 #include "tinyxml.h"
+#include "CGFscene.h"
 
 class XMLScene
 {

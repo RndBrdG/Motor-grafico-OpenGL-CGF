@@ -26,7 +26,6 @@ private:
 
 protected:
 	TiXmlDocument* doc;
-
 	TiXmlElement* globElement; 
 	TiXmlElement* camElement;
 	TiXmlElement* textsElement;

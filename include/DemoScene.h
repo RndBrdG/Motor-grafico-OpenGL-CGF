@@ -3,7 +3,6 @@
 
 #include "CGFscene.h"
 #include "CGFshader.h"
-#include "Globals.h"
 
 class DemoScene : public CGFscene
 {
@@ -13,8 +12,6 @@ public:
 	void update(unsigned long t);
 	~DemoScene();
 private:
-	Globals* globalsData;
-
 	CGFlight* light0;
 	CGFobject* obj;
 	CGFappearance* materialAppearance;

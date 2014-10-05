@@ -1,4 +1,5 @@
 #include "XMLScene.h"
+#include "Globals.h"
 
 void XMLScene::parserGlobals() {
 	if (globElement == NULL)
@@ -6,20 +7,19 @@ void XMLScene::parserGlobals() {
 	else {
 		printf("Processing globals init:\n");
 
-		parserGlobalsDrawing();
-		parserGlobalsCulling();
-		parserGlobalsLighting();
+		parserGlobalsDrawing(globalsData);
+		parserGlobalsCulling(globalsData);
+		parserGlobalsLighting(globalsData);
 	}
 }
 
-void XMLScene::parserGlobalsDrawing() {	// Tag "drawing"
+void XMLScene::parserGlobalsDrawing(Globals& globalsData) {	// Tag "drawing"
 	TiXmlElement* drawingElement = globElement->FirstChildElement("drawing");
 	if (drawingElement) {
 		char *mode = NULL, *shading = NULL, *bkgValues = NULL;
 		float r, g, b, a;
 
 		mode = (char *)drawingElement->Attribute("mode");
-		GLenum drawingMode;
 
 		shading = (char *)drawingElement->Attribute("shading");
 		bkgValues = (char *)drawingElement->Attribute("background");
@@ -28,11 +28,21 @@ void XMLScene::parserGlobalsDrawing() {	// Tag "drawing"
 			printf("  drawing attributes: %s %s\n", mode, shading);
 
 			if (mode == "fill")
-				drawingMode = GL_FILL;
+				globalsData.polygonMode = GL_FILL;
 			else if (mode == "line")
-				drawingMode = GL_LINE;
+				globalsData.polygonMode = GL_LINE;
 			else if (mode == "point")
-				drawingMode = GL_POINT;
+				globalsData.polygonMode = GL_POINT;
+
+			if (shading == "gouraud")
+				globalsData.shadeModel = GL_SMOOTH;
+			else if (shading == "flat")
+				globalsData.shadeModel = GL_FLAT;
+			
+			globalsData.bkgColorR = r;
+			globalsData.bkgColorG = g;
+			globalsData.bkgColorB = b;
+			globalsData.bkgColorA = a;
 
 			printf("  background values (RGBA): %f %f %f %f\n", r, g, b, a);
 		}
@@ -43,7 +53,7 @@ void XMLScene::parserGlobalsDrawing() {	// Tag "drawing"
 		printf("drawing not found\n");
 }
 
-void XMLScene::parserGlobalsCulling() {
+void XMLScene::parserGlobalsCulling(Globals& globalsData) {
 	TiXmlElement* cullingElement = globElement->FirstChildElement("culling");
 	if (cullingElement) {
 		char *face = NULL, *order = NULL;
@@ -61,16 +71,16 @@ void XMLScene::parserGlobalsCulling() {
 		printf("culling not found\n");
 }
 
-void XMLScene::parserGlobalsLighting(){
+void XMLScene::parserGlobalsLighting(Globals& globalsData) {
 	TiXmlElement* lightingElement = globElement->FirstChildElement("lighting");
 	if (lightingElement) {
 		char *doublesided = NULL, *local = NULL, *enabled = NULL, *ambient = NULL;
 		float r, g, b, a;
 
-		doublesided = (char *) lightingElement->Attribute("doublesided");
-		local = (char *) lightingElement->Attribute("local");
-		enabled = (char *) lightingElement->Attribute("enabled");
-		ambient = (char *) lightingElement->Attribute("ambient");
+		doublesided = (char *)lightingElement->Attribute("doublesided");
+		local = (char *)lightingElement->Attribute("local");
+		enabled = (char *)lightingElement->Attribute("enabled");
+		ambient = (char *)lightingElement->Attribute("ambient");
 
 		if (doublesided != NULL && local != NULL && enabled != NULL && ambient != NULL && sscanf(ambient, "%f %f %f %f", &r, &g, &b, &a) == 4) {
 			printf("  lighting attributes: %s %s %s\n", doublesided, local, enabled);

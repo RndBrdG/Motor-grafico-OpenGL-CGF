@@ -3,6 +3,7 @@
 
 #include "tinyxml.h"
 #include "CGFscene.h"
+#include "Globals.h"
 
 class XMLScene
 {
@@ -12,12 +13,14 @@ public:
 
 	static TiXmlElement *findChildByAttribute(TiXmlElement *parent,const char * attr, const char *val);
 
+	Globals globalsData; // DEBUG
+
 private:
 	// globals tag
 	void parserGlobals();
-	void parserGlobalsDrawing();
-	void parserGlobalsCulling();
-	void parserGlobalsLighting();
+	void parserGlobalsDrawing(Globals& globalsData);
+	void parserGlobalsCulling(Globals& globalsData);
+	void parserGlobalsLighting(Globals& globalsData);
 	// camera tag
 	void parserCameras();
 	void parserCamerasPerspective();

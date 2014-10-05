@@ -14,19 +14,32 @@ Globals::Globals() {
 	ambLightR = .2, ambLightG = .2, ambLightB = .2, ambLightA = 1.;
 }
 
-Globals::Globals(GLenum polygonMode, GLenum shadeModel, float bkgColorR, float bkgColorG, float bkgColorB, float bkgColorA, GLenum cullFace, GLenum frontFace, bool dblSidedLight, bool localLight, bool ambLight, float ambLightR, float ambLightG, float ambLightB, float ambLightA) : polygonMode(polygonMode) {
-	this->shadeModel = shadeModel;
-	this->bkgColorR = bkgColorR;
-	this->bkgColorG = bkgColorG;
-	this->bkgColorB = bkgColorB;
-	this->bkgColorA = bkgColorA;
-	this->cullFace = cullFace;
-	this->frontFace = frontFace;
-	this->dblSidedLight = dblSidedLight;
-	this->localLight = localLight;
-	this->ambLight = ambLight;
-	this->ambLightR = ambLightR;
-	this->ambLightG = ambLightG;
-	this->ambLightB = ambLightB;
-	this->ambLightA = ambLightA;
+Globals::Globals(GLenum polygonMode, GLenum shadeModel, float bkgColorR, float bkgColorG, float bkgColorB, float bkgColorA, GLenum cullFace, GLenum frontFace, bool dblSidedLight, bool localLight, bool ambLight, float ambLightR, float ambLightG, float ambLightB, float ambLightA)
+	: polygonMode(polygonMode), shadeModel(shadeModel), bkgColorR(bkgColorR), bkgColorG(bkgColorG), bkgColorB(bkgColorB), bkgColorA(bkgColorA),
+	cullFace(cullFace), frontFace(frontFace),
+	dblSidedLight(dblSidedLight), localLight(localLight), ambLight(ambLight), ambLightR(ambLightR), ambLightG(ambLightG), ambLightB(ambLightB), ambLightA(ambLightA) {
+}
+
+GLenum Globals::getPolygonMode() {
+	return polygonMode;
+}
+
+GLenum Globals::getShadeModel() {
+	return shadeModel;
+}
+
+float Globals::getBkgColorR() {
+	return bkgColorR;
+}
+
+float Globals::getBkgColorG() {
+	return bkgColorG;
+}
+
+float Globals::getBkgColorB() {
+	return bkgColorB;
+}
+
+float Globals::getBkgColorA() {
+	return bkgColorA;
 }

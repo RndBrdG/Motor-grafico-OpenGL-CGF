@@ -1,4 +1,4 @@
-#include "camera.h"
+#include "Camera.h"
 
 Camera::Camera(char *id, float near, float far){
 	this->id = id;

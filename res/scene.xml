@@ -22,7 +22,7 @@
     <!-- tem de existir, pelo menos uma camara dos tipos seguintes (perspective ou ortho) -->
     <!-- no caso da camara ortho, o atributo "direction" define o eixo segundo o qual se efetua a projecao -->
 
-    <perspective id="idPer" near="0.2" far="0.3" angle="45" pos="25 55 22" target="44 54 65" />
+    <perspective id="camInit" near="0.2" far="0.3" angle="45" pos="25 55 22" target="44 54 65" />
     <ortho id="idOrtho" direction="ee" near="0.4" far="0.5" left="0.2" right="0.3" top="0.6" bottom="0.5" />
     <ortho id="idOrtho2" direction="ee" near="0.4" far="0.5" left="0.2" right="0.3" top="0.6" bottom="0.5" />
 

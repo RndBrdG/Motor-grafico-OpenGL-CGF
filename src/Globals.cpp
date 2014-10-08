@@ -10,14 +10,8 @@ Globals::Globals() {
 
 	dblSidedLight = false;
 	localLight = true;
-	ambLight = true;
+	lightEnabled = true;
 	ambLightR = .2, ambLightG = .2, ambLightB = .2, ambLightA = 1.;
-}
-
-Globals::Globals(GLenum polygonMode, GLenum shadeModel, float bkgColorR, float bkgColorG, float bkgColorB, float bkgColorA, GLenum cullFace, GLenum frontFace, bool dblSidedLight, bool localLight, bool ambLight, float ambLightR, float ambLightG, float ambLightB, float ambLightA)
-	: polygonMode(polygonMode), shadeModel(shadeModel), bkgColorR(bkgColorR), bkgColorG(bkgColorG), bkgColorB(bkgColorB), bkgColorA(bkgColorA),
-	cullFace(cullFace), frontFace(frontFace),
-	dblSidedLight(dblSidedLight), localLight(localLight), ambLight(ambLight), ambLightR(ambLightR), ambLightG(ambLightG), ambLightB(ambLightB), ambLightA(ambLightA) {
 }
 
 GLenum Globals::getPolygonMode() {
@@ -42,4 +36,40 @@ float Globals::getBkgColorB() {
 
 float Globals::getBkgColorA() {
 	return bkgColorA;
+}
+
+GLenum Globals::getCullFace() {
+	return cullFace;
+}
+
+GLenum Globals::getFrontFace() {
+	return frontFace;
+}
+
+bool Globals::getDblSidedLight() {
+	return dblSidedLight;
+}
+
+bool Globals::getLocalLight() {
+	return localLight;
+}
+
+bool Globals::getLightEnabled() {
+	return lightEnabled;
+}
+
+float Globals::getAmbLightR() {
+	return ambLightR;
+}
+
+float Globals::getAmbLightG() {
+	return ambLightG;
+}
+
+float Globals::getAmbLightB() {
+	return ambLightB;
+}
+
+float Globals::getAmbLightA() {
+	return ambLightA;
 }

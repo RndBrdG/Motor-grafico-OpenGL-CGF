@@ -3,6 +3,10 @@
 XMLScene::XMLScene(char *filename)
 {
 
+	/* Inicializar grafo*/
+
+	this->objetosDaCena = Graph();
+
 	// Read XML from file
 
 	doc = new TiXmlDocument(filename);
@@ -28,8 +32,9 @@ XMLScene::XMLScene(char *filename)
 	textsElement =  dgxElement->FirstChildElement( "lights" );
 	leavesElement =  dgxElement->FirstChildElement( "textures" );
 	nodesElement =  dgxElement->FirstChildElement( "appearances" );
-	graphElement =  dgxElement->FirstChildElement( "graph" );
 	*/
+	graphElement =  dgxElement->FirstChildElement( "graph" );
+	
 
 	// TAG GLOBAL
 	parserGlobals();
@@ -37,70 +42,8 @@ XMLScene::XMLScene(char *filename)
 	// TAG CAMERAS
 	parserCameras();
 
-	/*
-	// Other blocks could be validated/processed here
-
-
 	// graph section
-	if (graphElement == NULL)
-	printf("Graph block not found!\n");
-	else
-	{
-	char *prefix="  -";
-	TiXmlElement *node=graphElement->FirstChildElement();
-
-	while (node)
-	{
-	printf("Node id '%s' - Descendants:\n",node->Attribute("id"));
-	TiXmlElement *child=node->FirstChildElement();
-	while (child)
-	{
-	if (strcmp(child->Value(),"Node")==0)
-	{
-	// access node data by searching for its id in the nodes section
-
-	TiXmlElement *noderef=findChildByAttribute(nodesElement,"id",child->Attribute("id"));
-
-	if (noderef)
-	{
-	// print id
-	printf("  - Node id: '%s'\n", child->Attribute("id"));
-
-	// prints some of the data
-	printf("    - Material id: '%s' \n", noderef->FirstChildElement("material")->Attribute("id"));
-	printf("    - Texture id: '%s' \n", noderef->FirstChildElement("texture")->Attribute("id"));
-
-	// repeat for other leaf details
-	}
-	else
-	printf("  - Node id: '%s': NOT FOUND IN THE NODES SECTION\n", child->Attribute("id"));
-
-	}
-	if (strcmp(child->Value(),"Leaf")==0)
-	{
-	// access leaf data by searching for its id in the leaves section
-	TiXmlElement *leaf=findChildByAttribute(leavesElement,"id",child->Attribute("id"));
-
-	if (leaf)
-	{
-	// it is a leaf and it is present in the leaves section
-	printf("  - Leaf id: '%s' ; type: '%s'\n", child->Attribute("id"), leaf->Attribute("type"));
-
-	// repeat for other leaf details
-	}
-	else
-	printf("  - Leaf id: '%s' - NOT FOUND IN THE LEAVES SECTION\n",child->Attribute("id"));
-	}
-
-	child=child->NextSiblingElement();
-	}
-	node=node->NextSiblingElement();
-	}
-
-	}
-	*/
-
-	printf("\n\n");
+	parserGraph();
 }
 
 XMLScene::~XMLScene()

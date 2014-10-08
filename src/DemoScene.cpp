@@ -4,7 +4,7 @@
 #include "DemoScene.h"
 #include "ExampleObject.h"
 #include "XMLscene.h"
-
+#include "Primitivas.h"
 #include <math.h>
 
 void DemoScene::init()
@@ -65,6 +65,7 @@ void DemoScene::display()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
+
 	// Apply transformations corresponding to the camera position relative to the origin
 	CGFscene::activeCamera->applyView();
 
@@ -84,6 +85,7 @@ void DemoScene::display()
 	materialAppearance->apply();
 	obj->draw();
 
+	
 	// textured object
 
 	glTranslatef(0, 4, 0);

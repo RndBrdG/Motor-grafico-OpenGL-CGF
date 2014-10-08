@@ -2,10 +2,8 @@
 
 XMLScene::XMLScene(char *filename)
 {
-
-	/* Inicializar grafo*/
-
-	this->objetosDaCena = Graph();
+	/* Inicializar grafo */
+	objetosDaCena = Graph();
 
 	// Read XML from file
 

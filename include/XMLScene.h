@@ -4,6 +4,7 @@
 #include "tinyxml.h"
 #include "CGFscene.h"
 #include "Globals.h"
+#include "Graph.h"
 
 class XMLScene
 {
@@ -14,6 +15,7 @@ public:
 	static TiXmlElement *findChildByAttribute(TiXmlElement *parent,const char * attr, const char *val);
 
 	Globals globalsData; // DEBUG
+	Graph objetosDaCena;
 
 private:
 	// globals tag
@@ -27,7 +29,12 @@ private:
 	void parserCamerasOrtho();
 	// lights tag
 	void parserLights();
-
+	// graph tag
+	void parserGraph();
+	void parserGraphTransforms(Node &novoNode, TiXmlElement *childs);
+	void parserGraphAppearanceref(Node &novoNode, TiXmlElement *childs);
+	void parserGraphPrimitives(Node &novoNode, TiXmlElement *childs);
+	void parserGraphdescendants(Node &novoNode, TiXmlElement *childs);
 protected:
 	TiXmlDocument* doc;
 	TiXmlElement* globElement; 

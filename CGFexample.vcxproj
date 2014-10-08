@@ -71,19 +71,21 @@
     <ClCompile Include="src\DemoScene.cpp" />
     <ClCompile Include="src\ExampleObject.cpp" />
     <ClCompile Include="src\Globals.cpp" />
-    <ClCompile Include="src\Graph.cpp" />
+    <ClCompile Include="src\graph.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\parserCameras.cpp" />
     <ClCompile Include="src\parserGlobals.cpp" />
+    <ClCompile Include="src\parserGraph.cpp" />
     <ClCompile Include="src\parserLights.cpp" />
+    <ClCompile Include="src\Primitivas.cpp" />
     <ClCompile Include="src\XMLScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Graph.h" />
     <ClInclude Include="include\Camera.h" />
     <ClInclude Include="include\DemoScene.h" />
     <ClInclude Include="include\ExampleObject.h" />
     <ClInclude Include="include\Globals.h" />
+    <ClInclude Include="include\Graph.h" />
     <ClInclude Include="include\Primitivas.h" />
     <ClInclude Include="include\tinystr.h" />
     <ClInclude Include="include\tinyxml.h" />

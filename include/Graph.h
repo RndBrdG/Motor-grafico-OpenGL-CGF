@@ -6,30 +6,24 @@
 #include <map>
 #include <Primitivas.h>
 
-typedef struct
-{
-	char* type, *axis;
-	float toX, toY, toZ;
-	float factorX, factorY, factorZ;
-	float angle;
-} transform;
-
+class Node {
+	char* id;
+	char* appRef;   // appeareance reference
+	std::vector<Primitivas> primitivas;
+	float matrix[16];
+public:
+	Node(char* id);
+	char* getId();
+	char* getAppRef();
+	void setMatrix(float matrix[16]);
+	std::vector<Primitivas> getPrimitivas();
+};
 
 class Graph {
 
 	std::map<char*, Node> grafo;
 public:
-
+	Graph(){};
 };
-
-class Node {
-	char* id;
-	char* appRef;   // appeareance reference
-	std::vector<transform> transformacoes;
-	std::vector<Primitivas> primitivas;
-public:
-
-};
-
 
 #endif

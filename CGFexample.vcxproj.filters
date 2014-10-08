@@ -42,7 +42,13 @@
     <ClCompile Include="src\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graph.cpp">
+    <ClCompile Include="src\Primitivas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\parserGraph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,10 +74,10 @@
     <ClInclude Include="include\Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graph.h">
+    <ClInclude Include="include\Primitivas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Primitivas.h">
+    <ClInclude Include="include\Graph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

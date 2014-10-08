@@ -5,7 +5,7 @@
     <!-- Parametros de desenho -->
     <!-- Valores para mode: "fill" , "line", "point" -->
     <!-- Valores para shading: "flat", "gouraud" ) -->
-    <drawing mode="fill" shading="gouraud" background=".9608 1. .9804 1." />
+    <drawing mode="fill" shading="gouraud" background="0 0 0 0" />
 
     <!-- Parametros de culling -->
     <!-- Valores para cullface: "none", "back" , "front" ou "both" -->
@@ -68,18 +68,18 @@
   </appearances>
 
   <!-- bloco do grafo; "rootid" identifica o no de raiz -->
-  <graph rootid="ss">
+  <graph rootid="primeiro">
 
     <!-- tem de existir, pelo menos, um bloco "node" -->
-    <node id="ss">
+    <node id="Pprimeiro">
       <!-- bloco "transforms" obrigatorio -->
       <transforms>
         <!-- deve conter transformacoes explicitas usando as instrucoes seguintes sem limite nem ordem -->
         <!-- ex: bloco transforms pode ficar sem conteudo -->
         <!-- ex: bloco transforms pode ser R,T (nao tem S) -->
         <!-- ex: bloco transforms pode ser R,S,T,S -->
-        <transform type="translate" to="ff ff ff" />
-        <transform type="rotate" axis="ee" angle="ff" />
+        <transform type="translate" to="1.0 0.0 2.0" />
+        <transform type="rotate" axis="xx" angle="ff" />
         <transform type="scale" factor="ff ff ff" />
       </transforms>
 

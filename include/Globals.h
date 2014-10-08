@@ -14,10 +14,9 @@ protected:
 	GLenum cullFace;
 	GLenum frontFace;
 
-	// http://www.dei.isep.ipp.pt/~matos/cg/docs/manual/glLightModel.3G.html
 	bool dblSidedLight;
 	bool localLight;
-	bool ambLight;
+	bool lightEnabled;
 	float ambLightR, ambLightG, ambLightB, ambLightA;
 
 public:
@@ -26,6 +25,14 @@ public:
 
 	GLenum getPolygonMode(), getShadeModel();
 	float getBkgColorR(), getBkgColorG(), getBkgColorB(), getBkgColorA();
+
+	GLenum getCullFace();
+	GLenum getFrontFace();
+
+	bool getDblSidedLight();
+	bool getLocalLight();
+	bool getLightEnabled();
+	float getAmbLightR(), getAmbLightG(), getAmbLightB(), getAmbLightA();
 };
 
 #endif

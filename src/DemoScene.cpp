@@ -9,20 +9,25 @@
 
 void DemoScene::init()
 {
-	XMLScene scene("../res/scene.xml"); // Read config data from XML.
-
-	// Enables lighting computations
-	glEnable(GL_LIGHTING);
-
-	// Sets up some lighting parameters
-	glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, CGFlight::background_ambient);  // Define ambient light
+	XMLScene scene("../res/scene.xml"); // Read config data from XML
 
 	// Sets drawing settings
 	glPolygonMode(GL_FRONT_AND_BACK, scene.globalsData.getPolygonMode());
 	glShadeModel(scene.globalsData.getShadeModel());
 	glClearColor(scene.globalsData.getBkgColorR(), scene.globalsData.getBkgColorG(), scene.globalsData.getBkgColorB(), scene.globalsData.getBkgColorA());
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	// Sets culliing settings
+	if (scene.globalsData.getCullFace() != NULL) {
+		glCullFace(scene.globalsData.getCullFace());
+		glFrontFace(scene.globalsData.getFrontFace());
+	}
+
+	// Sets lighting settings
+	glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, scene.globalsData.getDblSidedLight());
+	glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, scene.globalsData.getLocalLight());
+	if (scene.globalsData.getLightEnabled()) glEnable(GL_LIGHTING); else glDisable(GL_LIGHTING);
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, CGFlight::background_ambient);
 
 	// Declares and enables a light
 	float light0_pos[4] = { 4.0, 6.0, 5.0, 1.0 };

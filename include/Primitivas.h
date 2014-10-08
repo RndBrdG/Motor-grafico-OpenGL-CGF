@@ -4,7 +4,8 @@
 #include <CGFobject.h>
 
 class Primitivas {
-
+public:
+	virtual void draw() = 0;
 };
 
 class Rectangle : public Primitivas{
@@ -26,18 +27,19 @@ public:
 
 class Cylinder : public Primitivas{
 	GLUquadric *cylin;
-	float base, top;
-	float height, slices, stacks;
+	float base, top, height;
+	int slices, stacks;
 public:
-	Cylinder(float base, float top, float height, float slices, float stacks);
+	Cylinder(float base, float top, float height, int slices, int stacks);
 	void draw();
 };
 
 class Sphere : public Primitivas{
 	GLUquadric *sph;
-	float radius, slices, loops;
+	float radius;
+	int slices, stacks;
 public:
-	Sphere(float radius, float slices, float loops);
+	Sphere(float radius, int slices, int stacks);
 	void draw();
 };
 

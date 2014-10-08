@@ -36,7 +36,7 @@ void DemoScene::init()
 	materialAppearance = new CGFappearance();
 	textureAppearance = new CGFappearance("../res/pyramid.jpg", GL_REPEAT, GL_REPEAT);
 	shader = new CGFshader("../res/texshader.vert", "../res/texshader.frag");
-
+	desenhar = scene.objetosDaCena;
 	setUpdatePeriod(30);
 }
 
@@ -75,6 +75,8 @@ void DemoScene::display()
 
 
 	// ---- BEGIN feature demos
+
+	desenhar.draw();
 
 	// Simple object
 	materialAppearance->apply();

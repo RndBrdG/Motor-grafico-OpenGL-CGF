@@ -7,20 +7,20 @@ void XMLScene::parserGlobals() {
 	else {
 		printf("Processing globals init:\n");
 
-		parserGlobalsDrawing(globalsData);
-		parserGlobalsCulling(globalsData);
-		parserGlobalsLighting(globalsData);
+		parserGlobalsDrawing();
+		parserGlobalsCulling();
+		parserGlobalsLighting();
 	}
 }
 
-void XMLScene::parserGlobalsDrawing(Globals& globalsData) {	// Tag "drawing"
+void XMLScene::parserGlobalsDrawing() {
 	TiXmlElement* drawingElement = globElement->FirstChildElement("drawing");
+
 	if (drawingElement) {
 		char *mode = NULL, *shading = NULL, *bkgValues = NULL;
 		float r, g, b, a;
 
 		mode = (char *)drawingElement->Attribute("mode");
-
 		shading = (char *)drawingElement->Attribute("shading");
 		bkgValues = (char *)drawingElement->Attribute("background");
 
@@ -53,8 +53,9 @@ void XMLScene::parserGlobalsDrawing(Globals& globalsData) {	// Tag "drawing"
 		printf("drawing not found\n");
 }
 
-void XMLScene::parserGlobalsCulling(Globals& globalsData) {
+void XMLScene::parserGlobalsCulling() {
 	TiXmlElement* cullingElement = globElement->FirstChildElement("culling");
+
 	if (cullingElement) {
 		char *face = NULL, *order = NULL;
 
@@ -85,8 +86,9 @@ void XMLScene::parserGlobalsCulling(Globals& globalsData) {
 		printf("culling not found\n");
 }
 
-void XMLScene::parserGlobalsLighting(Globals& globalsData) {
+void XMLScene::parserGlobalsLighting() {
 	TiXmlElement* lightingElement = globElement->FirstChildElement("lighting");
+
 	if (lightingElement) {
 		char *doubleSided = NULL, *local = NULL, *enabled = NULL, *ambient = NULL;
 		float r, g, b, a;

@@ -28,13 +28,13 @@ XMLScene::XMLScene(char *filename)
 
 	globElement = dgxElement->FirstChildElement("globals");
 	camElement = dgxElement->FirstChildElement("cameras");
+	lightsElement = dgxElement->FirstChildElement("lights");
 	/* A FAZER
-	textsElement =  dgxElement->FirstChildElement( "lights" );
 	leavesElement =  dgxElement->FirstChildElement( "textures" );
 	nodesElement =  dgxElement->FirstChildElement( "appearances" );
 	*/
-	graphElement =  dgxElement->FirstChildElement( "graph" );
-	
+	graphElement = dgxElement->FirstChildElement("graph");
+
 
 	// TAG GLOBAL
 	parserGlobals();

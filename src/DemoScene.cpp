@@ -3,19 +3,18 @@
 #include "CGFaxis.h"
 #include "DemoScene.h"
 #include "ExampleObject.h"
-#include "XMLscene.h"
 #include "Primitivas.h"
 #include <math.h>
 
+DemoScene::DemoScene() : scene(XMLScene("../res/scene.xml")) {
+}
+
 void DemoScene::init()
 {
-	XMLScene scene("../res/scene.xml"); // Read config data from XML
-
 	// Sets drawing settings
 	glPolygonMode(GL_FRONT_AND_BACK, scene.globalsData.getPolygonMode());
 	glShadeModel(scene.globalsData.getShadeModel());
 	glClearColor(scene.globalsData.getBkgColorR(), scene.globalsData.getBkgColorG(), scene.globalsData.getBkgColorB(), scene.globalsData.getBkgColorA());
-	glClear(GL_COLOR_BUFFER_BIT);
 
 	// Sets culliing settings
 	if (scene.globalsData.getCullFace() != NULL) {
@@ -29,10 +28,13 @@ void DemoScene::init()
 	if (scene.globalsData.getLightEnabled()) glEnable(GL_LIGHTING); else glDisable(GL_LIGHTING);
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, CGFlight::background_ambient);
 
-	// Declares and enables a light
-	float light0_pos[4] = { 4.0, 6.0, 5.0, 1.0 };
-	light0 = new CGFlight(GL_LIGHT0, light0_pos);
-	light0->enable();
+	// Sets lights
+	for (auto it = scene.lights.cbegin(); it != scene.lights.cend(); it++) {
+		glLightf(GL_LIGHT0 + (*it)->getLightNum(), GL_SPOT_CUTOFF, (*it)->getAngle());
+		glLightf(GL_LIGHT0 + (*it)->getLightNum(), GL_SPOT_EXPONENT, (*it)->getExponent());
+		if ((*it)->getEnabled()) glEnable(GL_LIGHT0 + (*it)->getLightNum());
+		else glDisable(GL_LIGHT0 + (*it)->getLightNum());
+	}
 
 	// Defines a default normal
 	glNormal3f(0, 0, 1);
@@ -50,7 +52,6 @@ void DemoScene::update(unsigned long t)
 	shader->bind();
 	shader->update(t / 400.0);
 	shader->unbind();
-
 }
 
 void DemoScene::display()
@@ -65,16 +66,17 @@ void DemoScene::display()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-
 	// Apply transformations corresponding to the camera position relative to the origin
 	CGFscene::activeCamera->applyView();
 
-	// Draw (and update) light
-	light0->draw();
+	// Draw (and update) lights
+	for (auto it = scene.lights.cbegin(); it != scene.lights.cend(); it++) {
+		if ((*it)->getMarker()) (*it)->draw();
+		else (*it)->update();
+	}
 
 	// Draw axis
 	axis.draw();
-
 
 	// ---- END Background, camera and axis setup
 
@@ -85,7 +87,7 @@ void DemoScene::display()
 	materialAppearance->apply();
 	obj->draw();
 
-	
+
 	// textured object
 
 	glTranslatef(0, 4, 0);
@@ -114,5 +116,4 @@ DemoScene::~DemoScene()
 	delete(textureAppearance);
 	delete(materialAppearance);
 	delete(obj);
-	delete(light0);
 }

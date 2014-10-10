@@ -33,14 +33,9 @@ XMLScene::XMLScene(char *filename)
 	*/
 	graphElement = dgxElement->FirstChildElement("graph");
 
-
-	// TAG GLOBAL
 	parserGlobals();
-
-	// TAG CAMERAS
 	parserCameras();
-
-	// graph section
+	parserLights();
 	parserGraph();
 }
 

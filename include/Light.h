@@ -1,36 +1,29 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
+#include "CGFlight.h"
+
 #include <string>
 
-class Light {
+class Light : public CGFlight {
 	friend class XMLScene;
 
 protected:
+	static int num;
+
+	int lightNum;
 	std::string id;
-	bool enabled;
 	bool marker;
-
-	float x, y, z;
-
-	float ambR, ambG, ambB, ambA;
-	float difR, difG, difB, difA;
-	float speR, speG, speB, speA;
-
-public:
-	Light();
-};
-
-class SpotLight : public Light {
-	friend class XMLScene;
-
-protected:
-	float targetX, targetY, targetZ;
-	float angle;
 	float exponent;
 
 public:
-	SpotLight();
+	Light(unsigned int lightid, float* pos, float *dir = NULL, float angle = 180., float exponent = 0.);
+
+	int getLightNum();
+	float getAngle();
+	bool getEnabled();
+	bool getMarker();
+	float getExponent();
 };
 
 #endif

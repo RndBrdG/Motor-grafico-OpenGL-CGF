@@ -1,20 +1,51 @@
 #include "Light.h"
 
-Light::Light() {
+int Light::num = 0;
+
+Light::Light(unsigned int lightid, float* pos, float* dir, float angle, float exponent) : lightNum(num), CGFlight(lightid, pos, dir) {
+	this->angle = angle;
+	this->exponent = exponent;
 	enabled = true;
 	marker = true;
 
-	x = 0., y = 0., z = 0.;
+	ambient[0] = 0.;
+	ambient[1] = 0.;
+	ambient[2] = 0.;
+	ambient[3] = 0.;
 
-	ambR = 1., ambG = 1., ambA = 1.;
-	difR = 1., difG = 1., difA = 1.;
-	speR = 1., speG = 1., speA = 1.;
+	diffuse[0] = 0.;
+	diffuse[1] = 0.;
+	diffuse[2] = 0.;
+	diffuse[3] = 0.;
+
+	specular[0] = 0.;
+	specular[1] = 0.;
+	specular[2] = 0.;
+	specular[3] = 0.;
+
+	direction[0] = dir != NULL ? dir[0] : 0;
+	direction[1] = dir != NULL ? dir[1] : 0;
+	direction[2] = dir != NULL ? dir[2] : -1;
+
+	num++;
 }
 
-SpotLight::SpotLight() {
-	Light();
+int Light::getLightNum() {
+	return lightNum;
+}
 
-	targetX = 1., targetY = 1., targetZ = 1.;
-	angle = 0.;
-	exponent = 0.;
+float Light::getAngle() {
+	return angle;
+}
+
+bool Light::getEnabled() {
+	return enabled;
+}
+
+bool Light::getMarker() {
+	return marker;
+}
+
+float Light::getExponent() {
+	return exponent;
 }

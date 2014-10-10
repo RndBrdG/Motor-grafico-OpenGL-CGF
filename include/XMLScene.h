@@ -16,7 +16,7 @@ public:
 	static TiXmlElement *findChildByAttribute(TiXmlElement *parent,const char * attr, const char *val);
 
 	Globals globalsData;
-	vector<Light*> lights;
+	std::vector<Light*> lights;
 	Graph objetosDaCena;
 
 private:

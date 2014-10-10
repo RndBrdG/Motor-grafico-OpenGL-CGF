@@ -31,7 +31,7 @@ void Triangle::draw(){
 	glEnd();
 }
 
-Cylinder::Cylinder(float base, float top, float height, float slices, float stacks){
+Cylinder::Cylinder(float base, float top, float height, int slices, int stacks){
 	this->base = base;
 	this->top = top;
 	this->height = height;
@@ -44,15 +44,15 @@ void Cylinder::draw(){
 	gluCylinder(this->cylin, this->base, this->top, this->height, this->slices, this->stacks);
 };
 
-Sphere::Sphere(float radius, float slices, float loops){
+Sphere::Sphere(float radius, int slices, int stacks){
 	this->radius = radius;
 	this->slices = slices;
-	this->loops = loops;
+	this->stacks = stacks;
 	this->sph = gluNewQuadric();
 }
 
 void Sphere::draw(){
-	gluSphere(this->sph,this->radius, this->slices,this->loops);
+	gluSphere(this->sph, this->radius, this->slices, this->stacks);
 }
 
 Torus::Torus(float inner, float outer, float slices, float loops){

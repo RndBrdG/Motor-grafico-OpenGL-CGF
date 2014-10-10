@@ -33,10 +33,11 @@ private:
 	void parserLights();
 	// graph tag
 	void parserGraph();
-	void parserGraphTransforms(Node &novoNode, TiXmlElement *childs);
-	void parserGraphAppearanceref(Node &novoNode, TiXmlElement *childs);
-	void parserGraphPrimitives(Node &novoNode, TiXmlElement *childs);
-	void parserGraphdescendants(Node &novoNode, TiXmlElement *childs);
+	void parserGraphTransforms(Node* novoNode, TiXmlElement *childs);
+	void parserGraphAppearanceref(Node* novoNode, TiXmlElement *childs);
+	void parserGraphPrimitives(Node* novoNode, TiXmlElement *childs);
+	void parserGraphdescendants(Node* novoNode, TiXmlElement *childs);
+	void atualizarInserirNode(std::string id, Node* novoNode);
 protected:
 	TiXmlDocument* doc;
 	TiXmlElement* globElement; 

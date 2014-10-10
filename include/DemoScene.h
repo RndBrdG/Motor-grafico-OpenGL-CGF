@@ -3,6 +3,7 @@
 
 #include "CGFscene.h"
 #include "CGFshader.h"
+#include "Graph.h"
 #include "XMLScene.h"
 
 class DemoScene : public CGFscene
@@ -15,6 +16,7 @@ public:
 	~DemoScene();
 private:
 	XMLScene scene;
+	Graph desenhar;
 
 	CGFobject* obj;
 	CGFappearance* materialAppearance;

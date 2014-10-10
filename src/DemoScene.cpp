@@ -37,19 +37,12 @@ void DemoScene::init()
 	// Defines a default normal
 	glNormal3f(0, 0, 1);
 
-	obj = new ExampleObject();
-	materialAppearance = new CGFappearance();
-	textureAppearance = new CGFappearance("../res/pyramid.jpg", GL_REPEAT, GL_REPEAT);
-	shader = new CGFshader("../res/texshader.vert", "../res/texshader.frag");
 	desenhar = scene.objetosDaCena;
 	setUpdatePeriod(30);
 }
 
 void DemoScene::update(unsigned long t)
 {
-	shader->bind();
-	shader->update(t / 400.0);
-	shader->unbind();
 
 }
 
@@ -83,25 +76,6 @@ void DemoScene::display()
 
 	desenhar.draw();
 
-	// Simple object
-	materialAppearance->apply();
-	obj->draw();
-
-	
-	// textured object
-
-	glTranslatef(0, 4, 0);
-	textureAppearance->apply();
-	obj->draw();
-
-	// shader object
-
-	glTranslatef(0, 4, 0);
-	shader->bind();
-	obj->draw();
-	shader->unbind();
-
-
 	// ---- END feature demos
 
 	// We have been drawing in a memory area that is not visible - the back buffer, 
@@ -112,9 +86,6 @@ void DemoScene::display()
 
 DemoScene::~DemoScene()
 {
-	delete(shader);
-	delete(textureAppearance);
-	delete(materialAppearance);
-	delete(obj);
+
 	delete(light0);
 }

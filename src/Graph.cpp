@@ -16,12 +16,16 @@ std::string Node::getAppRef(){
 	return this->appRef;
 }
 
-std::map<std::string, Node*>& Node::getDescendencia(){
+std::vector<std::string>& Node::getDescendencia(){
 	return this->descendencia;
 }
 
 std::vector<Primitivas*>& Node::getPrimitivas(){
 	return primitivas;
+}
+
+bool Node::getRoot(){
+	return this->root;
 }
 
 void Node::setMatrix(float matrix[16]){
@@ -37,12 +41,37 @@ void Node::setAppRef(std::string appRef){
 	this->appRef = appRef;
 }
 
+void Node::setRoot(bool root){
+	this->root = root;
+}
+
+void Node::draw(std::map<std::string, Node*>& grafo){
+	glMultMatrixf(&this->matrix[0]);
+
+	for (unsigned int i = 0; i < this->primitivas.size(); i++){
+		primitivas[i]->draw();
+	}
+	typedef std::vector<std::string>::iterator iter;
+	
+	for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it ++){
+		glPushMatrix();
+		grafo[*it]->draw(grafo);
+		glPopMatrix();
+	
+	}
+}
+
+std::string Graph::getRoot(){
+	return this->root;
+}
+
+
+void Graph::setRoot(std::string root){
+	this->root = root;
+}
 
 void Graph::draw(){
-	typedef std::map<std::string, Node*>::iterator iterador;
-	for (iterador it = grafo.begin(); it != grafo.end(); it++){
-		for (int i = 0; i < it->second->getPrimitivas().size(); i++){
-			it->second->getPrimitivas().at(i)->draw();
-		}
-	}
+
+	Node *noActual = this->getGrafo()[this->getRoot()];
+	noActual->draw(this->getGrafo());
 }

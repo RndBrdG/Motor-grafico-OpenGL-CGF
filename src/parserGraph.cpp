@@ -17,6 +17,12 @@ void XMLScene::parserGraph(){
 			while (node) {
 				id = node->Attribute("id");
 				Node* novoNode = new Node(id);
+				if (id == rootId){
+					novoNode->setRoot(true);
+					this->objetosDaCena.setRoot(id);
+				}
+				else novoNode->setRoot(false);
+
 				atualizarInserirNode(id, novoNode);
 				std::cout << "\nLeaf ID: " + id;
 
@@ -79,7 +85,7 @@ void XMLScene::parserGraphTransforms(Node* novoNode, TiXmlElement *childs){
 				if (axis == "xx")
 					glRotated(angle, 1, 0, 0);
 				else if (axis == "yy")
-					glRotated(angle, 1, 0, 0);
+					glRotated(angle, 0, 1, 0);
 				else if (axis == "zz")
 					glRotated(angle, 0, 0, 1);
 			}
@@ -199,7 +205,7 @@ void XMLScene::parserGraphdescendants(Node* novoNode, TiXmlElement *childs){
 			Node* nulo = new Node(nodeIDref);
 
 			objetosDaCena.getGrafo().insert(std::make_pair(nulo->getId(), nulo));
-			novoNode->getDescendencia().insert(std::make_pair(nodeIDref,objetosDaCena.getGrafo()[nodeIDref]));
+			novoNode->getDescendencia().push_back(nulo->getId());
 		}
 		desc = desc->NextSiblingElement();
 	}

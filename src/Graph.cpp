@@ -1,39 +1,12 @@
 #include <Graph.h>
 
 
-Aparencia::Aparencia(std::string id, float shininess, std::string textRef){
+Aparencia::Aparencia(std::string id, float shininess, std::string textRef, float ambient[4], float difusa[4], float especular[4]) : CGFappearance(ambient, difusa, especular, shininess){
 	this->id = id;
 	this->shininess = shininess;
 	this->textRef = textRef;
 }
 
-std::vector<Componente>& Aparencia::getComponentes(){
-	return this->componentes;
-}
-
-Componente::Componente(std::string type, float x1, float x2, float x3,float x4){
-	this->type = type;
-	this->x1 = x1;
-	this->x2 = x2;
-	this->x3 = x3;
-	this->x4 = x4;
-}
-
-std::string Componente::getType(){
-	return this->type;
-}
-
-float Componente::getX1(){
-	return x1;
-}
-
-float Componente::getX2() {
-	return x2;
-}
-
-float Componente::getX3(){
-	return x3;
-}
 
 std::map<std::string, Node*>& Graph::getGrafo(){
 	return this->grafo;
@@ -80,17 +53,23 @@ void Node::setRoot(bool root){
 	this->root = root;
 }
 
-void Node::draw(std::map<std::string, Node*>& grafo){
+void Node::draw(std::map<std::string, Node*>& grafo, std::map < std::string, Aparencia*>& aparencias,std::string referenciaApp){
 	glMultMatrixf(&this->matrix[0]);
+
+	if (this->appRef != "inherit" && aparencias[this->appRef] != NULL){
+		aparencias[this->appRef]->apply();
+	}
+	else aparencias[referenciaApp]->apply();
 
 	for (unsigned int i = 0; i < this->primitivas.size(); i++){
 		primitivas[i]->draw();
+		glPopMatrix();
 	}
 	typedef std::vector<std::string>::iterator iter;
 	
 	for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it ++){
 		glPushMatrix();
-		grafo[*it]->draw(grafo);
+		grafo[*it]->draw(grafo,aparencias,this->appRef);
 		glPopMatrix();
 	
 	}
@@ -111,5 +90,5 @@ void Graph::setRoot(std::string root){
 void Graph::draw(){
 
 	Node *noActual = this->getGrafo()[this->getRoot()];
-	noActual->draw(this->getGrafo());
+	noActual->draw(this->getGrafo(),this->getAparencias(),noActual->getAppRef());
 }

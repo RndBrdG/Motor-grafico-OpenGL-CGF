@@ -16,20 +16,21 @@ void XMLScene::parserAppearance(){
 				float shininess;
 				std::string textRef = readAppearance->Attribute("textureref");
 				if (id != "" && textRef != "" && readAppearance->QueryFloatAttribute("shininess", &shininess) == TIXML_SUCCESS){
-					Aparencia* ap = new Aparencia(id, shininess, textRef);
-					this->objetosDaCena.getAparencias().insert(std::make_pair(id, ap));
 					TiXmlElement* component = readAppearance->FirstChildElement("component");
 					std::string type, values;
-					float v1, v2, v3, v4;
+					float ambient[4], difusa[4], especular[4];
 					do {
 						type = component->Attribute("type");
 						values = component->Attribute("value");
-
-						if (type != "" && values != "" && sscanf(values.c_str(), "%f %f %f %f", &v1, &v2, &v3, &v4)){
-							Componente a1(type, v1, v2, v3, v4);
-							this->objetosDaCena.getAparencias()[id]->getComponentes().push_back(a1);
-						}
+						if (type == "ambient" && sscanf(values.c_str(), "%f %f %f %f", &ambient[0], &ambient[1], &ambient[2], &ambient[3]))
+							continue;
+						else if (type == "diffuse" && sscanf(values.c_str(), "%f %f %f %f", &difusa[0], &difusa[1], &difusa[2], &difusa[3]))
+							continue;
+						else if (type == "specular" && sscanf(values.c_str(), "%f %f %f %f", &especular[0], &especular[1], &especular[2], &especular[3]))
+							continue;
 					} while (component = component->NextSiblingElement());
+					Aparencia* ap = new Aparencia(id, shininess, textRef,ambient,difusa,especular);
+					objetosDaCena.getAparencias().insert(std::make_pair(id, ap));
 				}
 			}
 		} while (readAppearance = readAppearance->NextSiblingElement());

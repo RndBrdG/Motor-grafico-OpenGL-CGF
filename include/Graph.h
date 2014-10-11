@@ -6,26 +6,19 @@
 #include <map>
 #include <Primitivas.h>
 #include <string>
+#include <CGFappearance.h>
 
 class Graph;
 
-class Componente  {
-	std::string type;
-	float x1, x2, x3,x4;
-public:
-	Componente(std::string type, float x1, float x2, float x3,float x4);
-	std::string getType();
-	float getX1(), getX2(), getX3();
-};
-
-class Aparencia {
+class Aparencia : public CGFappearance{
 	float shininess;
 	std::string id;
 	std::string textRef;
-	std::vector<Componente> componentes;
+	float ambient[4];
+	float difusa[4];
+	float especular[4];
 public:
-	Aparencia(std::string id, float shininess, std::string textRef);
-	std::vector<Componente>& getComponentes();
+	Aparencia(std::string id, float shininess, std::string textRef, float ambient[4], float difusa[4], float especular[4]);
 };
 
 class Node {
@@ -46,7 +39,7 @@ public:
 	void setAppRef(std::string appRef);
 	void setId(std::string id);
 	void setRoot(bool root);
-	void draw(std::map<std::string,Node*>& grafo);
+	void draw(std::map<std::string, Node*>& grafo, std::map < std::string, Aparencia*>&aparencias, std::string referenciaApp);
 };
 
 class Graph {

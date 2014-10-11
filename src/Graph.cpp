@@ -1,25 +1,37 @@
 #include <Graph.h>
 
-Aparencia::Aparencia(std::string type, float x1, float x2, float x3){
+
+Aparencia::Aparencia(std::string id, float shininess, std::string textRef){
+	this->id = id;
+	this->shininess = shininess;
+	this->textRef = textRef;
+}
+
+std::vector<Componente>& Aparencia::getComponentes(){
+	return this->componentes;
+}
+
+Componente::Componente(std::string type, float x1, float x2, float x3,float x4){
 	this->type = type;
 	this->x1 = x1;
 	this->x2 = x2;
 	this->x3 = x3;
+	this->x4 = x4;
 }
 
-std::string Aparencia::getType(){
+std::string Componente::getType(){
 	return this->type;
 }
 
-float Aparencia::getX1(){
+float Componente::getX1(){
 	return x1;
 }
 
-float Aparencia::getX2() {
+float Componente::getX2() {
 	return x2;
 }
 
-float Aparencia::getX3(){
+float Componente::getX3(){
 	return x3;
 }
 
@@ -88,7 +100,7 @@ std::string Graph::getRoot(){
 	return this->root;
 }
 
-std::map<std::string, Aparencia >& Graph::getAparencias(){
+std::map<std::string,Aparencia*>& Graph::getAparencias(){
 	return this->aparencias;
 }
 

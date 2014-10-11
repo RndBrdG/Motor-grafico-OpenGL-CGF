@@ -22,6 +22,7 @@ private:
 	Graph desenhar;
 	std::vector<Light*> lights;
 
+	unsigned long time_passed; // DEBUG - Read from XML every second
 };
 
 #endif

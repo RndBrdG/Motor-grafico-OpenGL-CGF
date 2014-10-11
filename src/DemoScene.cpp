@@ -44,11 +44,20 @@ void DemoScene::init() {
 
 	desenhar = scene.objetosDaCena;
 	setUpdatePeriod(30);
+
+	time_passed = 0;
 }
 
 void DemoScene::update(unsigned long t) {
-	if (!t % 1000)
+	// DEBUG - Read from XML every second
+	time_passed += t - lastUpdate;
+	if (time_passed >= 1000) {
 		scene = XMLScene("../res/scene.xml");
+		unsigned long t = time_passed;
+		init();
+		time_passed = t - 1000;
+	}
+	// END DEBUG
 }
 
 void DemoScene::display() {
@@ -66,6 +75,9 @@ void DemoScene::display() {
 
 	// Draw (and update) lights
 	for (auto it = scene.lights.cbegin(); it != scene.lights.cend(); it++) {
+		if ((*it)->onOff) (*it)->enable();
+		else (*it)->disable();
+
 		if ((*it)->getMarker()) (*it)->draw();
 		else (*it)->update();
 	}
@@ -74,7 +86,6 @@ void DemoScene::display() {
 	axis.draw();
 
 	// ---- END Background, camera and axis setup
-
 
 	// ---- BEGIN feature demos
 

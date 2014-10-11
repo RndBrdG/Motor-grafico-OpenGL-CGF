@@ -25,7 +25,7 @@ public:
 	bool getMarker();
 	float getExponent();
 
-	int onOff; // DEBUG
+	int onOff;
 };
 
 #endif

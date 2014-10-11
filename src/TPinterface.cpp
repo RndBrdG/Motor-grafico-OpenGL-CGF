@@ -1,14 +1,13 @@
+#include <sstream>
 #include "TPinterface.h"
 #include "DemoScene.h"
 
-TPinterface::TPinterface()
-{
+TPinterface::TPinterface() {
 	testVar = 0;
 }
 
 
-void TPinterface::processKeyboard(unsigned char key, int x, int y)
-{
+void TPinterface::processKeyboard(unsigned char key, int x, int y) {
 	// Uncomment below if you would like to process the default keys (e.g. 's' for snapshot, 'Esc' for exiting, ...)
 	CGFinterface::processKeyboard(key, x, y);
 
@@ -28,8 +27,7 @@ void alternarRelogio(int arg) {
 
 }
 
-void TPinterface::initGUI()
-{
+void TPinterface::initGUI() {
 	/*
 	// Check CGFinterface.h and GLUI documentation for the types of controls available
 	GLUI_Panel *varPanel = addPanel("Group", 1);
@@ -40,12 +38,13 @@ void TPinterface::initGUI()
 	*/
 	GLUI_Panel* panelLuzes = addPanel("Luzes");
 	for (auto it = static_cast<DemoScene*>(scene)->getLights().cbegin(); it != static_cast<DemoScene*>(scene)->getLights().cend(); it++) {
-		addCheckboxToPanel(panelLuzes, "Luz", &(**it).onOff, 1);
+		std::stringstream lightName;
+		lightName << "Luz " << (*it)->getLightNum();
+		addCheckboxToPanel(panelLuzes, const_cast<char*>(lightName.str().c_str()), &(*it)->onOff, 1);
 	}
 }
 
-void TPinterface::processGUI(GLUI_Control *ctrl)
-{
+void TPinterface::processGUI(GLUI_Control *ctrl) {
 	printf("GUI control id: %d\n", ctrl->user_id);
 	switch (ctrl->user_id) {
 	}

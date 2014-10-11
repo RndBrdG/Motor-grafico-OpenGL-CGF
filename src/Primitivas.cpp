@@ -43,7 +43,8 @@ Cylinder::Cylinder(float base, float top, float height, int slices, int stacks){
 	this->height = height;
 	this->slices = slices;
 	this->stacks = stacks;
-	this->cylin = gluNewQuadric();
+	GLUquadric* cilindro = gluNewQuadric();
+	this->cylin = cilindro;
 }
 
 void Cylinder::draw(){
@@ -54,7 +55,8 @@ Sphere::Sphere(float radius, int slices, int stacks){
 	this->radius = radius;
 	this->slices = slices;
 	this->stacks = stacks;
-	this->sph = gluNewQuadric();
+	GLUquadric* esfera = gluNewQuadric();
+	this->sph = esfera;
 }
 
 void Sphere::draw(){

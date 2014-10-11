@@ -5,7 +5,7 @@
 #include "Primitivas.h"
 #include <math.h>
 
-DemoScene::DemoScene() : scene(XMLScene("../res/scene.xml")) {
+DemoScene::DemoScene() : scene(XMLScene("../res/scene.anf")) {
 	lights = scene.lights;
 }
 
@@ -49,7 +49,15 @@ void DemoScene::init() {
 }
 
 void DemoScene::update(unsigned long t) {
-	
+	// DEBUG - Read from XML every second
+	time_passed += t - lastUpdate;
+	if (time_passed >= 1000) {
+		scene = XMLScene("../res/scene.anf");
+		unsigned long t = time_passed;
+		init();
+		time_passed = t - 1000;
+	}
+	// END DEBUG
 }
 
 void DemoScene::display() {

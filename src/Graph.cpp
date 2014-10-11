@@ -61,9 +61,9 @@ void Node::draw(std::map<std::string, Node*>& grafo, std::map < std::string, Apa
 	}
 	else aparencias[referenciaApp]->apply();
 
-	for (unsigned int i = 0; i < this->primitivas.size(); i++){
+	int size = this->primitivas.size()
+	for (unsigned int i = 0; i < size; i++){
 		primitivas[i]->draw();
-		glPopMatrix();
 	}
 	typedef std::vector<std::string>::iterator iter;
 	

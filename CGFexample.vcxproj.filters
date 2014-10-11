@@ -18,9 +18,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ExampleObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\DemoScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,10 +51,10 @@
     <ClCompile Include="src\Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-	<ClCompile Include="src\TPinterface.cpp">
+    <ClCompile Include="src\TPinterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-	<ClCompile Include="src\parserAppearances.cpp">
+    <ClCompile Include="src\parserAppearances.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -69,9 +66,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\XMLScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ExampleObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\DemoScene.h">
@@ -92,10 +86,7 @@
     <ClInclude Include="include\Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-	 <ClInclude Include="include\TPinterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-	 <ClInclude Include="resource.h">
+    <ClInclude Include="include\TPinterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -112,10 +103,5 @@
     <None Include="res\pyramid.jpg">
       <Filter>Resource Files</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="CGFexample.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>

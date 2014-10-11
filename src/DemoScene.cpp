@@ -2,7 +2,6 @@
 #include "CGFapplication.h"
 #include "CGFaxis.h"
 #include "DemoScene.h"
-#include "ExampleObject.h"
 #include "Primitivas.h"
 #include <math.h>
 

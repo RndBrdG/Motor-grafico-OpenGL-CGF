@@ -69,7 +69,6 @@
   <ItemGroup>
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\DemoScene.cpp" />
-    <ClCompile Include="src\ExampleObject.cpp" />
     <ClCompile Include="src\Globals.cpp" />
     <ClCompile Include="src\graph.cpp" />
     <ClCompile Include="src\Light.cpp" />
@@ -86,7 +85,6 @@
   <ItemGroup>
     <ClInclude Include="include\Camera.h" />
     <ClInclude Include="include\DemoScene.h" />
-    <ClInclude Include="include\ExampleObject.h" />
     <ClInclude Include="include\Globals.h" />
     <ClInclude Include="include\Graph.h" />
     <ClInclude Include="include\Light.h" />
@@ -95,16 +93,14 @@
     <ClInclude Include="include\tinyxml.h" />
     <ClInclude Include="include\TPinterface.h" />
     <ClInclude Include="include\XMLScene.h" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\pyramid.jpg" />
-    <None Include="res\scene.xml" />
+    <None Include="res\scene.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="res\texshader.frag" />
     <None Include="res\texshader.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="CGFexample.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

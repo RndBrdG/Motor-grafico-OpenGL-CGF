@@ -8,7 +8,13 @@ Rectangle::Rectangle(float x1, float x2, float y1, float y2){
 }
 
 void Rectangle::draw(){
-	glRectf(this->x1, this->y1, this->x2, this->y2);
+	glBegin(GL_QUADS);
+		glNormal3f(0, 0, 1);
+		glVertex2f(x1, y1);
+		glVertex2f(x2, y1);
+		glVertex2f(x2, y2);
+		glVertex2f(x1, y2);
+	glEnd();
 }
 
 Triangle::Triangle(float x1, float x2, float x3, float y1, float y2, float y3, float z1, float z2, float z3){

@@ -69,7 +69,7 @@ void XMLScene::parserGraphTransforms(Node* novoNode, TiXmlElement *childs){
 			if (to != "" && sscanf(to.c_str(), "%f %f %f", &x1, &y1, &z1) == 3){
 				printf("\n |Node %s values - - - - >\n", novoNode->getId().c_str());
 				printf(" Valores >  %f %f %f\n", x1, y1, z1);
-				glTranslated(x1, y1, z1);
+				glTranslatef(x1, y1, z1);
 			}
 			else
 				std::cout << "Error reading perspective tag\n";
@@ -82,12 +82,12 @@ void XMLScene::parserGraphTransforms(Node* novoNode, TiXmlElement *childs){
 			if (axis != "" && (elem->QueryFloatAttribute("angle", &angle) == TIXML_SUCCESS)){
 				printf("\n |Node %s values - - - - >\n", novoNode->getId().c_str());
 				printf(" Valores >  Axis: %s | angle %f \n", axis.c_str(), angle);
-				if (axis == "xx")
-					glRotated(angle, 1, 0, 0);
-				else if (axis == "yy")
-					glRotated(angle, 0, 1, 0);
-				else if (axis == "zz")
-					glRotated(angle, 0, 0, 1);
+				if (axis == "x")
+					glRotatef(angle, 1, 0, 0);
+				else if (axis == "y")
+					glRotatef(angle, 0, 1, 0);
+				else if (axis == "z")
+					glRotatef(angle, 0, 0, 1);
 			}
 			else
 				std::cout << "Error reading perspective tag\n";
@@ -100,7 +100,7 @@ void XMLScene::parserGraphTransforms(Node* novoNode, TiXmlElement *childs){
 			if (fac != "" && sscanf(fac.c_str(), "%f %f %f", &fac1, &fac2, &fac3) == 3){
 				printf("\n |Node %s values - - - - >\n", novoNode->getId().c_str());
 				printf(" Valores >  Factor: %f %f %f \n", fac1, fac2,fac3);
-				glScaled(fac1, fac2, fac3);
+				glScalef(fac1, fac2, fac3);
 			}
 			else
 				std::cout << "Error reading perspective tag\n";

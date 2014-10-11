@@ -9,6 +9,16 @@
 
 class Graph;
 
+class Aparencia  {
+	std::string type;
+	float x1, x2, x3;
+
+public:
+	Aparencia(std::string type, float x1, float x2, float x3);
+	std::string getType();
+	float getX1(), getX2(), getX3();
+};
+
 class Node {
 	std::string id;
 	std::string appRef;   // appeareance reference
@@ -33,10 +43,12 @@ public:
 class Graph {
 
 	std::map<std::string, Node*> grafo;
+	std::map < std::string, Aparencia> aparencias;
 	std::string root;
 public:
 	Graph(){};
 	std::map<std::string, Node*>& getGrafo();
+	std::map<std::string, Aparencia>& getAparencias();
 	std::string getRoot();
 	void draw();
 	void setRoot(std::string root);

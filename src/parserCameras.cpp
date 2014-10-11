@@ -6,7 +6,7 @@ void XMLScene::parserCameras() {
 		printf("cameras block not found!\n");
 	else
 	{
-		printf("Processing cameras init:\n");
+		cout << "Processing cameras init:\n";
 
 		char *initial = NULL;
 		initial = (char *) camElement->Attribute("initial");

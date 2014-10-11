@@ -22,10 +22,6 @@ private:
 	Graph desenhar;
 	std::vector<Light*> lights;
 
-	CGFobject* obj;
-	CGFappearance* materialAppearance;
-	CGFappearance* textureAppearance;
-	CGFshader* shader;
 };
 
 #endif

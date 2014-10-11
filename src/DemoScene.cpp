@@ -48,6 +48,8 @@ void DemoScene::init() {
 }
 
 void DemoScene::update(unsigned long t) {
+	if (!t % 1000)
+		scene = XMLScene("../res/scene.xml");
 }
 
 void DemoScene::display() {

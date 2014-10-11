@@ -12,11 +12,15 @@ public:
 	void init();
 	void display();
 	void update(unsigned long t);
+
+	const std::vector<Light*>& getLights();
+
 	DemoScene();
 	~DemoScene();
 private:
 	XMLScene scene;
 	Graph desenhar;
+	std::vector<Light*> lights;
 
 };
 

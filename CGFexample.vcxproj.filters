@@ -54,7 +54,10 @@
     <ClCompile Include="src\Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\parserAppearances.cpp">
+	<ClCompile Include="src\TPinterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+	<ClCompile Include="src\parserAppearances.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,7 +92,10 @@
     <ClInclude Include="include\Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
+	 <ClInclude Include="include\TPinterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+	 <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

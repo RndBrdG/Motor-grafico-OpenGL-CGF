@@ -7,16 +7,20 @@
 #include <math.h>
 
 DemoScene::DemoScene() : scene(XMLScene("../res/scene.xml")) {
+	lights = scene.lights;
 }
 
-void DemoScene::init()
-{
+const std::vector<Light*>& DemoScene::getLights() {
+	return lights;
+}
+
+void DemoScene::init() {
 	// Sets drawing settings
 	glPolygonMode(GL_FRONT_AND_BACK, scene.globalsData.getPolygonMode());
 	glShadeModel(scene.globalsData.getShadeModel());
 	glClearColor(scene.globalsData.getBkgColorR(), scene.globalsData.getBkgColorG(), scene.globalsData.getBkgColorB(), scene.globalsData.getBkgColorA());
 
-	// Sets culliing settings
+	// Sets culling settings
 	if (scene.globalsData.getCullFace() != NULL) {
 		glCullFace(scene.globalsData.getCullFace());
 		glFrontFace(scene.globalsData.getFrontFace());
@@ -43,14 +47,10 @@ void DemoScene::init()
 	setUpdatePeriod(30);
 }
 
-void DemoScene::update(unsigned long t)
-{
-
+void DemoScene::update(unsigned long t) {
 }
 
-void DemoScene::display()
-{
-
+void DemoScene::display() {
 	// ---- BEGIN Background, camera and axis setup
 
 	// Clear image and depth buffer everytime we update the scene
@@ -79,7 +79,6 @@ void DemoScene::display()
 
 	desenhar.draw();
 
-
 	// ---- END feature demos
 
 	// We have been drawing in a memory area that is not visible - the back buffer, 
@@ -88,6 +87,5 @@ void DemoScene::display()
 	glutSwapBuffers();
 }
 
-DemoScene::~DemoScene()
-{
+DemoScene::~DemoScene() {
 }

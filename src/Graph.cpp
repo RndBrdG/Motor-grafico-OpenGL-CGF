@@ -1,5 +1,28 @@
 #include <Graph.h>
 
+Aparencia::Aparencia(std::string type, float x1, float x2, float x3){
+	this->type = type;
+	this->x1 = x1;
+	this->x2 = x2;
+	this->x3 = x3;
+}
+
+std::string Aparencia::getType(){
+	return this->type;
+}
+
+float Aparencia::getX1(){
+	return x1;
+}
+
+float Aparencia::getX2() {
+	return x2;
+}
+
+float Aparencia::getX3(){
+	return x3;
+}
+
 std::map<std::string, Node*>& Graph::getGrafo(){
 	return this->grafo;
 }
@@ -65,6 +88,9 @@ std::string Graph::getRoot(){
 	return this->root;
 }
 
+std::map<std::string, Aparencia >& Graph::getAparencias(){
+	return this->aparencias;
+}
 
 void Graph::setRoot(std::string root){
 	this->root = root;

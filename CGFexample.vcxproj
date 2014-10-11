@@ -74,6 +74,7 @@
     <ClCompile Include="src\graph.cpp" />
     <ClCompile Include="src\Light.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\parserAppearances.cpp" />
     <ClCompile Include="src\parserCameras.cpp" />
     <ClCompile Include="src\parserGlobals.cpp" />
     <ClCompile Include="src\parserGraph.cpp" />
@@ -92,12 +93,16 @@
     <ClInclude Include="include\tinystr.h" />
     <ClInclude Include="include\tinyxml.h" />
     <ClInclude Include="include\XMLScene.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\pyramid.jpg" />
     <None Include="res\scene.xml" />
     <None Include="res\texshader.frag" />
     <None Include="res\texshader.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CGFexample.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

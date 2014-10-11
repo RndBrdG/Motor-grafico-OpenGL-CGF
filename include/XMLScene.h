@@ -31,6 +31,8 @@ private:
 	void parserCamerasOrtho();
 	// lights tag
 	void parserLights();
+	// Appearances tag
+	void parserAppearance();
 	// graph tag
 	void parserGraph();
 	void parserGraphTransforms(Node* novoNode, TiXmlElement *childs);
@@ -44,7 +46,7 @@ protected:
 	TiXmlElement* camElement;
 	TiXmlElement* lightsElement;
 	TiXmlElement* leavesElement;
-	TiXmlElement* nodesElement;
+	TiXmlElement* appsElement;
 	TiXmlElement* graphElement;
 };
 

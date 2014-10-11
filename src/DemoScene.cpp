@@ -79,24 +79,6 @@ void DemoScene::display()
 
 	desenhar.draw();
 
-	// Simple object
-	materialAppearance->apply();
-	obj->draw();
-
-
-	// textured object
-
-	glTranslatef(0, 4, 0);
-	textureAppearance->apply();
-	obj->draw();
-
-	// shader object
-
-	glTranslatef(0, 4, 0);
-	shader->bind();
-	obj->draw();
-	shader->unbind();
-
 
 	// ---- END feature demos
 

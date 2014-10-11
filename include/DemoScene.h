@@ -18,10 +18,6 @@ private:
 	XMLScene scene;
 	Graph desenhar;
 
-	CGFobject* obj;
-	CGFappearance* materialAppearance;
-	CGFappearance* textureAppearance;
-	CGFshader* shader;
 };
 
 #endif

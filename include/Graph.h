@@ -9,14 +9,23 @@
 
 class Graph;
 
-class Aparencia  {
+class Componente  {
 	std::string type;
-	float x1, x2, x3;
-
+	float x1, x2, x3,x4;
 public:
-	Aparencia(std::string type, float x1, float x2, float x3);
+	Componente(std::string type, float x1, float x2, float x3,float x4);
 	std::string getType();
 	float getX1(), getX2(), getX3();
+};
+
+class Aparencia {
+	float shininess;
+	std::string id;
+	std::string textRef;
+	std::vector<Componente> componentes;
+public:
+	Aparencia(std::string id, float shininess, std::string textRef);
+	std::vector<Componente>& getComponentes();
 };
 
 class Node {
@@ -43,12 +52,12 @@ public:
 class Graph {
 
 	std::map<std::string, Node*> grafo;
-	std::map < std::string, Aparencia> aparencias;
+	std::map < std::string,Aparencia*> aparencias;
 	std::string root;
 public:
 	Graph(){};
 	std::map<std::string, Node*>& getGrafo();
-	std::map<std::string, Aparencia>& getAparencias();
+	std::map<std::string,Aparencia*>& getAparencias();
 	std::string getRoot();
 	void draw();
 	void setRoot(std::string root);

@@ -24,6 +24,8 @@ public:
 	bool getEnabled();
 	bool getMarker();
 	float getExponent();
+
+	int onOff; // DEBUG
 };
 
 #endif

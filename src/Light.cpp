@@ -28,6 +28,8 @@ Light::Light(unsigned int lightid, float* pos, float* dir, float angle, float ex
 	direction[2] = dir != NULL ? dir[2] : -1;
 
 	num++;
+
+	onOff = 1; //DEBUG
 }
 
 int Light::getLightNum() {

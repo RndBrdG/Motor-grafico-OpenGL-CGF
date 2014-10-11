@@ -79,6 +79,7 @@
     <ClCompile Include="src\parserGraph.cpp" />
     <ClCompile Include="src\parserLights.cpp" />
     <ClCompile Include="src\Primitivas.cpp" />
+    <ClCompile Include="src\TPinterface.cpp" />
     <ClCompile Include="src\XMLScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +92,7 @@
     <ClInclude Include="include\Primitivas.h" />
     <ClInclude Include="include\tinystr.h" />
     <ClInclude Include="include\tinyxml.h" />
+    <ClInclude Include="include\TPinterface.h" />
     <ClInclude Include="include\XMLScene.h" />
   </ItemGroup>
   <ItemGroup>

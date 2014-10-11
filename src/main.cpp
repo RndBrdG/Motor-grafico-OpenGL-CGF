@@ -8,6 +8,7 @@
 
 #include "CGFapplication.h"
 #include "DemoScene.h"
+#include "TPinterface.h"
 #include "XMLScene.h"
 
 using std::cout;
@@ -21,7 +22,7 @@ int main(int argc, char* argv[]) {
 		app.init(&argc, argv);
 
 		app.setScene(new DemoScene());
-		app.setInterface(new CGFinterface());
+		app.setInterface(new TPinterface());
 		
 		app.run();
 	}

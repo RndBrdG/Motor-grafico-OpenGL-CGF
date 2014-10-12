@@ -132,7 +132,7 @@ void Graph::draw(){
 	}
 	
 	Node *noActual = this->getGrafo()[this->getRoot()];
-	noActual->draw(this->getGrafo(),this->getAparencias(),noActual->getAppRef(),this->texturas);
+	noActual->draw(this->getGrafo(), this->getAparencias(), this->getGrafo()[this->getRoot()]->getAppRef(), this->texturas);
 }
 
 std::map<std::string, Textura*>& Graph::getTexturas(){

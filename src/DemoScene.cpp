@@ -49,7 +49,6 @@ void DemoScene::init() {
 }
 
 void DemoScene::update(unsigned long t) {
-
 }
 
 void DemoScene::display() {

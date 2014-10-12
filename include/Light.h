@@ -24,7 +24,9 @@ public:
 	bool getEnabled();
 	bool getMarker();
 	float getExponent();
-
+	~Light(){
+		delete(this);
+	}
 	int onOff;
 };
 

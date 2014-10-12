@@ -56,6 +56,7 @@ Cylinder::Cylinder(float base, float top, float height, int slices, int stacks){
 }
 
 void Cylinder::draw(float textS, float textT){
+	gluQuadricTexture(this->cylin, true);
 	gluCylinder(this->cylin, this->base, this->top, this->height, this->slices, this->stacks);
 };
 
@@ -68,6 +69,7 @@ Sphere::Sphere(float radius, int slices, int stacks){
 }
 
 void Sphere::draw(float textS, float textT){
+	gluQuadricTexture(this->sph, true);
 	gluSphere(this->sph, this->radius, this->slices, this->stacks);
 }
 

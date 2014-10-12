@@ -11,7 +11,7 @@
 		<!-- Valores para cullorder : "ccw" ou "cw" -->
 		<culling face="none" order="ccw"/>
 		<!-- Parametros de iluminacao; seguem os parametros do OpenGL  -->
-		<lighting ambient=".1 .1 .1 1." doublesided="false" enabled="true" local="true"/>
+		<lighting ambient=".7 .7 .7 1." doublesided="false" enabled="true" local="true"/>
 	</globals>
 	<!-- bloco de camaras: o atributo "initial" identifica a camara/ponto de vista inicial, que tem de existir -->
 	<cameras initial="camInit">
@@ -39,7 +39,7 @@
 	<!-- bloco de texturas. Este bloco tem de existir mas pode estar vazio, se nao forem usadas texturas -->
 	<!--   ver topico 'Notas finais' no enunciado sobre os parametros texlength_... -->
 	<textures>
-		<texture file="../res/cloud.jpg" id="nuvem" texlength_s="30.0" texlength_t="20.0"/>
+		<texture file="../res/cloud.png" id="nuvem" texlength_s="30.0" texlength_t="20.0"/>
 		<texture file="../res/wood.png" id="wood" texlength_s="30.0" texlength_t="20.0"/>
 	</textures>
 	<!-- bloco de materiais; -->
@@ -48,9 +48,9 @@
 		<!-- IMPORTANTE: -->
 		<!--   textureref e opcional, a utilizar caso haja textura associada a esta aparencia -->
 		<appearance id="nuvens" shininess="0.3" textureref="nuvem">
-			<component type="ambient" value="0.5 0.1 2.0 0.9"/>
-			<component type="diffuse" value="1.0 2.5 1.0 0.2"/>
-			<component type="specular" value="0.1 1.0 2.5 0.5"/>
+			<component type="ambient" value="0.5 0.5 .5 1."/>
+			<component type="diffuse" value="1. 1. 1. 1."/>
+			<component type="specular" value="0.0 .0 0.0 0."/>
 		</appearance>
 		<appearance id="woods" shininess="2.0" textureref="wood">
 			<component type="ambient" value="1 1 1 1"/>
@@ -69,7 +69,6 @@
 			<descendants>
 				<noderef id="Chao"/>
 				<noderef id="ParedeLateralEsquerda"/>
-				<noderef id="ParedeLateralDireita"/>
 				<noderef id="Anjo"/>
 			</descendants>
 		</node>
@@ -94,36 +93,77 @@
 				<rectangle xy1="0.0 0.0" xy2="30.0 20.0"/>
 			</primitives>
 		</node>
-		<node id="ParedeLateralDireita">
-			<transforms>
-				<transform to="30 00 00" type="translate"/>
-				<transform angle="-90" axis="y" type="rotate"/>
-			</transforms>
-			<appearanceref id="inherit"/>
-			<primitives>
-				<rectangle xy1="0.0 0.0" xy2="30.0 20.0"/>
-			</primitives>
-		</node>
 		<node id="Anjo">
-			<transforms>
-				<transform to="15 1 15" type="translate"/>
-				<transform type="rotate" axis="x" angle="-90" />
-			</transforms>
-			<appearanceref id="woods"/>
-			<primitives>
-				<cylinder base="3"  top="0.5" height="3" slices="10" stacks="5"/>
-			</primitives>
-			<descendants>
-				<noderef id="AnjoCabeca"/>
-			</descendants>
-		</node>
-		<node id="AnjoCabeca">
 			<transforms>
 				<transform to="15 0 15" type="translate"/>
 			</transforms>
+			<appearanceref id="woods"/>
+			<descendants>
+				<noderef id="AnjoCorpo"/>
+				<noderef id="AnjoCabeca"/>
+				<noderef id="AnjoPes"/>
+			</descendants>
+		</node>
+		<node id="AnjoCorpo">
+			<transforms>
+				<transform to="0 1 0" type="translate"/>
+				<transform angle="-90" axis="x" type="rotate"/>
+			</transforms>
 			<appearanceref id="inherit"/>
 			<primitives>
-				<sphere radius="1.0" slices="10" stacks="10" />
+				<cylinder base="2" height="3" slices="10" stacks="5" top="0.5"/>
+			</primitives>
+		</node>
+		<node id="AnjoCabeca">
+			<transforms>
+				<transform to="00 4.2 00" type="translate"/>
+			</transforms>
+			<appearanceref id="inherit"/>
+			<primitives>
+				<sphere radius="1.0" slices="10" stacks="10"/>
+			</primitives>
+			<descendants>
+				<noderef id="Aureola"/>
+			</descendants>
+		</node>
+		<node id="Aureola">
+			<transforms>
+				<transform to="00 1.5 00" type="translate"/>
+				<transform angle="90" axis="x" type="rotate"/>
+			</transforms>
+			<appearanceref id="inherit"/>
+			<primitives>
+				<torus inner="0.1" loops="15" outer="0.5" slices="10"/>
+			</primitives>
+		</node>
+		<node id="AnjoPes">
+			<transforms>
+				<transform to="00 1 00" type="translate"/>
+			</transforms>
+			<appearanceref id="inherit"/>
+			<descendants>
+				<noderef id="AnjoPeDir"/>
+				<noderef id="AnjoPeEsq"/>
+			</descendants>
+		</node>
+		<node id="AnjoPeDir">
+			<transforms>
+				<transform to="0.7 0.0 00" type="translate"/>
+				<tranform axis="x" angle="90" type="rotate" />
+			</transforms>
+			<appearanceref id="inherit"/>
+			<primitives>
+				<cylinder base="0.25" height="0.75" slices="10" stacks="5" top="0.25"/>
+			</primitives>
+		</node>
+		<node id="AnjoPeEsq">
+			<transforms>
+				<transform to="-0.7 0.0 00" type="translate"/>
+				<tranform axis="x" angle="90" type="rotate" />
+			</transforms>
+			<appearanceref id="inherit"/>
+			<primitives>
+				<cylinder base="0.25" height="0.75" slices="10" stacks="5" top="0.25"/>
 			</primitives>
 		</node>
 	</graph>

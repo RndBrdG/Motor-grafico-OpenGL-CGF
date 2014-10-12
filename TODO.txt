@@ -1,0 +1,5 @@
+
+
+. bloco de aparencia <textureref> não é obrigatorio.
+. luz ambiente nao funciona.
+. Culling esta a funcionar mal.

@@ -49,7 +49,7 @@
   <!-- bloco de texturas. Este bloco tem de existir mas pode estar vazio, se nao forem usadas texturas -->
   <!--   ver topico 'Notas finais' no enunciado sobre os parametros texlength_... -->
   <textures>
-    <texture id="ss" file="ss" texlength_s="ff" texlength_t="ff" />
+    <texture id="wood" file="../res/wood.png" texlength_s="30.0" texlength_t="20.0" />
   </textures>
 
   <!-- bloco de materiais; -->
@@ -57,13 +57,13 @@
     <!-- deve existir um ou mais blocos "appearance" -->
     <!-- IMPORTANTE: -->
     <!--   textureref e opcional, a utilizar caso haja textura associada a esta aparencia -->
-    <appearance id="aparencia" shininess="0.3" textureref="ss" >
-      <component type="ambient" value="0.5 0.1 2.0 0.9" />
-      <component type="diffuse" value="1.0 2.5 1.0 0.2" />
-      <component type="specular" value="0.1 1.0 2.5 0.5" />
+    <appearance id="aparencia" shininess="0.3" textureref="wood" >
+      <component type="ambient" value="0.0 0.1 1.0 0.9" />
+      <component type="diffuse" value="1.0 0.5 1.0 0.2" />
+      <component type="specular" value="0.1 1.0 0.5 0.5" />
     </appearance>
     
-    <appearance id="aparencia1" shininess="2.0" textureref="ss" >
+    <appearance id="aparencia1" shininess="2.0" textureref="wood" >
       <component type="ambient" value="1 1 1 1" />
       <component type="diffuse" value="1.0 1 1.0 1" />
       <component type="specular" value="1 1.0 1 1" />
@@ -75,6 +75,7 @@
 
     <node id="root">
       <transforms>
+        <transform type="scale" factor="0.1 0.1 0.1" />
       </transforms>
 
       <appearanceref id="aparencia" />
@@ -87,7 +88,6 @@
         <noderef id="Chao" />
 		    <noderef id="ParedeLateralEsquerda" />
 		    <noderef id="ParedeLateralDireita" />
-        <noderef id="angel" />
       </descendants>
     </node>
 
@@ -131,38 +131,8 @@
      <primitives>
        <rectangle xy1="0.0 0.0" xy2="30.0 20.0" />
      </primitives>
-    </node>
-
-    <node id="angel">
-     <transforms>
-      <transform type="translate" to="15 0.5 15" />
-      <transform type="rotate" axis="x" angle="-90"/>
-     </transforms>
-
-     <appearanceref id="inherit" />
-
-     <primitives>
-      <cylinder base="3" top="1" height="4" slices="30" stacks="30" />
-     </primitives>
-
-      <descendants>
-        <noderef id="angelBody" />
-      </descendants>
-    </node>
-
-
-    <node id="angelBody">
-     <transforms>
-      <transform type="translate" to="15 0.5 15" />
-      <transform type="rotate" axis="x" angle="-90"/>
-     </transforms>
-
-     <appearanceref id="inherit" />
-
-     <primitives>
-        <cylinder base="3" top="1" height="4" slices="30" stacks="30" />
-     </primitives>
-    </node>
-
+    </node>  
   </graph>
 </anf>
+
+0x001FAA86 

@@ -1,10 +1,40 @@
 #include <Graph.h>
 
 
+Textura::Textura(std::string id, std::string file, float texlength_s, float texlength_t){
+	this->id = id;
+	this->file = file;
+	this->texlength_s = texlength_s;
+	this->texlength_t = texlength_t;
+}
+
+std::string Textura::getId(){
+	return this->id;
+}
+
+std::string Textura::getFile(){
+	return this->file;
+}
+
+float Textura::getTexLenS(){
+	return this->texlength_s;
+}
+
+float Textura::getTexLenT(){
+	return this->texlength_t;
+}
+
 Aparencia::Aparencia(std::string id, float shininess, std::string textRef, float ambient[4], float difusa[4], float especular[4]) : CGFappearance(ambient, difusa, especular, shininess){
 	this->id = id;
 	this->shininess = shininess;
 	this->textRef = textRef;
+}
+
+std::string Aparencia::getId(){
+	return this->id;
+}
+std::string Aparencia::getTextRef(){
+	return this->textRef;
 }
 
 
@@ -53,23 +83,28 @@ void Node::setRoot(bool root){
 	this->root = root;
 }
 
-void Node::draw(std::map<std::string, Node*>& grafo, std::map < std::string, Aparencia*>& aparencias,std::string referenciaApp){
+void Node::draw(std::map<std::string, Node*>& grafo, std::map < std::string, Aparencia*>& aparencias, std::string referenciaApp, std::map < std::string, Textura*>& texturas){
 	glMultMatrixf(&this->matrix[0]);
 
-	if (this->appRef != "inherit" && aparencias[this->appRef] != NULL){
+	if (this->appRef != "inherit"){
 		aparencias[this->appRef]->apply();
 	}
-	else aparencias[referenciaApp]->apply();
+	else {
+		aparencias[referenciaApp]->apply();
+		this->appRef = referenciaApp;
+	}
+	int size = this->primitivas.size();
 
-	int size = this->primitivas.size()
 	for (unsigned int i = 0; i < size; i++){
-		primitivas[i]->draw();
+		float texS = texturas[aparencias[appRef]->getTextRef()]->getTexLenS();
+		float texT = texturas[aparencias[appRef]->getTextRef()]->getTexLenT();
+		primitivas[i]->draw(texS,texT);
 	}
 	typedef std::vector<std::string>::iterator iter;
 	
 	for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it ++){
 		glPushMatrix();
-		grafo[*it]->draw(grafo,aparencias,this->appRef);
+		grafo[*it]->draw(grafo, aparencias, this->appRef,texturas);
 		glPopMatrix();
 	
 	}
@@ -88,7 +123,18 @@ void Graph::setRoot(std::string root){
 }
 
 void Graph::draw(){
+	/* Fazer ligaçoes entre as aparencias e as texturas */
 
+	std::map<std::string, Aparencia*>::iterator itera;
+	
+	for (itera = aparencias.begin(); itera != aparencias.end(); itera++){
+		itera->second->setTexture(texturas[itera->second->getTextRef()]->getFile());
+	}
+	
 	Node *noActual = this->getGrafo()[this->getRoot()];
-	noActual->draw(this->getGrafo(),this->getAparencias(),noActual->getAppRef());
+	noActual->draw(this->getGrafo(),this->getAparencias(),noActual->getAppRef(),this->texturas);
+}
+
+std::map<std::string, Textura*>& Graph::getTexturas(){
+	return this->texturas;
 }

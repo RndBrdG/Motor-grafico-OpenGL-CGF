@@ -78,6 +78,7 @@
     <ClCompile Include="src\parserGlobals.cpp" />
     <ClCompile Include="src\parserGraph.cpp" />
     <ClCompile Include="src\parserLights.cpp" />
+    <ClCompile Include="src\parserTextures.cpp" />
     <ClCompile Include="src\Primitivas.cpp" />
     <ClCompile Include="src\TPinterface.cpp" />
     <ClCompile Include="src\XMLScene.cpp" />

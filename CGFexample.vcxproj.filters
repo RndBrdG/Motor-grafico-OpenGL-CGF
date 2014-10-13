@@ -94,16 +94,31 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\scene.xml">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="res\texshader.frag">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\texshader.vert">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="res\pyramid.jpg">
+    <None Include="res\cloud.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\cloud.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\face.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\wood.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\asas.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\cloth.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\scene.anf">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

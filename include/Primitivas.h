@@ -6,6 +6,7 @@
 class Primitivas {
 public:
 	virtual void draw(float textS, float textT) = 0;
+	virtual void draw() = 0;
 };
 
 class Rectangle : public Primitivas{
@@ -14,6 +15,7 @@ class Rectangle : public Primitivas{
 public:
 	Rectangle(float x1, float x2, float y1, float y2);
 	void draw(float textS, float textT);
+	void draw();
 	~Rectangle(){
 		delete(this);
 	}
@@ -26,6 +28,7 @@ class Triangle : public Primitivas{
 public:
 	Triangle(float x1, float x2, float x3, float y1, float y2, float y3, float z1, float z2, float z3);
 	void draw(float textS, float textT);
+	void draw();
 	~Triangle(){
 		delete(this);
 	}
@@ -38,6 +41,7 @@ class Cylinder : public Primitivas{
 public:
 	Cylinder(float base, float top, float height, int slices, int stacks);
 	void draw(float textS, float textT);
+	void draw();
 	~Cylinder(){
 		delete(this);
 	}
@@ -50,6 +54,7 @@ class Sphere : public Primitivas{
 public:
 	Sphere(float radius, int slices, int stacks);
 	void draw(float textS, float textT);
+	void draw();
 	~Sphere(){
 		delete(this);
 	}
@@ -61,6 +66,7 @@ class Torus : public Primitivas{
 public:
 	Torus(float inner, float outer, float slices,float loops);
 	void draw(float textS, float textT);
+	void draw();
 	~Torus(){
 		delete(this);
 	}

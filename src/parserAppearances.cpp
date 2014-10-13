@@ -14,8 +14,8 @@ void XMLScene::parserAppearance(){
 			if (readAppearance != NULL) {
 				std::string id = readAppearance->Attribute("id");
 				float shininess;
-				std::string textRef = readAppearance->Attribute("textureref");
-				if (id != "" && textRef != "" && readAppearance->QueryFloatAttribute("shininess", &shininess) == TIXML_SUCCESS){
+				char* textRef = (char*)readAppearance->Attribute("textureref");
+				if (id != "" && readAppearance->QueryFloatAttribute("shininess", &shininess) == TIXML_SUCCESS){
 					TiXmlElement* component = readAppearance->FirstChildElement("component");
 					std::string type, values;
 					float ambient[4], difusa[4], especular[4];
@@ -29,6 +29,8 @@ void XMLScene::parserAppearance(){
 						else if (type == "specular" && sscanf(values.c_str(), "%f %f %f %f", &especular[0], &especular[1], &especular[2], &especular[3]))
 							continue;
 					} while (component = component->NextSiblingElement());
+					if (textRef == NULL)
+						textRef = "null";
 					Aparencia* ap = new Aparencia(id, shininess, textRef,ambient,difusa,especular);
 					objetosDaCena.getAparencias().insert(std::make_pair(id, ap));
 				}

@@ -42,7 +42,6 @@
 		<texture file="../res/cloud.png" id="nuvem" texlength_s="30.0" texlength_t="20.0"/>
 		<texture file="../res/wood.png" id="wood" texlength_s="30.0" texlength_t="20.0"/>
 		<texture file="../res/cloth.jpg" id="cloth" texlength_s="1.0" texlength_t="1.0"/>
-		<texture file="../res/face.jpg" id="face" texlength_s="1.0" texlength_t="1.0"/>
 		<texture file="../res/asas.jpg" id="asas" texlength_s="1.0" texlength_t="1.0"/>
 	</textures>
 	<!-- bloco de materiais; -->
@@ -65,21 +64,21 @@
 			<component type="diffuse" value="1.0 1 1.0 1"/>
 			<component type="specular" value="1 1.0 1 1"/>
 		</appearance>
-		<appearance id="face" shininess="2.0" textureref="face">
-			<component type="ambient" value="1 1 1 1"/>
-			<component type="diffuse" value="1.0 1 1.0 1"/>
-			<component type="specular" value="1 1.0 1 1"/>
-		</appearance>
 		<appearance id="asas" shininess="2.0" textureref="asas">
 			<component type="ambient" value="1 1 1 1"/>
 			<component type="diffuse" value="1.0 1 1.0 1"/>
 			<component type="specular" value="1 1.0 1 1"/>
 		</appearance>
+		<appearance id="amarelo" shininess="2.0" >
+			<component type="ambient" value="1 1 0 1"/>
+			<component type="diffuse" value="1.0 1 0 1"/>
+			<component type="specular" value="1 1.0 0 1"/>
+		</appearance>
 	</appearances>
 	<!-- bloco do grafo; "rootid" identifica o no de raiz -->
 	<graph rootid="root">
 		<node id="root">
-			<transforms/>
+			<transforms></transforms>
 			<appearanceref id="nuvens"/>
 			<primitives>
 				<rectangle xy1="0.0 0.0" xy2="30.0 20.0"/>
@@ -114,6 +113,7 @@
 		<node id="Anjo">
 			<transforms>
 				<transform to="15 0 15" type="translate"/>
+				<transform angle="45" axis="y" type="rotate"/>
 			</transforms>
 			<appearanceref id="woods"/>
 			<descendants>
@@ -136,9 +136,9 @@
 		<node id="AnjoCabeca">
 			<transforms>
 				<transform to="00 4.8 00" type="translate"/>
-				<transform type="rotate" axis="x" angle="-65" />
+				<transform angle="-65" axis="x" type="rotate"/>
 			</transforms>
-			<appearanceref id="face"/>
+			<appearanceref id="woods"/>
 			<primitives>
 				<sphere radius="0.80" slices="10" stacks="10"/>
 			</primitives>
@@ -151,7 +151,7 @@
 				<transform to="00 1.5 00" type="translate"/>
 				<transform angle="90" axis="x" type="rotate"/>
 			</transforms>
-			<appearanceref id="woods"/>
+			<appearanceref id="amarelo"/>
 			<primitives>
 				<torus inner="0.1" loops="15" outer="0.5" slices="10"/>
 			</primitives>

@@ -96,9 +96,12 @@ void Node::draw(std::map<std::string, Node*>& grafo, std::map < std::string, Apa
 	int size = this->primitivas.size();
 
 	for (unsigned int i = 0; i < size; i++){
-		float texS = texturas[aparencias[appRef]->getTextRef()]->getTexLenS();
-		float texT = texturas[aparencias[appRef]->getTextRef()]->getTexLenT();
-		primitivas[i]->draw(texS,texT);
+		if (aparencias[appRef]->getTextRef() != "null"){
+			float texS = texturas[aparencias[appRef]->getTextRef()]->getTexLenS();
+			float texT = texturas[aparencias[appRef]->getTextRef()]->getTexLenT();
+			primitivas[i]->draw(texS, texT);
+		}
+		else primitivas[i]->draw();
 	}
 	typedef std::vector<std::string>::iterator iter;
 	
@@ -128,6 +131,7 @@ void Graph::draw(){
 	std::map<std::string, Aparencia*>::iterator itera;
 	
 	for (itera = aparencias.begin(); itera != aparencias.end(); itera++){
+		if (itera->second->getTextRef() == "null") continue;
 		itera->second->setTexture(texturas[itera->second->getTextRef()]->getFile());
 	}
 	

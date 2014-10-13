@@ -1,6 +1,6 @@
 
-. bloco de aparencia <textureref> não é obrigatorio. ( Feito )
-. luz ambiente nao funciona.
-. Culling esta a funcionar mal.
-. Textura para triangulos. ( Feito ? )
-. Torus e textura para torus.
+☑ bloco de aparencia <textureref> não é obrigatorio. 
+☐ luz ambiente nao funciona.
+☐ Culling esta a funcionar mal.
+☑ Textura para triangulos. ( Feito ? )
+☐ Torus e textura para torus.

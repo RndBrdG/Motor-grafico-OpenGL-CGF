@@ -24,6 +24,7 @@ void DemoScene::init() {
 		glCullFace(scene.globalsData.getCullFace());
 		glFrontFace(scene.globalsData.getFrontFace());
 	}
+	else glDisable(GL_CULL_FACE);
 
 	// Sets lighting settings
 	glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, scene.globalsData.getDblSidedLight());

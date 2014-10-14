@@ -142,3 +142,7 @@ void Graph::draw(){
 std::map<std::string, Textura*>& Graph::getTexturas(){
 	return this->texturas;
 }
+
+std::map < std::string, Camera*>& Graph::getCameras(){
+	return this->cameras;
+}

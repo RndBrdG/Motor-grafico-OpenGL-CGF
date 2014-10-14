@@ -18,8 +18,8 @@
 		<!-- tem de existir, pelo menos uma camara dos tipos seguintes (perspective ou ortho) -->
 		<!-- no caso da camara ortho, o atributo "direction" define o eixo segundo o qual se efetua a projecao -->
 		<perspective angle="45" far="0.3" id="idPer" near="0.2" pos="25 55 22" target="44 54 65"/>
-		<ortho bottom="0.5" direction="ee" far="0.5" id="idOrtho" left="0.2" near="0.4" right="0.3" top="0.6"/>
-		<ortho bottom="0.5" direction="ee" far="0.5" id="idOrtho2" left="0.2" near="0.4" right="0.3" top="0.6"/>
+		<ortho bottom="0.5" direction="x" far="0.7" id="idOrtho" left="0.3" near="0.5" right="0.3" top="0.6"/>
+		<ortho bottom="0.5" direction="y" far="0.5" id="camInit" left="0.2" near="0.4" right="0.3" top="0.6"/>
 	</cameras>
 	<!-- bloco de luzes -->
 	<lights>

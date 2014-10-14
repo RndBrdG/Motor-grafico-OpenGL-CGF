@@ -27,8 +27,6 @@ private:
 	void parserGlobalsLighting();
 	// camera tag
 	void parserCameras();
-	void parserCamerasPerspective();
-	void parserCamerasOrtho();
 	// lights tag
 	void parserLights();
 	// Textures tags

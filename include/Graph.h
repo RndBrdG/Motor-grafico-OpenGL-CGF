@@ -5,6 +5,7 @@
 #include <iostream>
 #include <map>
 #include <Primitivas.h>
+#include <Camera.h>
 #include <string>
 #include <CGFappearance.h>
 
@@ -61,12 +62,14 @@ class Graph {
 	std::map<std::string, Node*> grafo;
 	std::map < std::string,Aparencia*> aparencias;
 	std::map < std::string, Textura*> texturas;
+	std::map < std::string, Camera*> cameras;
 	std::string root;
 public:
 	Graph(){};
 	std::map<std::string, Node*>& getGrafo();
 	std::map<std::string,Aparencia*>& getAparencias();
 	std::map<std::string, Textura*>& getTexturas();
+	std::map < std::string, Camera*>& getCameras();
 	std::string getRoot();
 	void draw();
 	void setRoot(std::string root);

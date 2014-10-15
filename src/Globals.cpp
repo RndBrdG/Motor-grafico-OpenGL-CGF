@@ -14,6 +14,10 @@ Globals::Globals() {
 	ambLightR = .2, ambLightG = .2, ambLightB = .2, ambLightA = 1.;
 }
 
+void Globals::setPolygonMode(GLenum polygonMode) {
+	this->polygonMode = polygonMode;
+}
+
 GLenum Globals::getPolygonMode() {
 	return polygonMode;
 }

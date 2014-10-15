@@ -3,10 +3,15 @@
 #include "CGFaxis.h"
 #include "DemoScene.h"
 #include "Primitivas.h"
+#include "TPinterface.h"
 #include <math.h>
 
 DemoScene::DemoScene() : scene(XMLScene("../res/scene.anf")) {
 	lights = scene.lights;
+}
+
+const Graph& DemoScene::getGraph() {
+	return desenhar;
 }
 
 const std::vector<Light*>& DemoScene::getLights() {
@@ -15,7 +20,6 @@ const std::vector<Light*>& DemoScene::getLights() {
 
 void DemoScene::init() {
 	// Sets drawing settings
-	glPolygonMode(GL_FRONT_AND_BACK, scene.globalsData.getPolygonMode());
 	glShadeModel(scene.globalsData.getShadeModel());
 	glClearColor(scene.globalsData.getBkgColorR(), scene.globalsData.getBkgColorG(), scene.globalsData.getBkgColorB(), scene.globalsData.getBkgColorA());
 
@@ -45,8 +49,6 @@ void DemoScene::init() {
 
 	desenhar = scene.objetosDaCena;
 	setUpdatePeriod(30);
-
-	time_passed = 0;
 }
 
 void DemoScene::update(unsigned long t) {
@@ -59,10 +61,8 @@ void DemoScene::display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Initialize Model-View matrix as identity (no transformation
-
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
 	
 	Camera* cameraInicial = desenhar.getCameras()[desenhar.getCameraDefault()];
 	glMatrixMode(GL_PROJECTION);
@@ -91,7 +91,7 @@ void DemoScene::display() {
 
 	// ---- BEGIN feature demos
 
-
+	glPolygonMode(GL_FRONT_AND_BACK, scene.globalsData.getPolygonMode()); // Sets (variable) drawing mode.
 	desenhar.draw();
 
 	// ---- END feature demos

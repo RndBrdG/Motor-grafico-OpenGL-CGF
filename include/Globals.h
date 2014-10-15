@@ -22,6 +22,7 @@ protected:
 public:
 	Globals();
 
+	void setPolygonMode(GLenum polygonMode);
 	GLenum getPolygonMode(), getShadeModel();
 	float getBkgColorR(), getBkgColorG(), getBkgColorB(), getBkgColorA();
 

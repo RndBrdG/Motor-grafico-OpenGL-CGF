@@ -6,13 +6,14 @@
 #include "Graph.h"
 #include "XMLScene.h"
 
-class DemoScene : public CGFscene
-{
+class DemoScene : public CGFscene {
+	friend class TPinterface;
 public:
 	void init();
 	void display();
 	void update(unsigned long t);
 
+	const Graph& getGraph();
 	const std::vector<Light*>& getLights();
 
 	DemoScene();
@@ -21,8 +22,6 @@ private:
 	XMLScene scene;
 	Graph desenhar;
 	std::vector<Light*> lights;
-
-	unsigned long time_passed; // DEBUG - Read from XML every second
 };
 
 #endif

@@ -64,6 +64,7 @@ class Graph {
 	std::map < std::string, Textura*> texturas;
 	std::map < std::string, Camera*> cameras;
 	std::string root;
+	std::string cameraDefault;
 public:
 	Graph(){};
 	std::map<std::string, Node*>& getGrafo();
@@ -71,8 +72,10 @@ public:
 	std::map<std::string, Textura*>& getTexturas();
 	std::map < std::string, Camera*>& getCameras();
 	std::string getRoot();
+	std::string getCameraDefault();
 	void draw();
 	void setRoot(std::string root);
+	void setDefaultCamera(std::string cameraDefault);
 };
 
 #endif

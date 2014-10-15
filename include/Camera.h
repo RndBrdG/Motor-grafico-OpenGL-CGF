@@ -3,32 +3,29 @@
 
 #include "CGFcamera.h"
 
-class Camera : public CGFcamera{
+class Camera {
 	char* id;
+	char *type;
+	char *direction;
 	float near, far;
-
+	float angle;
+	float tarX,tarY,tarZ;
+	float posX,posY,posZ;
+	float left, right, top, bottom;
 public:
-	Camera(char *id, float near, float far);
+	Camera(char *id, char *type, float near, float far, float angle, float tarX, float tarY, float tarZ, float posX, float posY, float posZ);
+	Camera(char *id, char *type, char* direction, float left, float right, float top, float bottom);
 	char* getId();
 	float getNear();
 	float getFar();
-};
-
-class CameraPerspective : public Camera {
-
-	float angle;
-
-public:
-	CameraPerspective(char* id, float near, float far, float angle, float posX, float posY, float posZ, float tarX, float tarY, float tarZ);
 	float getAngle();
-
-};
-
-class CameraOrtho : public Camera {
-	char *direction;
-
-public:
-	CameraOrtho(char* id, char* direction, float near, float far, float left, float right, float top, float bottom);
 	char* getDirection();
+	float getPosX();
+	float getPosY();
+	float getPosZ();
+	float getTarX();
+	float getTarY();
+	float getTarZ();
 };
+
 #endif

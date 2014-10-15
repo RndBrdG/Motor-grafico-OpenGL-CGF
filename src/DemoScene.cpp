@@ -64,16 +64,8 @@ void DemoScene::display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
-	Camera* cameraInicial = desenhar.getCameras()[desenhar.getCameraDefault()];
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(cameraInicial->getAngle(), CGFapplication::xy_aspect, cameraInicial->getNear(), cameraInicial->getFar());
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(cameraInicial->getPosX(), cameraInicial->getPosY(), cameraInicial->getPosZ(), cameraInicial->getTarX(), cameraInicial->getTarY(), cameraInicial->getTarZ(), 0, 1, 0);
-	
 	// Apply transformations corresponding to the camera position relative to the origin
-	//CGFscene::activeCamera->applyView();
+	CGFscene::activeCamera->applyView();
 
 	// Draw (and update) lights
 	for (auto it = scene.lights.cbegin(); it != scene.lights.cend(); it++) {
@@ -103,4 +95,7 @@ void DemoScene::display() {
 }
 
 DemoScene::~DemoScene() {
+	delete(&scene);
+	delete(&desenhar);
+	delete(&lights);
 }

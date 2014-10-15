@@ -42,6 +42,7 @@ void TPinterface::initGUI() {
 	// You could also pass a reference to a variable from the scene class, if public
 	addSpinnerToPanel(varPanel, "Val 2(scene)", 2, &(((DemoScene*)scene)->sceneVar), 2);
 	*/
+
 	GLUI_Panel* panelDesenho = addPanel("Modo de desenho");
 	GLUI_RadioGroup* radioDesenho = addRadioGroupToPanel(panelDesenho, &drawingMode, 1);
 	addRadioButtonToGroup(radioDesenho, "Preencher");

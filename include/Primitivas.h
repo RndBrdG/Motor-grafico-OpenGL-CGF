@@ -7,6 +7,9 @@ class Primitivas {
 public:
 	virtual void draw(float textS, float textT) = 0;
 	virtual void draw() = 0;
+	~Primitivas(){
+		delete(this);
+	}
 };
 
 class Rectangle : public Primitivas{
@@ -43,6 +46,7 @@ public:
 	void draw(float textS, float textT);
 	void draw();
 	~Cylinder(){
+		delete(cylin);
 		delete(this);
 	}
 };
@@ -56,6 +60,7 @@ public:
 	void draw(float textS, float textT);
 	void draw();
 	~Sphere(){
+		delete(sph);
 		delete(this);
 	}
 };

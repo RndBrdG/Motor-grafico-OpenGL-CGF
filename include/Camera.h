@@ -26,6 +26,9 @@ public:
 	float getTarX();
 	float getTarY();
 	float getTarZ();
+	~Camera(){
+		delete(this);
+	}
 };
 
 #endif

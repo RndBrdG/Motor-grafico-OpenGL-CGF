@@ -33,15 +33,24 @@ XMLScene::XMLScene(char *filename)
 
 	parserGlobals();
 	parserCameras();
+	parserAppearance();
 	parserTextures();
 	parserLights();
-	parserAppearance();
 	parserGraph();
 }
 
 XMLScene::~XMLScene()
 {
+	delete(&globalsData);
+	delete(&lights);
+	delete(&objetosDaCena);
 	delete(doc);
+	delete(globElement);
+	delete(camElement);
+	delete(lightsElement);
+	delete(texElement);
+	delete(appsElement);
+	delete(graphElement);
 }
 
 //-------------------------------------------------------

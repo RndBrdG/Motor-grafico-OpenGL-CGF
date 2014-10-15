@@ -1,0 +1,218 @@
+<anf>
+	<!-- bloco de configuracoes globais -->
+	<!-- a declaracao dos componentes deste bloco e' obrigatoria -->
+	<globals>
+		<!-- Parametros de desenho -->
+		<!-- Valores para mode: "fill" , "line", "point" -->
+		<!-- Valores para shading: "flat", "gouraud" ) -->
+		<drawing background="0. 0. 0. 1." mode="fill" shading="gouraud"/>
+		<!-- Parametros de culling -->
+		<!-- Valores para cullface: "none", "back" , "front" ou "both" -->
+		<!-- Valores para cullorder : "ccw" ou "cw" -->
+		<culling face="none" order="ccw"/>
+		<!-- Parametros de iluminacao; seguem os parametros do OpenGL  -->
+		<lighting ambient=".7 .7 .7 1." doublesided="false" enabled="true" local="true"/>
+	</globals>
+	<!-- bloco de camaras: o atributo "initial" identifica a camara/ponto de vista inicial, que tem de existir -->
+	<cameras initial="camInit">
+		<!-- tem de existir, pelo menos uma camara dos tipos seguintes (perspective ou ortho) -->
+		<!-- no caso da camara ortho, o atributo "direction" define o eixo segundo o qual se efetua a projecao -->
+		<perspective angle="45" far="300" id="camInit" near="0.2" pos="30 30 30" target="0 0 0"/>
+		<ortho bottom="0.5" direction="x" far="0.7" id="idOrtho" left="0.3" near="0.5" right="0.3" top="0.6"/>
+		<ortho bottom="0.5" direction="y" far="0.5" id="idOrtho2" left="0.2" near="0.4" right="0.3" top="0.6"/>
+	</cameras>
+	<!-- bloco de luzes -->
+	<lights>
+		<!-- Deve existir pelo menos uma luz declarada -->
+		<!-- Atributo "marker" indica se deve ou nao desenhar-se uma esfera representativa -->
+		<light enabled="true" id="omniLight" marker="true" pos="1. 3. 1." type="omni">
+			<component type="ambient" value="0.2 0.2 0.2 1."/>
+			<component type="diffuse" value="0.3 0.4 0.1 0.4"/>
+			<component type="specular" value="0.4 0.1 0.6 0.5"/>
+		</light>
+		<light enabled="true" id="topLight" marker="true" pos="15. 8. 13." type="omni">
+			<component type="ambient" value="0.2 0.2 0.2 1."/>
+			<component type="diffuse" value="0.7 0.7 0.9 0.4"/>
+			<component type="specular" value="0.4 0.4 0.8 0.5"/>
+		</light>
+	</lights>
+	<!-- bloco de texturas. Este bloco tem de existir mas pode estar vazio, se nao forem usadas texturas -->
+	<!--   ver topico 'Notas finais' no enunciado sobre os parametros texlength_... -->
+	<textures>
+		<texture file="../res/cloud.png" id="nuvem" texlength_s="30.0" texlength_t="20.0"/>
+		<texture file="../res/wood.png" id="wood" texlength_s="30.0" texlength_t="20.0"/>
+		<texture file="../res/cloth.jpg" id="cloth" texlength_s="1.0" texlength_t="1.0"/>
+		<texture file="../res/asas.jpg" id="asas" texlength_s="1.0" texlength_t="1.0"/>
+	</textures>
+	<!-- bloco de materiais; -->
+	<appearances>
+		<!-- deve existir um ou mais blocos "appearance" -->
+		<!-- IMPORTANTE: -->
+		<!--   textureref e opcional, a utilizar caso haja textura associada a esta aparencia -->
+		<appearance id="nuvens" shininess="0.3" textureref="nuvem">
+			<component type="ambient" value="0.5 0.5 .5 1."/>
+			<component type="diffuse" value="1. 1. 1. 1."/>
+			<component type="specular" value="0.0 .0 0.0 0."/>
+		</appearance>
+		<appearance id="woods" shininess="2.0" textureref="wood">
+			<component type="ambient" value="1 1 1 1"/>
+			<component type="diffuse" value="1.0 1 1.0 1"/>
+			<component type="specular" value="1 1.0 1 1"/>
+		</appearance>
+		<appearance id="cloths" shininess="2.0" textureref="cloth">
+			<component type="ambient" value="1 1 1 1"/>
+			<component type="diffuse" value="1.0 1 1.0 1"/>
+			<component type="specular" value="1 1.0 1 1"/>
+		</appearance>
+		<appearance id="asas" shininess="2.0" textureref="asas">
+			<component type="ambient" value="1 1 1 1"/>
+			<component type="diffuse" value="1.0 1 1.0 1"/>
+			<component type="specular" value="1 1.0 1 1"/>
+		</appearance>
+		<appearance id="amarelo" shininess="2.0" >
+			<component type="ambient" value="1 1 0 1"/>
+			<component type="diffuse" value="1.0 1 0 1"/>
+			<component type="specular" value="1 1.0 0 1"/>
+		</appearance>
+	</appearances>
+	<!-- bloco do grafo; "rootid" identifica o no de raiz -->
+	<graph rootid="root">
+		<node id="root">
+			<transforms></transforms>
+			<appearanceref id="nuvens"/>
+			<primitives>
+				<rectangle xy1="0.0 0.0" xy2="30.0 20.0"/>
+			</primitives>
+			<descendants>
+				<noderef id="Chao"/>
+				<noderef id="ParedeLateralEsquerda"/>
+				<noderef id="Anjo"/>
+			</descendants>
+		</node>
+		<node id="Chao">
+			<transforms>
+				<transform to="0.0 0.0 30" type="translate"/>
+				<transform factor="1.0 1.0 1.5" type="scale"/>
+				<transform angle="-90" axis="x" type="rotate"/>
+			</transforms>
+			<appearanceref id="inherit"/>
+			<primitives>
+				<rectangle xy1="0.0 0.0" xy2="30.0 20.0"/>
+			</primitives>
+		</node>
+		<node id="ParedeLateralEsquerda">
+			<transforms>
+				<transform to="00 00 30" type="translate"/>
+				<transform angle="90" axis="y" type="rotate"/>
+			</transforms>
+			<appearanceref id="inherit"/>
+			<primitives>
+				<rectangle xy1="0.0 0.0" xy2="30.0 20.0"/>
+			</primitives>
+		</node>
+		<node id="Anjo">
+			<transforms>
+				<transform to="15 0 15" type="translate"/>
+				<transform angle="45" axis="y" type="rotate"/>
+			</transforms>
+			<appearanceref id="woods"/>
+			<descendants>
+				<noderef id="AnjoCorpo"/>
+				<noderef id="AnjoCabeca"/>
+				<noderef id="AnjoPes"/>
+				<noderef id="AnjoAsas"/>
+			</descendants>
+		</node>
+		<node id="AnjoCorpo">
+			<transforms>
+				<transform to="0 1 0" type="translate"/>
+				<transform angle="-90" axis="x" type="rotate"/>
+			</transforms>
+			<appearanceref id="cloths"/>
+			<primitives>
+				<cylinder base="2" height="3" slices="10" stacks="5" top="0.5"/>
+			</primitives>
+		</node>
+		<node id="AnjoCabeca">
+			<transforms>
+				<transform to="00 4.8 00" type="translate"/>
+				<transform angle="-65" axis="x" type="rotate"/>
+			</transforms>
+			<appearanceref id="woods"/>
+			<primitives>
+				<sphere radius="0.80" slices="10" stacks="10"/>
+			</primitives>
+			<descendants>
+				<noderef id="Aureola"/>
+			</descendants>
+		</node>
+		<node id="Aureola">
+			<transforms>
+				<transform to="00 1.5 00" type="translate"/>
+				<transform angle="90" axis="x" type="rotate"/>
+			</transforms>
+			<appearanceref id="amarelo"/>
+			<primitives>
+				<torus inner="0.1" loops="15" outer="0.5" slices="10"/>
+			</primitives>
+		</node>
+		<node id="AnjoPes">
+			<transforms>
+				<transform to="00 1 00" type="translate"/>
+			</transforms>
+			<appearanceref id="inherit"/>
+			<descendants>
+				<noderef id="AnjoPeDir"/>
+				<noderef id="AnjoPeEsq"/>
+			</descendants>
+		</node>
+		<node id="AnjoPeDir">
+			<transforms>
+				<transform to="0.7 0.0 00" type="translate"/>
+				<tranform angle="90" axis="x" type="rotate"/>
+			</transforms>
+			<appearanceref id="inherit"/>
+			<primitives>
+				<cylinder base="0.25" height="0.75" slices="10" stacks="5" top="0.25"/>
+			</primitives>
+		</node>
+		<node id="AnjoPeEsq">
+			<transforms>
+				<transform to="-0.7 0.0 00" type="translate"/>
+				<tranform angle="90" axis="x" type="rotate"/>
+			</transforms>
+			<appearanceref id="inherit"/>
+			<primitives>
+				<cylinder base="0.25" height="0.75" slices="10" stacks="5" top="0.25"/>
+			</primitives>
+		</node>
+		<node id="AnjoAsas">
+			<transforms>
+				<transform to="0 5.0 0" type="translate"/>
+			</transforms>
+			<appearanceref id="asas"/>
+			<descendants>
+				<noderef id="AsaEsq"/>
+				<noderef id="AsaDir"/>
+			</descendants>
+		</node>
+		<node id="AsaEsq">
+			<transforms>
+				<transform to="0 -2.5 0" type="translate"/>
+			</transforms>
+			<appearanceref id="inherit"/>
+			<primitives>
+				<triangle xyz1="0 0.0 0" xyz2="-3.75 3.50 00" xyz3="-7.5 1.5 0"/>
+			</primitives>
+		</node>
+		<node id="AsaDir">
+			<transforms>
+				<transform to="0 -2.5 0" type="translate"/>
+			</transforms>
+			<appearanceref id="inherit"/>
+			<primitives>
+				<triangle xyz1="0 0.0 0" xyz2="7.5 1.5 0" xyz3="3.75 3.50 00"/>
+			</primitives>
+		</node>
+	</graph>
+</anf>

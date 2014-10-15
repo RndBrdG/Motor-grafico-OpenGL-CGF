@@ -123,75 +123,76 @@ void XMLScene::parserGraphAppearanceref(Node* novoNode, TiXmlElement *childs){
 
 void XMLScene::parserGraphPrimitives(Node* novoNode, TiXmlElement *childs){
 	TiXmlElement *primitivas = childs->FirstChildElement();
+	if (primitivas){
+		do {
+			if (primitivas->ValueTStr() == "rectangle") {
+				std::string xy1 = "", xy2 = "";
+				float x1, x2, y1, y2;
 
-	do {
-		if (primitivas->ValueTStr() == "rectangle") {
-			std::string xy1 = "", xy2 = "";
-			float x1, x2, y1, y2;
+				xy1 = primitivas->Attribute("xy1");
+				xy2 = primitivas->Attribute("xy2");
+				if (xy1 != "" && xy2 != "" && sscanf(xy1.c_str(), "%f %f", &x1, &y1) == 2 && sscanf(xy2.c_str(), "%f %f", &x2, &y2) == 2){
+					printf("\n\nRectangulo :\n %f %f | %f %f", x1, y1, x2, y2);
+					Rectangle* a1 = new Rectangle(x1, x2, y1, y2);
+					novoNode->getPrimitivas().push_back(a1);
+				}
+				else std::cout << "\n\nError reading rectangle!";
+			}
+			else if (primitivas->ValueTStr() == "triangle") {
+				std::string xyz1 = "", xyz2 = "", xyz3 = "";
+				float x1, x2, x3, y1, y2, y3, z1, z2, z3;
 
-			xy1 = primitivas->Attribute("xy1");
-			xy2 = primitivas->Attribute("xy2");
-			if (xy1 != "" && xy2 != "" && sscanf(xy1.c_str(), "%f %f", &x1, &y1) == 2 && sscanf(xy2.c_str(), "%f %f", &x2, &y2) == 2){
-				printf("\n\nRectangulo :\n %f %f | %f %f", x1, y1, x2, y2);
-				Rectangle* a1 = new Rectangle(x1, x2, y1, y2);
-				novoNode->getPrimitivas().push_back(a1);
-			}
-			else std::cout << "\n\nError reading rectangle!";
-		}
-		else if (primitivas->ValueTStr() == "triangle") {
-			std::string xyz1 = "", xyz2 = "", xyz3 = "";
-			float x1, x2, x3, y1, y2, y3, z1, z2, z3;
+				xyz1 = primitivas->Attribute("xyz1");
+				xyz2 = primitivas->Attribute("xyz2");
+				xyz3 = primitivas->Attribute("xyz3");
 
-			xyz1 =  primitivas->Attribute("xyz1");
-			xyz2 =  primitivas->Attribute("xyz2");
-			xyz3 =  primitivas->Attribute("xyz3");
-
-			if (xyz1 != "" && xyz2 != "" &&  xyz3 != "" && (sscanf(xyz1.c_str(), "%f %f %f", &x1, &y1, &z1) == 3)
-				&& (sscanf(xyz2.c_str(), "%f %f %f", &x2, &y2, &z2) == 3) && (sscanf(xyz3.c_str(), "%f %f %f", &x3, &y3, &z3) == 3)){
-				printf("\nTriangle : \n%f %f %f \n| %f %f %f \n| %f %f %f", x1, y1, z1, x2, y2, z2, x3, y3, z3);
-				Triangle* a1 = new Triangle(x1, x2, x3, y1, y2, y3, z1, z2, z3);
-				novoNode->getPrimitivas().push_back(a1);
+				if (xyz1 != "" && xyz2 != "" &&  xyz3 != "" && (sscanf(xyz1.c_str(), "%f %f %f", &x1, &y1, &z1) == 3)
+					&& (sscanf(xyz2.c_str(), "%f %f %f", &x2, &y2, &z2) == 3) && (sscanf(xyz3.c_str(), "%f %f %f", &x3, &y3, &z3) == 3)){
+					printf("\nTriangle : \n%f %f %f \n| %f %f %f \n| %f %f %f", x1, y1, z1, x2, y2, z2, x3, y3, z3);
+					Triangle* a1 = new Triangle(x1, x2, x3, y1, y2, y3, z1, z2, z3);
+					novoNode->getPrimitivas().push_back(a1);
+				}
+				else std::cout << "\n\nWHOOPS... You did something wrong with triangle!";
 			}
-			else std::cout << "\n\nWHOOPS... You did something wrong with triangle!";
-		}
-		else if (primitivas->ValueTStr() == "cylinder") {
-			float base, top, height;
-			int slices, stacks;
-			if (primitivas->QueryFloatAttribute("base", &base) == TIXML_SUCCESS && primitivas->QueryFloatAttribute("top", &top) == TIXML_SUCCESS
-				&& primitivas->QueryFloatAttribute("height", &height) == TIXML_SUCCESS && primitivas->QueryIntAttribute("slices", &slices) == TIXML_SUCCESS
-				&& primitivas->QueryIntAttribute("stacks", &stacks) == TIXML_SUCCESS){
-				printf("\nCylinder: \n%f %f %f %d %d", base, top, height, slices, stacks);
-				Cylinder* a1 = new Cylinder(base, top, height, slices, stacks);
-				novoNode->getPrimitivas().push_back(a1);
+			else if (primitivas->ValueTStr() == "cylinder") {
+				float base, top, height;
+				int slices, stacks;
+				if (primitivas->QueryFloatAttribute("base", &base) == TIXML_SUCCESS && primitivas->QueryFloatAttribute("top", &top) == TIXML_SUCCESS
+					&& primitivas->QueryFloatAttribute("height", &height) == TIXML_SUCCESS && primitivas->QueryIntAttribute("slices", &slices) == TIXML_SUCCESS
+					&& primitivas->QueryIntAttribute("stacks", &stacks) == TIXML_SUCCESS){
+					printf("\nCylinder: \n%f %f %f %d %d", base, top, height, slices, stacks);
+					Cylinder* a1 = new Cylinder(base, top, height, slices, stacks);
+					novoNode->getPrimitivas().push_back(a1);
+				}
+				else std::cout << "\n\nWhoops! You did something wrong with Cylinders.";
 			}
-			else std::cout << "\n\nWhoops! You did something wrong with Cylinders.";
-		}
-		else if (primitivas->ValueTStr() == "sphere") { 
-			float radius;
-			int slices, stacks;
-			if (primitivas->QueryFloatAttribute("radius", &radius) == TIXML_SUCCESS && primitivas->QueryIntAttribute("slices", &slices) == TIXML_SUCCESS
-				&& primitivas->QueryIntAttribute("stacks", &stacks) == TIXML_SUCCESS){
-				printf("\n\nSphere: %f %d %d", radius, slices, stacks);
-				Sphere* a1 = new Sphere(radius, slices, stacks);
-				novoNode->getPrimitivas().push_back(a1);
+			else if (primitivas->ValueTStr() == "sphere") {
+				float radius;
+				int slices, stacks;
+				if (primitivas->QueryFloatAttribute("radius", &radius) == TIXML_SUCCESS && primitivas->QueryIntAttribute("slices", &slices) == TIXML_SUCCESS
+					&& primitivas->QueryIntAttribute("stacks", &stacks) == TIXML_SUCCESS){
+					printf("\n\nSphere: %f %d %d", radius, slices, stacks);
+					Sphere* a1 = new Sphere(radius, slices, stacks);
+					novoNode->getPrimitivas().push_back(a1);
+				}
+				else std::cout << "\n\nWhoops! You did something wrong with Spheres.";
 			}
-			else std::cout << "\n\nWhoops! You did something wrong with Spheres.";
-		}
-		else if (primitivas->ValueTStr() == "torus") {
-			float inner, outer;
-			int slices, loops;
-			if (primitivas->QueryFloatAttribute("inner", &inner) == TIXML_SUCCESS && primitivas->QueryFloatAttribute("outer", &outer) == TIXML_SUCCESS
-				&& primitivas->QueryIntAttribute("slices", &slices) == TIXML_SUCCESS && primitivas->QueryIntAttribute("loops", &loops) == TIXML_SUCCESS){
-				printf("\n\nTorus: %f %f %d %d", inner, outer, slices, loops);
-				Torus* a1 = new Torus(inner, outer, slices, loops);
-				novoNode->getPrimitivas().push_back(a1);
+			else if (primitivas->ValueTStr() == "torus") {
+				float inner, outer;
+				int slices, loops;
+				if (primitivas->QueryFloatAttribute("inner", &inner) == TIXML_SUCCESS && primitivas->QueryFloatAttribute("outer", &outer) == TIXML_SUCCESS
+					&& primitivas->QueryIntAttribute("slices", &slices) == TIXML_SUCCESS && primitivas->QueryIntAttribute("loops", &loops) == TIXML_SUCCESS){
+					printf("\n\nTorus: %f %f %d %d", inner, outer, slices, loops);
+					Torus* a1 = new Torus(inner, outer, slices, loops);
+					novoNode->getPrimitivas().push_back(a1);
+				}
+				else std::cout << "\n\nWhoops! You did something wrong with Torus.";
 			}
-			else std::cout << "\n\nWhoops! You did something wrong with Torus.";
-		}
-		else {
-			std::cout << "Weirds... No primitives found\n";
-		}
-	} while (primitivas = primitivas->NextSiblingElement());
+			else {
+				std::cout << "Weirds... No primitives found\n";
+			}
+		} while (primitivas = primitivas->NextSiblingElement());
+	}
 }
 
 void XMLScene::parserGraphdescendants(Node* novoNode, TiXmlElement *childs){

@@ -8,11 +8,15 @@ Textura::Textura(std::string id, std::string file, float texlength_s, float texl
 	this->texlength_t = texlength_t;
 }
 
-std::string Textura::getId(){
+Textura::~Textura(){
+	delete(this);
+}
+
+string Textura::getId(){
 	return this->id;
 }
 
-std::string Textura::getFile(){
+string Textura::getFile(){
 	return this->file;
 }
 
@@ -30,15 +34,19 @@ Aparencia::Aparencia(std::string id, float shininess, std::string textRef, float
 	this->textRef = textRef;
 }
 
-std::string Aparencia::getId(){
+Aparencia::~Aparencia(){
+	delete(this);
+}
+
+string Aparencia::getId(){
 	return this->id;
 }
-std::string Aparencia::getTextRef(){
+string Aparencia::getTextRef(){
 	return this->textRef;
 }
 
 
-std::map<std::string, Node*>& Graph::getGrafo(){
+map<std::string, Node*>& Graph::getGrafo(){
 	return this->grafo;
 }
 
@@ -46,19 +54,23 @@ Node::Node(std::string id){
 	this->id = id;
 }
 
-std::string Node::getId(){
+Node::~Node(){
+	delete(this);
+}
+
+string Node::getId(){
 	return this->id;
 }
 
-std::string Node::getAppRef(){
+string Node::getAppRef(){
 	return this->appRef;
 }
 
-std::vector<std::string>& Node::getDescendencia(){
+vector<std::string>& Node::getDescendencia(){
 	return this->descendencia;
 }
 
-std::vector<Primitivas*>& Node::getPrimitivas(){
+vector<Primitivas*>& Node::getPrimitivas(){
 	return primitivas;
 }
 
@@ -113,11 +125,11 @@ void Node::draw(std::map<std::string, Node*>& grafo, std::map < std::string, Apa
 	}
 }
 
-std::string Graph::getRoot(){
+string Graph::getRoot(){
 	return this->root;
 }
 
-std::map<std::string,Aparencia*>& Graph::getAparencias(){
+map<std::string,Aparencia*>& Graph::getAparencias(){
 	return this->aparencias;
 }
 
@@ -126,24 +138,16 @@ void Graph::setRoot(std::string root){
 }
 
 void Graph::draw(){
-	/* Fazer ligaçoes entre as aparencias e as texturas */
-
-	std::map<std::string, Aparencia*>::iterator itera;
-	
-	for (itera = aparencias.begin(); itera != aparencias.end(); itera++){
-		if (itera->second->getTextRef() == "null") continue;
-		itera->second->setTexture(texturas[itera->second->getTextRef()]->getFile());
-	}
 	
 	Node *noActual = this->getGrafo()[this->getRoot()];
 	noActual->draw(this->getGrafo(), this->getAparencias(), this->getGrafo()[this->getRoot()]->getAppRef(), this->texturas);
 }
 
-std::map<std::string, Textura*>& Graph::getTexturas(){
+map<std::string, Textura*>& Graph::getTexturas(){
 	return this->texturas;
 }
 
-std::map < std::string, Camera*>& Graph::getCameras(){
+map < std::string, Camera*>& Graph::getCameras(){
 	return this->cameras;
 }
 
@@ -151,6 +155,6 @@ void Graph::setDefaultCamera(std::string cameraDefault){
 	this->cameraDefault = cameraDefault;
 }
 
-std::string Graph::getCameraDefault(){
+string Graph::getCameraDefault(){
 	return this->cameraDefault;
 }

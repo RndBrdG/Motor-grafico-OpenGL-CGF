@@ -18,6 +18,7 @@ class Textura {
 	float texlength_t;
 public:
 	Textura(std::string id, std::string file, float texlength_s, float texlength_t);
+	~Textura();
 	std::string getId();
 	std::string getFile();
 	float getTexLenS();
@@ -32,50 +33,52 @@ class Aparencia : public CGFappearance{
 	float difusa[4];
 	float especular[4];
 public:
-	Aparencia(std::string id, float shininess, std::string textRef, float ambient[4], float difusa[4], float especular[4]);
-	std::string getId();
-	std::string getTextRef();
+	Aparencia(std::string id, float shininess,string textRef, float ambient[4], float difusa[4], float especular[4]);
+	~Aparencia();
+	string getId();
+	string getTextRef();
 };
 
 class Node {
-	std::string id;
-	std::string appRef;   // appeareance reference
-	std::vector<Primitivas*> primitivas;
-	std::vector<std::string> descendencia;
+	string id;
+	string appRef;   // appeareance reference
+	vector<Primitivas*> primitivas;
+	vector<string> descendencia;
 	GLfloat matrix[16];
 	bool root;
 public:
 	Node(std::string id);
-	std::string getId();
-	std::string getAppRef();
-	std::vector<Primitivas*>& getPrimitivas();
-	std::vector<std::string>& getDescendencia();
+	~Node();
+	string getId();
+	string getAppRef();
+	vector<Primitivas*>& getPrimitivas();
+	vector<std::string>& getDescendencia();
 	bool getRoot();
 	void setMatrix(float matrix[16]);
 	void setAppRef(std::string appRef);
 	void setId(std::string id);
 	void setRoot(bool root);
-	void draw(std::map<std::string, Node*>& grafo, std::map < std::string, Aparencia*>&aparencias, std::string referenciaApp, std::map < std::string, Textura*>& texturas);
+	void draw(map<string, Node*>& grafo, map <string, Aparencia*>&aparencias, string referenciaApp, map <string, Textura*>& texturas);
 };
 
 class Graph {
-	std::map<std::string, Node*> grafo;
-	std::map < std::string,Aparencia*> aparencias;
-	std::map < std::string, Textura*> texturas;
-	std::map < std::string, Camera*> cameras;
-	std::string root;
-	std::string cameraDefault;
+	map<string, Node*> grafo;
+	map <string,Aparencia*> aparencias;
+	map <string, Textura*> texturas;
+	map <string, Camera*> cameras;
+	string root;
+	string cameraDefault;
 public:
 	Graph(){};
-	std::map<std::string, Node*>& getGrafo();
-	std::map<std::string,Aparencia*>& getAparencias();
-	std::map<std::string, Textura*>& getTexturas();
-	std::map < std::string, Camera*>& getCameras();
-	std::string getRoot();
-	std::string getCameraDefault();
+	map<string, Node*>& getGrafo();
+	map<string,Aparencia*>& getAparencias();
+	map<string, Textura*>& getTexturas();
+	map <string, Camera*>& getCameras();
+	string getRoot();
+	string getCameraDefault();
 	void draw();
-	void setRoot(std::string root);
-	void setDefaultCamera(std::string cameraDefault);
+	void setRoot(string root);
+	void setDefaultCamera(string cameraDefault);
 };
 
 #endif

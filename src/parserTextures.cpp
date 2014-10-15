@@ -18,5 +18,12 @@ void XMLScene::parserTextures(){
 			Textura* a1 = new Textura(id, file, texlength_s, texlength_t);
 			objetosDaCena.getTexturas().insert(std::make_pair(id, a1));
 		} while (textureElement = textureElement->NextSiblingElement());
+
+		std::map<std::string, Aparencia*>::iterator itera;
+		for (itera = this->objetosDaCena.getAparencias().begin(); itera != this->objetosDaCena.getAparencias().end(); itera++){
+			if (itera->second->getTextRef() == "null") continue;
+			itera->second->setTexture(this->objetosDaCena.getTexturas()[itera->second->getTextRef()]->getFile());
+		}
+
 	}
 }

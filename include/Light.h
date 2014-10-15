@@ -12,7 +12,7 @@ protected:
 	static int num;
 
 	int lightNum;
-	std::string id;
+	string id;
 	bool marker;
 	float exponent;
 

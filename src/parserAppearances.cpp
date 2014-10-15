@@ -12,12 +12,12 @@ void XMLScene::parserAppearance(){
 		TiXmlElement* readAppearance = appsElement->FirstChildElement("appearance");
 		do{
 			if (readAppearance != NULL) {
-				std::string id = readAppearance->Attribute("id");
+				string id = readAppearance->Attribute("id");
 				float shininess;
 				char* textRef = (char*)readAppearance->Attribute("textureref");
 				if (id != "" && readAppearance->QueryFloatAttribute("shininess", &shininess) == TIXML_SUCCESS){
 					TiXmlElement* component = readAppearance->FirstChildElement("component");
-					std::string type, values;
+					string type, values;
 					float ambient[4], difusa[4], especular[4];
 					do {
 						type = component->Attribute("type");

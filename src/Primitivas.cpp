@@ -91,8 +91,35 @@ Cylinder::Cylinder(float base, float top, float height, int slices, int stacks){
 }
 
 void Cylinder::draw(float textS, float textT){
+	glBegin(GL_POLYGON);
+	for (int i = slices; i > 0; i--) {
+		float theta = 2. * acos(-1.) * float(i) / float(slices);
+
+		float x = base * cosf(theta);
+		float y = base * sinf(theta);
+
+		glTexCoord2f(y, x);
+		glVertex2f(x, y);
+	}
+	glEnd();
+
 	gluQuadricTexture(this->cylin, true);
 	gluCylinder(this->cylin, this->base, this->top, this->height, this->slices, this->stacks);
+
+	glPushMatrix();
+	glTranslatef(0., 0., height);
+	glBegin(GL_POLYGON);
+	for (int i = 0; i < slices; i++) {
+		float theta = 2. * acos(-1.) * float(i) / float(slices);
+
+		float x = top * cosf(theta);
+		float y = top * sinf(theta);
+
+		glTexCoord2f(y, x);
+		glVertex2f(x, y);
+	}
+	glEnd();
+	glPopMatrix();
 };
 
 void Cylinder::draw(){

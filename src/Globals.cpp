@@ -77,7 +77,3 @@ float Globals::getAmbLightB() {
 float Globals::getAmbLightA() {
 	return ambLightA;
 }
-
-Globals::~Globals(){
-	delete(this);
-};

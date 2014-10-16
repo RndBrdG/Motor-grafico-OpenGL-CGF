@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-Camera::Camera(char *id, char *type, float near, float far, float angle, float tarX,float tarY, float tarZ, float posX, float posY, float posZ){
+Camera::Camera(char *id, char *type, float near, float far, float angle, float tarX, float tarY, float tarZ, float posX, float posY, float posZ){
 	this->id = id;
 	this->type = type;
 	this->direction = "null";
@@ -13,6 +13,7 @@ Camera::Camera(char *id, char *type, float near, float far, float angle, float t
 	this->posX = posX;
 	this->posY = posY;
 	this->posZ = posZ;
+
 }
 
 Camera::Camera(char *id, char *type, char* direction, float left, float right, float top, float bottom){
@@ -29,6 +30,10 @@ Camera::Camera(char *id, char *type, char* direction, float left, float right, f
 
 char* Camera::getId(){
 	return id;
+}
+
+char* Camera::getType(){
+	return type;
 }
 
 float Camera::getNear(){
@@ -69,4 +74,18 @@ float Camera::getPosZ(){
 
 char* Camera::getDirection(){
 	return direction;
+}
+
+float Camera::getLeft(){
+	return left;
+}
+
+float Camera::getRight(){
+	return right;
+}
+float Camera::getBottom(){
+	return bottom;
+}
+float Camera::getTop(){
+	return top;
 }

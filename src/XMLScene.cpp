@@ -37,6 +37,7 @@ XMLScene::XMLScene(char *filename)
 	parserTextures();
 	parserLights();
 	parserGraph();
+
 }
 
 XMLScene::~XMLScene()

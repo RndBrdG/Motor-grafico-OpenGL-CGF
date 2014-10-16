@@ -16,6 +16,7 @@ public:
 	Camera(char *id, char *type, float near, float far, float angle, float tarX, float tarY, float tarZ, float posX, float posY, float posZ);
 	Camera(char *id, char *type, char* direction, float left, float right, float top, float bottom);
 	char* getId();
+	char* getType();
 	float getNear();
 	float getFar();
 	float getAngle();
@@ -26,9 +27,10 @@ public:
 	float getTarX();
 	float getTarY();
 	float getTarZ();
-	~Camera(){
-		delete(this);
-	}
+	float getLeft();
+	float getRight();
+	float getBottom();
+	float getTop();
 };
 
 #endif

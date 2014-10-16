@@ -15,6 +15,7 @@ TPinterface::TPinterface() {
 		break;
 	}*/
 	drawingMode = 0;
+	cameraMode = 10;
 }
 
 void TPinterface::processKeyboard(unsigned char key, int x, int y) {
@@ -58,6 +59,18 @@ void TPinterface::initGUI() {
 		lightName << "Luz " << (*it)->getLightNum();
 		addCheckboxToPanel(panelLuzes, const_cast<char*>(lightName.str().c_str()), &(*it)->onOff, id++);
 	}
+
+	addColumn();
+
+	GLUI_Panel* panelCam = addPanel("Cameras");
+	GLUI_RadioGroup* radioCam = addRadioGroupToPanel(panelCam, &cameraMode, 10);
+
+	for (int i = 0; i < static_cast<DemoScene*>(scene)->getCameras().size(); i++){
+		if (static_cast<DemoScene*>(scene)->desenhar.getCameraDefault() == static_cast<DemoScene*>(scene)->getCameras()[i]->getId())
+			cameraMode = i;
+			addRadioButtonToGroup(radioCam, static_cast<DemoScene*>(scene)->getCameras()[i]->getId());
+	}
+
 }
 
 void TPinterface::processGUI(GLUI_Control *ctrl) {
@@ -65,6 +78,9 @@ void TPinterface::processGUI(GLUI_Control *ctrl) {
 	switch (ctrl->user_id) {
 	case 1:
 		static_cast<DemoScene*>(scene)->scene.globalsData.setPolygonMode(drawingMode == 0 ? GL_FILL : drawingMode == 1 ? GL_LINE : GL_POINT);
+		break;
+	case 10:
+		static_cast<DemoScene*>(scene)->activateCamera(cameraMode);
 		break;
 	}
 }

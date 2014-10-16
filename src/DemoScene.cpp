@@ -18,6 +18,38 @@ const std::vector<Light*>& DemoScene::getLights() {
 	return lights;
 }
 
+void DemoScene::activateCamera(int id){
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	if (strcmp(this->getCameras()[id]->getType(),"ortho")==0){
+		glOrtho(this->getCameras()[id]->getLeft(), this->getCameras()[id]->getRight(), this->getCameras()[id]->getBottom(), this->getCameras()[id]->getTop(), this->getCameras()[id]->getNear(), this->getCameras()[id]->getFar());
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		if ( strcmp(this->getCameras()[id]->getDirection(), "x") == 0){
+			cout << "Entrou X" << endl;
+			gluLookAt(1, 0, 0, this->getCameras()[id]->getTarX(), this->getCameras()[id]->getTarY(), this->getCameras()[id]->getTarZ(), 0, 1, 0);
+		}
+		else if (strcmp(this->getCameras()[id]->getDirection(),"y") == 0){
+			cout << "Entrou y" << endl;
+			gluLookAt(0, 1, 0, this->getCameras()[id]->getTarX(), this->getCameras()[id]->getTarY(), this->getCameras()[id]->getTarZ(), 1, 0, 1);
+		}
+		else {
+			cout << "Entrou z" << endl;
+			gluLookAt(0, 0, 1, this->getCameras()[id]->getTarX(), this->getCameras()[id]->getTarY(), this->getCameras()[id]->getTarZ(), 0, 1, 0);
+		}
+		}
+	else {
+		gluPerspective(this->getCameras()[id]->getAngle(), CGFapplication::xy_aspect, this->getCameras()[id]->getNear(), this->getCameras()[id]->getFar());
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		gluLookAt(this->getCameras()[id]->getPosX(), this->getCameras()[id]->getPosY(), this->getCameras()[id]->getPosZ(), this->getCameras()[id]->getTarX(), this->getCameras()[id]->getTarY(), this->getCameras()[id]->getTarZ(),0,1,0);
+	}
+}
+
+vector<Camera*>& DemoScene::getCameras() {
+	return cameras;
+}
+
 void DemoScene::init() {
 	// Sets drawing settings
 	glShadeModel(scene.globalsData.getShadeModel());
@@ -48,6 +80,11 @@ void DemoScene::init() {
 	glNormal3f(0, 0, 1);
 
 	desenhar = scene.objetosDaCena;
+
+	for (auto it = this->desenhar.getCameras().begin(); it != this->desenhar.getCameras().end(); it++){
+		this->cameras.push_back(it->second);
+	}
+
 	setUpdatePeriod(30);
 }
 
@@ -65,7 +102,16 @@ void DemoScene::display() {
 	glLoadIdentity();
 	
 	// Apply transformations corresponding to the camera position relative to the origin
-	CGFscene::activeCamera->applyView();
+	//CGFscene::activeCamera->applyView();
+	int id = 0;
+
+	for (int i = 0; i < cameras.size(); i++){
+		if (cameras[i]->getId() == this->desenhar.getCameraDefault())
+			id = i;
+
+	}
+	
+	activateCamera(id);
 
 	// Draw (and update) lights
 	for (auto it = scene.lights.cbegin(); it != scene.lights.cend(); it++) {

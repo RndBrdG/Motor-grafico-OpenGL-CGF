@@ -15,6 +15,7 @@ public:
 	int testVar;
 private:
 	int drawingMode;
+	int cameraMode;
 };
 
 #endif

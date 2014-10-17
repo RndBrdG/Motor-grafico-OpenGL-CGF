@@ -53,11 +53,11 @@ void TPinterface::initGUI() {
 	addColumn();
 
 	GLUI_Panel* panelLuzes = addPanel("Luzes");
-	for (auto it = static_cast<DemoScene*>(scene)->getLights().cbegin(); it != static_cast<DemoScene*>(scene)->getLights().cend(); it++) {
+	for (auto it = static_cast<DemoScene*>(scene)->elementos.getLuzes().cbegin(); it != static_cast<DemoScene*>(scene)->elementos.getLuzes().cend(); it++) {
 		int id = 2;
 		std::stringstream lightName;
-		lightName << "Luz " << (*it)->getLightNum();
-		addCheckboxToPanel(panelLuzes, const_cast<char*>(lightName.str().c_str()), &(*it)->onOff, id++);
+		lightName << it->first;
+		addCheckboxToPanel(panelLuzes, const_cast<char*>(lightName.str().c_str()), &it->second->onOff, id++);
 	}
 
 	addColumn();
@@ -65,7 +65,7 @@ void TPinterface::initGUI() {
 	GLUI_Panel* panelCam = addPanel("Cameras");
 	GLUI_RadioGroup* radioCam = addRadioGroupToPanel(panelCam, &cameraMode, 10);
 
-	for (int i = 0; i < static_cast<DemoScene*>(scene)->getCamaras().size(); i++){
+	for (int i = 0; i < static_cast<DemoScene*>(scene)->getCamaras().size(); i++) {
 		if (static_cast<DemoScene*>(scene)->elementos.getCameraDefault() == static_cast<DemoScene*>(scene)->getCamaras()[i]->getId())
 			cameraMode = i;
 		addRadioButtonToGroup(radioCam, static_cast<DemoScene*>(scene)->getCamaras()[i]->getId());

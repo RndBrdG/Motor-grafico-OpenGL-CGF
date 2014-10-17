@@ -14,7 +14,6 @@ public:
 	void update(unsigned long t);
 	void activateCamera(int id);
 	const Graph& getElementos();
-	const std::vector<Light*>& getLights();
 	vector<Camera*>& getCamaras();
 
 	DemoScene();
@@ -22,7 +21,6 @@ public:
 private:
 	XMLScene scene;
 	Graph elementos;
-	std::vector<Light*> lights;
 	vector<Camera*> camaras;
 };
 

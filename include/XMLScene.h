@@ -5,7 +5,7 @@
 #include "CGFscene.h"
 #include "Globals.h"
 #include "Graph.h"
-#include "Light.h"
+#include "Luz.h"
 
 class XMLScene
 {
@@ -16,7 +16,6 @@ public:
 	static TiXmlElement *findChildByAttribute(TiXmlElement *parent,const char * attr, const char *val);
 
 	Globals globalsData;
-	std::vector<Light*> lights;
 	Graph objetosDaCena;
 
 private:

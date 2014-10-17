@@ -1,15 +1,14 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-#include <vector>
 #include <iostream>
 #include <map>
-#include <Primitivas.h>
-#include <Camera.h>
 #include <string>
-#include <CGFappearance.h>
-
-class Graph;
+#include <vector>
+#include "Camera.h"
+#include "CGFappearance.h"
+#include "Luz.h"
+#include "Primitivas.h"
 
 class Textura {
 	std::string id;
@@ -25,7 +24,7 @@ public:
 	float getTexLenT();
 };
 
-class Aparencia : public CGFappearance{
+class Aparencia : public CGFappearance {
 	float shininess;
 	std::string id;
 	std::string textRef;
@@ -58,11 +57,12 @@ public:
 	void setAppRef(std::string appRef);
 	void setId(std::string id);
 	void setRoot(bool root);
-	void draw(map<string, Node*>& grafo, map <string, Aparencia*>&aparencias, string referenciaApp, map <string, Textura*>& texturas);
+	void draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas);
 };
 
 class Graph {
 	map<string, Node*> grafo;
+	map<string, Luz*> luzes;
 	map<string, Aparencia*> aparencias;
 	map<string, Textura*> texturas;
 	map<string, Camera*> camaras;
@@ -71,6 +71,7 @@ class Graph {
 public:
 	Graph(){};
 	map<string, Node*>& getGrafo();
+	map<string, Luz*>& getLuzes();
 	map<string, Aparencia*>& getAparencias();
 	map<string, Textura*>& getTexturas();
 	map<string, Camera*>& getCamaras();

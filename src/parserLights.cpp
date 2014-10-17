@@ -11,9 +11,9 @@ void XMLScene::parserLights() {
 		TiXmlElement* lightElement = lightsElement->FirstChildElement("light");
 
 		if (lightElement != NULL) {
-			if (Light::num < 8) {
+			if (Luz::num < 8) {
 				do {
-					Light* newLight;
+					Luz* newLight;
 
 					float pos[4];
 					sscanf(lightElement->Attribute("pos"), "%f %f %f", &pos[0], &pos[1], &pos[2]);
@@ -21,7 +21,7 @@ void XMLScene::parserLights() {
 
 					std::string type = lightElement->Attribute("type");
 					if (type == "omni") {
-						newLight = new Light(GL_LIGHT0 + Light::num, pos);
+						newLight = new Luz(GL_LIGHT0 + Luz::num, pos);
 					}
 					else if (type == "spot") {
 						float dir[3];
@@ -33,11 +33,9 @@ void XMLScene::parserLights() {
 						float exponent;
 						sscanf(lightElement->Attribute("exponent"), "%f", &exponent);
 
-						newLight = new Light(GL_LIGHT0 + Light::num, pos, dir, angle, exponent);
+						newLight = new Luz(GL_LIGHT0 + Luz::num, pos, dir, angle, exponent);
 					}
 					else continue;
-
-					newLight->id = lightElement->Attribute("id");
 
 					std::string enabled = lightElement->Attribute("enabled");
 					if (enabled == "true")
@@ -63,7 +61,7 @@ void XMLScene::parserLights() {
 							sscanf(component->Attribute("value"), "%f %f %f %f", &newLight->specular[0], &newLight->specular[1], &newLight->specular[2], &newLight->specular[3]);
 					} while (component = component->NextSiblingElement());
 
-					lights.push_back(newLight);
+					objetosDaCena.getLuzes().insert(std::make_pair(lightElement->Attribute("id"), newLight));
 				} while (lightElement = lightElement->NextSiblingElement());
 			}
 		}

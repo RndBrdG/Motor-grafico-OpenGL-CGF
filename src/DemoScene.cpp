@@ -7,15 +7,10 @@
 #include <math.h>
 
 DemoScene::DemoScene() : scene(XMLScene("../res/scene.anf")) {
-	lights = scene.lights;
 }
 
 const Graph& DemoScene::getElementos() {
 	return elementos;
-}
-
-const std::vector<Light*>& DemoScene::getLights() {
-	return lights;
 }
 
 void DemoScene::activateCamera(int id){
@@ -51,6 +46,8 @@ vector<Camera*>& DemoScene::getCamaras() {
 }
 
 void DemoScene::init() {
+	elementos = scene.objetosDaCena;
+
 	// Sets drawing settings
 	glShadeModel(scene.globalsData.getShadeModel());
 	glClearColor(scene.globalsData.getBkgColorR(), scene.globalsData.getBkgColorG(), scene.globalsData.getBkgColorB(), scene.globalsData.getBkgColorA());
@@ -69,17 +66,15 @@ void DemoScene::init() {
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, CGFlight::background_ambient);
 
 	// Sets lights
-	for (auto it = scene.lights.cbegin(); it != scene.lights.cend(); it++) {
-		glLightf(GL_LIGHT0 + (*it)->getLightNum(), GL_SPOT_CUTOFF, (*it)->getAngle());
-		glLightf(GL_LIGHT0 + (*it)->getLightNum(), GL_SPOT_EXPONENT, (*it)->getExponent());
-		if ((*it)->getEnabled()) glEnable(GL_LIGHT0 + (*it)->getLightNum());
-		else glDisable(GL_LIGHT0 + (*it)->getLightNum());
+	for (auto it = elementos.getLuzes().cbegin(); it != elementos.getLuzes().cend(); it++) {
+		glLightf(GL_LIGHT0 + it->second->getLightNum(), GL_SPOT_CUTOFF, it->second->getAngle());
+		glLightf(GL_LIGHT0 + it->second->getLightNum(), GL_SPOT_EXPONENT, it->second->getExponent());
+		if (it->second->getEnabled()) glEnable(GL_LIGHT0 + it->second->getLightNum());
+		else glDisable(GL_LIGHT0 + it->second->getLightNum());
 	}
 
 	// Defines a default normal
 	glNormal3f(0, 0, 1);
-
-	elementos = scene.objetosDaCena;
 
 	for (auto it = elementos.getCamaras().begin(); it != elementos.getCamaras().end(); it++){
 		camaras.push_back(it->second);
@@ -114,12 +109,12 @@ void DemoScene::display() {
 	//CGFscene::activeCamera->applyView();
 
 	// Draw (and update) lights
-	for (auto it = scene.lights.cbegin(); it != scene.lights.cend(); it++) {
-		if ((*it)->onOff) (*it)->enable();
-		else (*it)->disable();
+	for (auto it = elementos.getLuzes().cbegin(); it != elementos.getLuzes().cend(); it++) {
+		if (it->second->onOff) it->second->enable();
+		else it->second->disable();
 
-		if ((*it)->getMarker()) (*it)->draw();
-		else (*it)->update();
+		if (it->second->getMarker()) it->second->draw();
+		else it->second->update();
 	}
 
 	// Draw axis
@@ -143,5 +138,4 @@ void DemoScene::display() {
 DemoScene::~DemoScene() {
 	delete(&scene);
 	delete(&elementos);
-	delete(&lights);
 }

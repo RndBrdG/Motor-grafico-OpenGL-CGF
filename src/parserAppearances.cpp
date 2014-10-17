@@ -1,6 +1,5 @@
 #include <XMLScene.h>
 
-
 void XMLScene::parserAppearance(){
 
 	if (appsElement == NULL)

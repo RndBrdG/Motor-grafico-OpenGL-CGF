@@ -1,8 +1,8 @@
-#include "Light.h"
+#include "Luz.h"
 
-int Light::num = 0;
+int Luz::num = 0;
 
-Light::Light(unsigned int lightid, float* pos, float* dir, float angle, float exponent) : lightNum(num), CGFlight(lightid, pos, dir) {
+Luz::Luz(unsigned int lightid, float* pos, float* dir, float angle, float exponent) : lightNum(num), CGFlight(lightid, pos, dir) {
 	this->angle = angle;
 	this->exponent = exponent;
 	enabled = true;
@@ -32,22 +32,22 @@ Light::Light(unsigned int lightid, float* pos, float* dir, float angle, float ex
 	onOff = 1; //DEBUG
 }
 
-int Light::getLightNum() {
+int Luz::getLightNum() {
 	return lightNum;
 }
 
-float Light::getAngle() {
+float Luz::getAngle() {
 	return angle;
 }
 
-bool Light::getEnabled() {
+bool Luz::getEnabled() {
 	return enabled;
 }
 
-bool Light::getMarker() {
+bool Luz::getMarker() {
 	return marker;
 }
 
-float Light::getExponent() {
+float Luz::getExponent() {
 	return exponent;
 }

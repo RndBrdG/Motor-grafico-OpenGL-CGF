@@ -45,9 +45,12 @@ string Aparencia::getTextRef(){
 	return this->textRef;
 }
 
-
 map<std::string, Node*>& Graph::getGrafo(){
 	return this->grafo;
+}
+
+map<std::string, Luz*>& Graph::getLuzes() {
+	return luzes;
 }
 
 Node::Node(std::string id){

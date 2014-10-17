@@ -4,7 +4,7 @@
 #include "CGFlight.h"
 #include <string>
 
-class Luz : public CGFlight {
+class Light : public CGFlight {
 	friend class XMLScene;
 
 protected:
@@ -15,7 +15,7 @@ protected:
 	float exponent;
 
 public:
-	Luz(unsigned int lightid, float* pos, float *dir = NULL, float angle = 180., float exponent = 0.);
+	Light(unsigned int lightid, float* pos, float *dir = NULL, float angle = 180., float exponent = 0.);
 
 	int getLightNum();
 	float getAngle();

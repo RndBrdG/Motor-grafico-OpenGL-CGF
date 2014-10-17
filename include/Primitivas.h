@@ -1,7 +1,7 @@
 #ifndef PRIMITIVAS_H
 #define PRIMITIVAS_H
 
-#include <CGFobject.h>
+#include "CGFobject.h"
 
 class Primitivas {
 public:

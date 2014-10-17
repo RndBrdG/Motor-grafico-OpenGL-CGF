@@ -5,7 +5,7 @@
 #include "CGFscene.h"
 #include "Globals.h"
 #include "Graph.h"
-#include "Luz.h"
+#include "Light.h"
 
 class XMLScene
 {

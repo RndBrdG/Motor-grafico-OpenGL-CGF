@@ -19,7 +19,7 @@ public:
 	DemoScene();
 	~DemoScene();
 private:
-	XMLScene scene;
+	XMLScene parser;
 	Graph elementos;
 	vector<Camera*> camaras;
 };

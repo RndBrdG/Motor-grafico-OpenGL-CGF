@@ -70,8 +70,8 @@
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\DemoScene.cpp" />
     <ClCompile Include="src\Globals.cpp" />
-    <ClCompile Include="src\graph.cpp" />
-    <ClCompile Include="src\Luz.cpp" />
+    <ClCompile Include="src\Graph.cpp" />
+    <ClCompile Include="src\Light.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\parserAppearances.cpp" />
     <ClCompile Include="src\parserCameras.cpp" />
@@ -88,7 +88,7 @@
     <ClInclude Include="include\DemoScene.h" />
     <ClInclude Include="include\Globals.h" />
     <ClInclude Include="include\Graph.h" />
-    <ClInclude Include="include\Luz.h" />
+    <ClInclude Include="include\Light.h" />
     <ClInclude Include="include\Primitivas.h" />
     <ClInclude Include="include\tinystr.h" />
     <ClInclude Include="include\tinyxml.h" />

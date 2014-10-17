@@ -45,9 +45,6 @@
     <ClCompile Include="src\parserGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graph.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\TPinterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -57,7 +54,10 @@
     <ClCompile Include="src\parserTextures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Luz.cpp">
+    <ClCompile Include="src\Light.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,7 +89,7 @@
     <ClInclude Include="include\TPinterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Luz.h">
+    <ClInclude Include="include\Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

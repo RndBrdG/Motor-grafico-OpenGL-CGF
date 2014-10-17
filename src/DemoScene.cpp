@@ -6,7 +6,7 @@
 #include "TPinterface.h"
 #include <math.h>
 
-DemoScene::DemoScene() : scene(XMLScene("../res/scene.anf")) {
+DemoScene::DemoScene() : parser(XMLScene("../res/scene.anf")) {
 }
 
 const Graph& DemoScene::getElementos() {
@@ -46,23 +46,23 @@ vector<Camera*>& DemoScene::getCamaras() {
 }
 
 void DemoScene::init() {
-	elementos = scene.objetosDaCena;
+	elementos = parser.objetosDaCena;
 
 	// Sets drawing settings
-	glShadeModel(scene.globalsData.getShadeModel());
-	glClearColor(scene.globalsData.getBkgColorR(), scene.globalsData.getBkgColorG(), scene.globalsData.getBkgColorB(), scene.globalsData.getBkgColorA());
+	glShadeModel(parser.globalsData.getShadeModel());
+	glClearColor(parser.globalsData.getBkgColorR(), parser.globalsData.getBkgColorG(), parser.globalsData.getBkgColorB(), parser.globalsData.getBkgColorA());
 
 	// Sets culling settings
-	if (scene.globalsData.getCullFace() != NULL) {
-		glCullFace(scene.globalsData.getCullFace());
-		glFrontFace(scene.globalsData.getFrontFace());
+	if (parser.globalsData.getCullFace() != NULL) {
+		glCullFace(parser.globalsData.getCullFace());
+		glFrontFace(parser.globalsData.getFrontFace());
 	}
 	else glDisable(GL_CULL_FACE);
 
 	// Sets lighting settings
-	glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, scene.globalsData.getDblSidedLight());
-	glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, scene.globalsData.getLocalLight());
-	if (scene.globalsData.getLightEnabled()) glEnable(GL_LIGHTING); else glDisable(GL_LIGHTING);
+	glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, parser.globalsData.getDblSidedLight());
+	glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, parser.globalsData.getLocalLight());
+	if (parser.globalsData.getLightEnabled()) glEnable(GL_LIGHTING); else glDisable(GL_LIGHTING);
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, CGFlight::background_ambient);
 
 	// Sets lights
@@ -124,7 +124,7 @@ void DemoScene::display() {
 
 	// ---- BEGIN feature demos
 
-	glPolygonMode(GL_FRONT_AND_BACK, scene.globalsData.getPolygonMode()); // Sets (variable) drawing mode.
+	glPolygonMode(GL_FRONT_AND_BACK, parser.globalsData.getPolygonMode()); // Sets (variable) drawing mode.
 	elementos.draw();
 
 	// ---- END feature demos
@@ -136,6 +136,6 @@ void DemoScene::display() {
 }
 
 DemoScene::~DemoScene() {
-	delete(&scene);
+	delete(&parser);
 	delete(&elementos);
 }

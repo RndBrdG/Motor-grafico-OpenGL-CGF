@@ -7,7 +7,7 @@
 #include <vector>
 #include "Camera.h"
 #include "CGFappearance.h"
-#include "Luz.h"
+#include "Light.h"
 #include "Primitivas.h"
 
 class Textura {
@@ -62,7 +62,7 @@ public:
 
 class Graph {
 	map<string, Node*> grafo;
-	map<string, Luz*> luzes;
+	map<string, Light*> luzes;
 	map<string, Aparencia*> aparencias;
 	map<string, Textura*> texturas;
 	map<string, Camera*> camaras;
@@ -71,7 +71,7 @@ class Graph {
 public:
 	Graph(){};
 	map<string, Node*>& getGrafo();
-	map<string, Luz*>& getLuzes();
+	map<string, Light*>& getLuzes();
 	map<string, Aparencia*>& getAparencias();
 	map<string, Textura*>& getTexturas();
 	map<string, Camera*>& getCamaras();

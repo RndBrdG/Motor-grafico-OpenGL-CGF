@@ -11,9 +11,9 @@ void XMLScene::parserLights() {
 		TiXmlElement* lightElement = lightsElement->FirstChildElement("light");
 
 		if (lightElement != NULL) {
-			if (Luz::num < 8) {
+			if (Light::num < 8) {
 				do {
-					Luz* newLight;
+					Light* newLight;
 
 					float pos[4];
 					sscanf(lightElement->Attribute("pos"), "%f %f %f", &pos[0], &pos[1], &pos[2]);
@@ -21,7 +21,7 @@ void XMLScene::parserLights() {
 
 					std::string type = lightElement->Attribute("type");
 					if (type == "omni") {
-						newLight = new Luz(GL_LIGHT0 + Luz::num, pos);
+						newLight = new Light(GL_LIGHT0 + Light::num, pos);
 					}
 					else if (type == "spot") {
 						float dir[3];
@@ -33,7 +33,7 @@ void XMLScene::parserLights() {
 						float exponent;
 						sscanf(lightElement->Attribute("exponent"), "%f", &exponent);
 
-						newLight = new Luz(GL_LIGHT0 + Luz::num, pos, dir, angle, exponent);
+						newLight = new Light(GL_LIGHT0 + Light::num, pos, dir, angle, exponent);
 					}
 					else continue;
 

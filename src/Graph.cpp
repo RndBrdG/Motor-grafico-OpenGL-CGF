@@ -49,7 +49,7 @@ map<std::string, Node*>& Graph::getGrafo(){
 	return this->grafo;
 }
 
-map<std::string, Luz*>& Graph::getLuzes() {
+map<std::string, Light*>& Graph::getLuzes() {
 	return luzes;
 }
 
@@ -98,7 +98,7 @@ void Node::setRoot(bool root){
 	this->root = root;
 }
 
-void Node::draw(std::map<std::string, Node*>& grafo, std::map < std::string, Aparencia*>& aparencias, std::string referenciaApp, std::map < std::string, Textura*>& texturas){
+void Node::draw(std::map<std::string, Node*>& grafo, std::map <std::string, Aparencia*>& aparencias, std::string referenciaApp, std::map <std::string, Textura*>& texturas){
 	glMultMatrixf(&this->matrix[0]);
 
 	if (this->appRef != "inherit"){

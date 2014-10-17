@@ -5,6 +5,7 @@ void XMLScene::parserTextures(){
 		printf("Textures block not found!\n");
 	else
 	{
+		cout << "\n----------------------- \n" << " Processing Textures \n" << "-----------------------" << endl;
 		TiXmlElement* textureElement = texElement->FirstChildElement("texture");
 		std::string id;
 		std::string file;
@@ -17,6 +18,7 @@ void XMLScene::parserTextures(){
 			textureElement->QueryFloatAttribute("texlength_t", &texlength_t);
 			Textura* a1 = new Textura(id, file, texlength_s, texlength_t);
 			objetosDaCena.getTexturas().insert(std::make_pair(id, a1));
+			cout << "Texture " << id << " checked!" << endl;
 		} while (textureElement = textureElement->NextSiblingElement());
 
 		std::map<std::string, Aparencia*>::iterator itera;

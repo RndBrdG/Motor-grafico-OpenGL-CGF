@@ -6,7 +6,7 @@ void XMLScene::parserLights() {
 	if (lightsElement == NULL)
 		printf("lights block not found!\n");
 	else {
-		printf("Processing lights init:\n");
+		cout << "\n----------------------- \n" << " Processing Lights \n" << "-----------------------" << endl;
 
 		TiXmlElement* lightElement = lightsElement->FirstChildElement("light");
 
@@ -60,7 +60,7 @@ void XMLScene::parserLights() {
 						else if (type == "specular")
 							sscanf(component->Attribute("value"), "%f %f %f %f", &newLight->specular[0], &newLight->specular[1], &newLight->specular[2], &newLight->specular[3]);
 					} while (component = component->NextSiblingElement());
-
+					cout << "Light " << newLight->id << " checked!" << endl;
 					objetosDaCena.getLuzes().insert(std::make_pair(lightElement->Attribute("id"), newLight));
 				} while (lightElement = lightElement->NextSiblingElement());
 			}

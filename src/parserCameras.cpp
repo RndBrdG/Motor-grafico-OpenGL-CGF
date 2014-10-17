@@ -6,17 +6,13 @@ void XMLScene::parserCameras() {
 		printf("cameras block not found!\n");
 	else
 	{
-		cout << "Processing cameras init:\n";
-
+		cout << "----------------------- \n" << " Processing cameras \n" << "-----------------------\n";
 		char *initial = NULL;
 		initial = (char *) camElement->Attribute("initial");
 		this->objetosDaCena.setDefaultCamera(initial);
-		if (initial != NULL){
-			printf("  camera attribute: %s\n", initial);
-		}
-		else
+		if (initial == NULL){
 			printf("Error parsing camera\n");
-
+		}
 		// Procurar câmaras.
 		camElement = camElement->FirstChildElement();
 
@@ -32,9 +28,7 @@ void XMLScene::parserCameras() {
 					if (id != NULL && (camElement->QueryFloatAttribute("near", &near) == TIXML_SUCCESS) &&
 						(camElement->QueryFloatAttribute("far", &far) == TIXML_SUCCESS) && (camElement->QueryFloatAttribute("angle", &angle) == TIXML_SUCCESS)
 						&& (position != NULL && sscanf(position, "%f %f %f", &posX, &posY, &posZ) == 3) && (target != NULL && sscanf(target, "%f %f %f", &targetX, &targetY, &targetZ) == 3)){
-						printf("\n< - - - Values of perspective - - - - >\n");
-						printf(" Id : %s\n", id);
-						printf(" Valores >  %f %f %f %f %f %f %f %f\n", near, far, angle, posX, posY, posZ, targetX, targetY, targetZ);
+						cout << "Camara " << id << " checked!" << endl;
 						Camera* a1 = new Camera(id, "perspective", near, far, angle, targetX, targetY, targetZ, posX, posY, posZ);
 						this->objetosDaCena.getCamaras().insert(std::make_pair(a1->getId(), a1));
 					}
@@ -52,10 +46,7 @@ void XMLScene::parserCameras() {
 					if (id != NULL && dir != NULL && (camElement->QueryFloatAttribute("near", &near) == TIXML_SUCCESS) && (camElement->QueryFloatAttribute("left", &left) == TIXML_SUCCESS)
 						&& (camElement->QueryFloatAttribute("far", &far) == TIXML_SUCCESS) && (camElement->QueryFloatAttribute("right", &right) == TIXML_SUCCESS)
 						&& (camElement->QueryFloatAttribute("top", &top) == TIXML_SUCCESS) && (camElement->QueryFloatAttribute("bottom", &bottom) == TIXML_SUCCESS)){
-						printf("\n\n< - - - Values of ortho - - - - >\n");
-						printf(" Id : %s\n", id);
-						printf(" Dir : %s\n", dir);
-						printf(" Valores >>  %f - %f - %f - %f - %f - %f\n", near, far, left, right, top, bottom);
+						cout << "Camara " << id << " checked!" << endl;
 						Camera* a1 = new Camera(id, "ortho", dir, left, right, top, bottom,near,far);
 						this->objetosDaCena.getCamaras().insert(std::make_pair(a1->getId(), a1));
 					}

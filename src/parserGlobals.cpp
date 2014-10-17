@@ -5,7 +5,7 @@ void XMLScene::parserGlobals() {
 	if (globElement == NULL)
 		printf("globals block not found!\n");
 	else {
-		printf("Processing globals init:\n");
+		cout << "\n----------------------- \n" << " Processing Globals \n" << "-----------------------" << endl;
 
 		parserGlobalsDrawing();
 		parserGlobalsCulling();
@@ -25,8 +25,7 @@ void XMLScene::parserGlobalsDrawing() {
 		bkgValues = (char *)drawingElement->Attribute("background");
 
 		if (mode != NULL && shading != NULL && bkgValues != NULL && sscanf(bkgValues, "%f %f %f %f", &r, &g, &b, &a) == 4){
-			printf("  drawing attributes: %s %s\n", mode, shading);
-
+			cout << "Shading and mode checked!" << endl;
 			if (!strcmp(mode, "fill"))
 				globalsData.polygonMode = GL_FILL;
 			else if (!strcmp(mode, "line"))
@@ -44,7 +43,7 @@ void XMLScene::parserGlobalsDrawing() {
 			globalsData.bkgColorB = b;
 			globalsData.bkgColorA = a;
 
-			printf("  background values (RGBA): %f %f %f %f\n", r, g, b, a);
+			cout << "Background colors checked!" << endl;
 		}
 		else
 			printf("Error parsing drawing\n");
@@ -63,7 +62,7 @@ void XMLScene::parserGlobalsCulling() {
 		order = (char *)cullingElement->Attribute("order");
 
 		if (face != NULL && order != NULL) {
-			printf("  culling attributes: %s %s\n", face, order);
+			cout << "Culling checked!" << endl;
 
 			if (!strcmp(face, "none"))
 				globalsData.cullFace = NULL;
@@ -99,7 +98,7 @@ void XMLScene::parserGlobalsLighting() {
 		ambient = (char *)lightingElement->Attribute("ambient");
 
 		if (doubleSided != NULL && local != NULL && enabled != NULL && ambient != NULL && sscanf(ambient, "%f %f %f %f", &r, &g, &b, &a) == 4) {
-			printf("  lighting attributes: %s %s %s\n", doubleSided, local, enabled);
+			cout << "Lighting checked!" << endl;
 			
 			if (!strcmp(doubleSided, "true"))
 				globalsData.dblSidedLight = true;
@@ -116,7 +115,7 @@ void XMLScene::parserGlobalsLighting() {
 			else if (!strcmp(enabled, "false"))
 				globalsData.lightEnabled = false;
 
-			printf("  background values (RGBA): %f %f %f %f\n", r, g, b, a);
+			cout << "Background values checked!\n" << endl;
 
 			float ambLight[4] = { r, g, b, a };
 			memcpy(CGFlight::background_ambient, ambLight, sizeof(ambLight));

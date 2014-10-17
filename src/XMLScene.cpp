@@ -13,6 +13,7 @@ XMLScene::XMLScene(char *filename)
 	if (!loadOkay)
 	{
 		printf("Could not load file '%s'. Error='%s'. Exiting.\n", filename, doc->ErrorDesc());
+		system("pause");
 		exit(1);
 	}
 
@@ -21,6 +22,7 @@ XMLScene::XMLScene(char *filename)
 	if (dgxElement == NULL)
 	{
 		printf("Main anf block element not found! Exiting!\n");
+		system("pause");
 		exit(1);
 	}
 
@@ -38,6 +40,9 @@ XMLScene::XMLScene(char *filename)
 	parserLights();
 	parserGraph();
 
+	cout << "--------------------------------------" << endl;
+	cout << "It went all good! You're good to go :)" << endl;
+	cout << "--------------------------------------" << endl;
 }
 
 XMLScene::~XMLScene()

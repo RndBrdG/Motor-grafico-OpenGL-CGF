@@ -7,7 +7,7 @@ void XMLScene::parserAppearance(){
 		cout << "Appearance block not found!\n";
 	else
 	{
-		cout << "Processing Appearance init:\n";
+		cout << "\n----------------------- \n" << " Processing Appearances \n" << "-----------------------" << endl;
 
 		TiXmlElement* readAppearance = appsElement->FirstChildElement("appearance");
 		do{
@@ -33,6 +33,7 @@ void XMLScene::parserAppearance(){
 						textRef = "null";
 					Aparencia* ap = new Aparencia(id, shininess, textRef,ambient,difusa,especular);
 					objetosDaCena.getAparencias().insert(std::make_pair(id, ap));
+					cout << "Appearance " << id << " checked!" << endl;
 				}
 			}
 		} while (readAppearance = readAppearance->NextSiblingElement());

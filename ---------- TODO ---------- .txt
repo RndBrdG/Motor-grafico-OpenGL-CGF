@@ -4,3 +4,5 @@
 ☑ Culling esta a funcionar mal.
 ☑ Textura para triangulos. ( Feito ? )
 ☐ Torus e textura para torus.
+☐ TextureRef = ""
+☐ Luzes

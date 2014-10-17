@@ -6,3 +6,4 @@
 ☐ Torus e textura para torus.
 ☐ TextureRef = ""
 ☐ Luzes
+☐ Alterar camaras da nossa cena. (Ortho)

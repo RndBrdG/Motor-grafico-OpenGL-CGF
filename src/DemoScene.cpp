@@ -32,7 +32,7 @@ void DemoScene::activateCamera(int id){
 		else if (strcmp(this->getCameras()[id]->getDirection(), "y") == 0)
 			gluLookAt(0, 1, 0, 0, 0, 0, 0, 0, -1);
 		else
-			gluLookAt(0, 0, 1,0,0,0, 0, 1, 0);
+			gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
 	}
 	else {
 		gluPerspective(this->getCameras()[id]->getAngle(), CGFapplication::xy_aspect, this->getCameras()[id]->getNear(), this->getCameras()[id]->getFar());
@@ -93,22 +93,20 @@ void DemoScene::display() {
 	// Clear image and depth buffer everytime we update the scene
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// Initialize Model-View matrix as identity (no transformation
+	// Initialize Model-View matrix as identity (no transformations)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
-	// Apply transformations corresponding to the camera position relative to the origin
-	//CGFscene::activeCamera->applyView();
+	
 	int id = 0;
-
 	for (int i = 0; i < cameras.size(); i++){
-		if (cameras[i]->getId() == this->desenhar.getCameraDefault())
+		if (cameras[i]->getId() == this->desenhar.getCameraDefault()) {
 			id = i;
-
+			break;
+		}
 	}
 
+	// Trocar comentários das 2 linhas seguintes para aceder às câmaras da cena vs. câmaras predefinidas
 	activateCamera(id);
-
 	//CGFscene::activeCamera->applyView();
 
 	// Draw (and update) lights

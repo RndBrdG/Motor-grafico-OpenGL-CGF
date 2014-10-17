@@ -147,8 +147,8 @@ map<std::string, Textura*>& Graph::getTexturas(){
 	return this->texturas;
 }
 
-map < std::string, Camera*>& Graph::getCameras(){
-	return this->cameras;
+map < std::string, Camera*>& Graph::getCamaras(){
+	return this->camaras;
 }
 
 void Graph::setDefaultCamera(std::string cameraDefault){

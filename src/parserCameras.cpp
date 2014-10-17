@@ -36,7 +36,7 @@ void XMLScene::parserCameras() {
 						printf(" Id : %s\n", id);
 						printf(" Valores >  %f %f %f %f %f %f %f %f\n", near, far, angle, posX, posY, posZ, targetX, targetY, targetZ);
 						Camera* a1 = new Camera(id, "perspective", near, far, angle, targetX, targetY, targetZ, posX, posY, posZ);
-						this->objetosDaCena.getCameras().insert(std::make_pair(a1->getId(), a1));
+						this->objetosDaCena.getCamaras().insert(std::make_pair(a1->getId(), a1));
 					}
 					else
 						printf("Error reading perspective tag\n");
@@ -57,7 +57,7 @@ void XMLScene::parserCameras() {
 						printf(" Dir : %s\n", dir);
 						printf(" Valores >>  %f - %f - %f - %f - %f - %f\n", near, far, left, right, top, bottom);
 						Camera* a1 = new Camera(id, "ortho", dir, left, right, top, bottom,near,far);
-						this->objetosDaCena.getCameras().insert(std::make_pair(a1->getId(), a1));
+						this->objetosDaCena.getCamaras().insert(std::make_pair(a1->getId(), a1));
 					}
 					else
 						printf("Error reading ortho tag\n");

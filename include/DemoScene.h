@@ -13,17 +13,17 @@ public:
 	void display();
 	void update(unsigned long t);
 	void activateCamera(int id);
-	const Graph& getGraph();
+	const Graph& getElementos();
 	const std::vector<Light*>& getLights();
-	vector<Camera*>& getCameras();
+	vector<Camera*>& getCamaras();
 
 	DemoScene();
 	~DemoScene();
 private:
 	XMLScene scene;
-	Graph desenhar;
+	Graph elementos;
 	std::vector<Light*> lights;
-	vector<Camera*> cameras;
+	vector<Camera*> camaras;
 };
 
 #endif

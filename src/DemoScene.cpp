@@ -10,8 +10,8 @@ DemoScene::DemoScene() : scene(XMLScene("../res/scene.anf")) {
 	lights = scene.lights;
 }
 
-const Graph& DemoScene::getGraph() {
-	return desenhar;
+const Graph& DemoScene::getElementos() {
+	return elementos;
 }
 
 const std::vector<Light*>& DemoScene::getLights() {
@@ -19,31 +19,35 @@ const std::vector<Light*>& DemoScene::getLights() {
 }
 
 void DemoScene::activateCamera(int id){
-	this->desenhar.setDefaultCamera(this->getCameras()[id]->getId());
+	elementos.setDefaultCamera(camaras[id]->getId());
+
 	glMatrixMode(GL_PROJECTION);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-	if (strcmp(this->getCameras()[id]->getType(), "ortho") == 0){
-		glOrtho(this->getCameras()[id]->getLeft(), this->getCameras()[id]->getRight(), this->getCameras()[id]->getBottom(), this->getCameras()[id]->getTop(), this->getCameras()[id]->getNear(), this->getCameras()[id]->getFar());
+
+	if (strcmp(camaras[id]->getType(), "ortho") == 0) {
+		glOrtho(camaras[id]->getLeft(), camaras[id]->getRight(), camaras[id]->getBottom(), camaras[id]->getTop(), camaras[id]->getNear(), camaras[id]->getFar());
+
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		if (strcmp(this->getCameras()[id]->getDirection(), "x") == 0)
+
+		if (strcmp(camaras[id]->getDirection(), "x") == 0)
 			gluLookAt(1, 0, 0, 0, 0, 0, 0, 1, 0);
-		else if (strcmp(this->getCameras()[id]->getDirection(), "y") == 0)
+		else if (strcmp(camaras[id]->getDirection(), "y") == 0)
 			gluLookAt(0, 1, 0, 0, 0, 0, 0, 0, -1);
 		else
 			gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
 	}
 	else {
-		gluPerspective(this->getCameras()[id]->getAngle(), CGFapplication::xy_aspect, this->getCameras()[id]->getNear(), this->getCameras()[id]->getFar());
+		gluPerspective(camaras[id]->getAngle(), CGFapplication::xy_aspect, camaras[id]->getNear(), camaras[id]->getFar());
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		gluLookAt(this->getCameras()[id]->getPosX(), this->getCameras()[id]->getPosY(), this->getCameras()[id]->getPosZ(), this->getCameras()[id]->getTarX(), this->getCameras()[id]->getTarY(), this->getCameras()[id]->getTarZ(), 0, 1, 0);
+		gluLookAt(camaras[id]->getPosX(), camaras[id]->getPosY(), camaras[id]->getPosZ(), camaras[id]->getTarX(), camaras[id]->getTarY(), camaras[id]->getTarZ(), 0, 1, 0);
 	}
 }
 
-vector<Camera*>& DemoScene::getCameras() {
-	return cameras;
+vector<Camera*>& DemoScene::getCamaras() {
+	return camaras;
 }
 
 void DemoScene::init() {
@@ -75,10 +79,10 @@ void DemoScene::init() {
 	// Defines a default normal
 	glNormal3f(0, 0, 1);
 
-	desenhar = scene.objetosDaCena;
+	elementos = scene.objetosDaCena;
 
-	for (auto it = this->desenhar.getCameras().begin(); it != this->desenhar.getCameras().end(); it++){
-		this->cameras.push_back(it->second);
+	for (auto it = elementos.getCamaras().begin(); it != elementos.getCamaras().end(); it++){
+		camaras.push_back(it->second);
 	}
 
 	setUpdatePeriod(30);
@@ -98,14 +102,14 @@ void DemoScene::display() {
 	glLoadIdentity();
 	
 	int id = 0;
-	for (int i = 0; i < cameras.size(); i++){
-		if (cameras[i]->getId() == this->desenhar.getCameraDefault()) {
+	for (int i = 0; i < camaras.size(); i++){
+		if (camaras[i]->getId() == elementos.getCameraDefault()) {
 			id = i;
 			break;
 		}
 	}
 
-	// Trocar comentários das 2 linhas seguintes para aceder às câmaras da cena vs. câmaras predefinidas
+	// Trocar comentários das 2 linhas seguintes para aceder às câmaras da cena vs. câmara predefinida
 	activateCamera(id);
 	//CGFscene::activeCamera->applyView();
 
@@ -126,7 +130,7 @@ void DemoScene::display() {
 	// ---- BEGIN feature demos
 
 	glPolygonMode(GL_FRONT_AND_BACK, scene.globalsData.getPolygonMode()); // Sets (variable) drawing mode.
-	desenhar.draw();
+	elementos.draw();
 
 	// ---- END feature demos
 
@@ -138,6 +142,6 @@ void DemoScene::display() {
 
 DemoScene::~DemoScene() {
 	delete(&scene);
-	delete(&desenhar);
+	delete(&elementos);
 	delete(&lights);
 }

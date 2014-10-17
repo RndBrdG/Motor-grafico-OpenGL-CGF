@@ -63,17 +63,17 @@ public:
 
 class Graph {
 	map<string, Node*> grafo;
-	map <string,Aparencia*> aparencias;
-	map <string, Textura*> texturas;
-	map <string, Camera*> cameras;
+	map<string, Aparencia*> aparencias;
+	map<string, Textura*> texturas;
+	map<string, Camera*> camaras;
 	string root;
 	string cameraDefault;
 public:
 	Graph(){};
 	map<string, Node*>& getGrafo();
-	map<string,Aparencia*>& getAparencias();
+	map<string, Aparencia*>& getAparencias();
 	map<string, Textura*>& getTexturas();
-	map <string, Camera*>& getCameras();
+	map<string, Camera*>& getCamaras();
 	string getRoot();
 	string getCameraDefault();
 	void draw();

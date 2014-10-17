@@ -62,7 +62,7 @@ void XMLScene::parserGlobalsCulling() {
 		face = (char *)cullingElement->Attribute("face");
 		order = (char *)cullingElement->Attribute("order");
 
-		if (face != NULL && order != NULL){
+		if (face != NULL && order != NULL) {
 			printf("  culling attributes: %s %s\n", face, order);
 
 			if (!strcmp(face, "none"))
@@ -76,7 +76,7 @@ void XMLScene::parserGlobalsCulling() {
 
 			if (!strcmp(order, "ccw"))
 				globalsData.frontFace = GL_CCW;
-			else if (!strcmp(face, "cw"))
+			else if (!strcmp(order, "cw"))
 				globalsData.frontFace = GL_CW;
 		}
 		else

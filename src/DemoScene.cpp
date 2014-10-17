@@ -112,7 +112,8 @@ void DemoScene::display() {
 
 	}
 	
-	activateCamera(id);
+	//activateCamera(id);
+	CGFscene::activeCamera->applyView();
 
 	// Draw (and update) lights
 	for (auto it = scene.lights.cbegin(); it != scene.lights.cend(); it++) {

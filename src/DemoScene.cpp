@@ -19,6 +19,7 @@ const std::vector<Light*>& DemoScene::getLights() {
 }
 
 void DemoScene::activateCamera(int id){
+	this->desenhar.setDefaultCamera(this->getCameras()[id]->getId());
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	if (strcmp(this->getCameras()[id]->getType(),"ortho")==0){

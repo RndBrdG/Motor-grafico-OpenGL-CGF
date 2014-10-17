@@ -16,6 +16,7 @@ public:
 	const Graph& getGraph();
 	const std::vector<Light*>& getLights();
 	vector<Camera*>& getCameras();
+
 	DemoScene();
 	~DemoScene();
 private:

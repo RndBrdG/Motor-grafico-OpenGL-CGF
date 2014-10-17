@@ -4,3 +4,7 @@
 ☑ Culling esta a funcionar mal.
 ☑ Textura para triangulos. ( Feito ? )
 ☐ Torus e textura para torus.
+☐ TextureRef = ""
+☑ Luzes
+☐ Alterar camaras da nossa cena. (Ortho)
+☐ Permitir aplicar camara default ( poder alterar e rodar para onde quiser )

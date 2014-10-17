@@ -16,7 +16,7 @@ Camera::Camera(char *id, char *type, float near, float far, float angle, float t
 
 }
 
-Camera::Camera(char *id, char *type, char* direction, float left, float right, float top, float bottom){
+Camera::Camera(char *id, char *type, char* direction, float left, float right, float top, float bottom, float near, float far){
 	this->id = id;
 	this->type = type;
 	this->direction = direction;
@@ -24,7 +24,8 @@ Camera::Camera(char *id, char *type, char* direction, float left, float right, f
 	this->right = right;
 	this->top = top;
 	this->bottom = bottom;
-
+	this->near = near;
+	this->far = far;
 }
 
 

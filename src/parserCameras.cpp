@@ -56,7 +56,7 @@ void XMLScene::parserCameras() {
 						printf(" Id : %s\n", id);
 						printf(" Dir : %s\n", dir);
 						printf(" Valores >>  %f - %f - %f - %f - %f - %f\n", near, far, left, right, top, bottom);
-						Camera* a1 = new Camera(id, "ortho", dir, left, right, top, bottom);
+						Camera* a1 = new Camera(id, "ortho", dir, left, right, top, bottom,near,far);
 						this->objetosDaCena.getCameras().insert(std::make_pair(a1->getId(), a1));
 					}
 					else

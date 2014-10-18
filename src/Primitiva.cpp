@@ -97,13 +97,13 @@ void Cylinder::draw(float textS, float textT) {
 		float x = base * cosf(theta);
 		float y = base * sinf(theta);
 
-		glTexCoord2f(y, x);
+		glTexCoord2f(y * textT, x * textS);
 		glNormal3f(x / sqrt(pow(x, 2) + pow(y, 2)), y / sqrt(pow(x, 2) + pow(y, 2)), 0);
-		glVertex2f(x, y);
+		glVertex2f(x ,y );
 	}
 	glEnd();
 
-	gluQuadricTexture(this->cylin, true);
+	gluQuadricTexture(this->cylin, GL_TRUE);
 	gluCylinder(this->cylin, this->base, this->top, this->height, this->slices, this->stacks);
 
 	glPushMatrix();
@@ -115,7 +115,7 @@ void Cylinder::draw(float textS, float textT) {
 		float x = top * cosf(theta);
 		float y = top * sinf(theta);
 
-		glTexCoord2f(y, x);
+		glTexCoord2f(y * textT, x * textS);
 		glNormal3f(x / sqrt(pow(x, 2) + pow(y, 2)), y / sqrt(pow(x, 2) + pow(y, 2)), 0);
 		glVertex2f(x, y);
 	}
@@ -206,8 +206,10 @@ void Torus::draw(float textS, float textT) {
 			dist = outer + inner * cosPhi;
 
 			glNormal3f(cosTheta1 * cosPhi, -sinTheta1  *cosPhi, sinPhi);
+			glTexCoord2f(((i + 1) / loops)*textS, (dist / slices)*textT);
 			glVertex3f(cosTheta1  *dist, -sinTheta1  *dist, inner * sinPhi);
 			glNormal3f(cosTheta  *cosPhi, -sinTheta  *cosPhi, sinPhi);
+			glTexCoord2f(((i + 0) / loops)*textS, (dist / slices)*textT);
 			glVertex3f(cosTheta  *dist, -sinTheta * dist, inner * sinPhi);
 		}
 		glEnd();
@@ -218,23 +220,40 @@ void Torus::draw(float textS, float textT) {
 }
 
 void Torus::draw() {
-	int i, j, k;
-	double s, t, x, y, z, doispi;
+	int i, j;
+	GLfloat theta, phi, theta1;
+	GLfloat cosTheta, sinTheta;
+	GLfloat cosTheta1, sinTheta1;
+	GLfloat ringDelta, sideDelta;
 
-	doispi = 2 * acos(-1.);
-	for (i = 0; i < slices; i++) {
+	ringDelta = 2.0 * acos(-1.0) / loops;
+	sideDelta = 2.0 * acos(-1.0) / slices;
+
+	theta = 0.0;
+	cosTheta = 1.0;
+	sinTheta = 0.0;
+	for (i = loops - 1; i >= 0; i--) {
+		theta1 = theta + ringDelta;
+		cosTheta1 = cos(theta1);
+		sinTheta1 = sin(theta1);
 		glBegin(GL_QUAD_STRIP);
-		for (j = 0; j <= loops; j++) {
-			for (k = 1; k >= 0; k--) {
-				s = (i + k) % slices + 0.5;
-				t = j % loops;
+		phi = 0.0;
+		for (j = slices; j >= 0; j--) {
+			GLfloat cosPhi, sinPhi, dist;
 
-				x = (1 + .1 * cos(s * doispi / slices)) * cos(t * doispi / loops);
-				y = (1 + .1 * cos(s * doispi / slices)) * sin(t * doispi / loops);
-				z = .1 * sin(s * doispi / slices);
-				glVertex3f(x, y, z);
-			}
+			phi += sideDelta;
+			cosPhi = cos(phi);
+			sinPhi = sin(phi);
+			dist = outer + inner * cosPhi;
+
+			glNormal3f(cosTheta1 * cosPhi, -sinTheta1  *cosPhi, sinPhi);
+			glVertex3f(cosTheta1  *dist, -sinTheta1  *dist, inner * sinPhi);
+			glNormal3f(cosTheta  *cosPhi, -sinTheta  *cosPhi, sinPhi);
+			glVertex3f(cosTheta  *dist, -sinTheta * dist, inner * sinPhi);
 		}
 		glEnd();
+		theta = theta1;
+		cosTheta = cosTheta1;
+		sinTheta = sinTheta1;
 	}
 }

@@ -66,7 +66,7 @@ void TPinterface::processGUI(GLUI_Control *ctrl) {
 	printf("GUI control id: %d\n", ctrl->user_id);
 	switch (ctrl->user_id) {
 	case 1:
-		static_cast<DemoScene*>(scene)->parser.globalsData.setPolygonMode(drawingMode == 0 ? GL_FILL : drawingMode == 1 ? GL_LINE : GL_POINT);
+		static_cast<DemoScene*>(scene)->elementos.getGlobalsData()->setPolygonMode(drawingMode == 0 ? GL_FILL : drawingMode == 1 ? GL_LINE : GL_POINT);
 		break;
 	case 10:
 		static_cast<DemoScene*>(scene)->activateCamera(cameraMode);

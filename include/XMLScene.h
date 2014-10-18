@@ -15,9 +15,7 @@ public:
 
 	static TiXmlElement *findChildByAttribute(TiXmlElement *parent,const char * attr, const char *val);
 
-	Globals globalsData;
 	Graph objetosDaCena;
-
 private:
 	// globals tag
 	void parserGlobals();

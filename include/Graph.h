@@ -7,6 +7,7 @@
 #include <vector>
 #include "Camera.h"
 #include "CGFappearance.h"
+#include "Globals.h"
 #include "Light.h"
 #include "Primitivas.h"
 
@@ -61,20 +62,22 @@ public:
 };
 
 class Graph {
-	map<string, Node*> grafo;
-	map<string, Light*> luzes;
-	map<string, Aparencia*> aparencias;
-	map<string, Textura*> texturas;
+	Globals* globalsData;
 	map<string, Camera*> camaras;
+	map<string, Light*> luzes;
+	map<string, Textura*> texturas;
+	map<string, Aparencia*> aparencias;
+	map<string, Node*> grafo;
 	string root;
 	string cameraDefault;
 public:
-	Graph(){};
-	map<string, Node*>& getGrafo();
-	map<string, Light*>& getLuzes();
-	map<string, Aparencia*>& getAparencias();
-	map<string, Textura*>& getTexturas();
+	Graph(){ globalsData = new Globals(); }
+	Globals* getGlobalsData();
 	map<string, Camera*>& getCamaras();
+	map<string, Light*>& getLuzes();
+	map<string, Textura*>& getTexturas();
+	map<string, Aparencia*>& getAparencias();
+	map<string, Node*>& getGrafo();
 	string getRoot();
 	string getCameraDefault();
 	void draw();

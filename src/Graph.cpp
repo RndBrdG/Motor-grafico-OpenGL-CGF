@@ -45,6 +45,10 @@ string Aparencia::getTextRef(){
 	return this->textRef;
 }
 
+Globals* Graph::getGlobalsData() {
+	return globalsData;
+}
+
 map<std::string, Node*>& Graph::getGrafo(){
 	return this->grafo;
 }

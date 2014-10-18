@@ -47,7 +47,6 @@ XMLScene::XMLScene(char *filename)
 
 XMLScene::~XMLScene()
 {
-	delete(&globalsData);
 	delete(&objetosDaCena);
 	delete(doc);
 	delete(globElement);

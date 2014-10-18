@@ -27,21 +27,21 @@ void XMLScene::parserGlobalsDrawing() {
 		if (mode != NULL && shading != NULL && bkgValues != NULL && sscanf(bkgValues, "%f %f %f %f", &r, &g, &b, &a) == 4){
 			cout << "Shading and mode checked!" << endl;
 			if (!strcmp(mode, "fill"))
-				globalsData.polygonMode = GL_FILL;
+				objetosDaCena.getGlobalsData()->polygonMode = GL_FILL;
 			else if (!strcmp(mode, "line"))
-				globalsData.polygonMode = GL_LINE;
+				objetosDaCena.getGlobalsData()->polygonMode = GL_LINE;
 			else if (!strcmp(mode, "point"))
-				globalsData.polygonMode = GL_POINT;
+				objetosDaCena.getGlobalsData()->polygonMode = GL_POINT;
 
 			if (!strcmp(shading, "gouraud"))
-				globalsData.shadeModel = GL_SMOOTH;
+				objetosDaCena.getGlobalsData()->shadeModel = GL_SMOOTH;
 			else if (!strcmp(shading, "flat"))
-				globalsData.shadeModel = GL_FLAT;
+				objetosDaCena.getGlobalsData()->shadeModel = GL_FLAT;
 			
-			globalsData.bkgColorR = r;
-			globalsData.bkgColorG = g;
-			globalsData.bkgColorB = b;
-			globalsData.bkgColorA = a;
+			objetosDaCena.getGlobalsData()->bkgColorR = r;
+			objetosDaCena.getGlobalsData()->bkgColorG = g;
+			objetosDaCena.getGlobalsData()->bkgColorB = b;
+			objetosDaCena.getGlobalsData()->bkgColorA = a;
 
 			cout << "Background colors checked!" << endl;
 		}
@@ -65,18 +65,18 @@ void XMLScene::parserGlobalsCulling() {
 			cout << "Culling checked!" << endl;
 
 			if (!strcmp(face, "none"))
-				globalsData.cullFace = NULL;
+				objetosDaCena.getGlobalsData()->cullFace = NULL;
 			else if (!strcmp(face, "back"))
-				globalsData.cullFace = GL_BACK;
+				objetosDaCena.getGlobalsData()->cullFace = GL_BACK;
 			else if (!strcmp(face, "front"))
-				globalsData.cullFace = GL_FRONT;
+				objetosDaCena.getGlobalsData()->cullFace = GL_FRONT;
 			else if (!strcmp(face, "both"))
-				globalsData.cullFace = GL_FRONT_AND_BACK;
+				objetosDaCena.getGlobalsData()->cullFace = GL_FRONT_AND_BACK;
 
 			if (!strcmp(order, "ccw"))
-				globalsData.frontFace = GL_CCW;
+				objetosDaCena.getGlobalsData()->frontFace = GL_CCW;
 			else if (!strcmp(order, "cw"))
-				globalsData.frontFace = GL_CW;
+				objetosDaCena.getGlobalsData()->frontFace = GL_CW;
 		}
 		else
 			printf("Error parsing culling\n");
@@ -101,19 +101,19 @@ void XMLScene::parserGlobalsLighting() {
 			cout << "Lighting checked!" << endl;
 			
 			if (!strcmp(doubleSided, "true"))
-				globalsData.dblSidedLight = true;
+				objetosDaCena.getGlobalsData()->dblSidedLight = true;
 			else if (!strcmp(doubleSided, "false"))
-				globalsData.dblSidedLight = false;
+				objetosDaCena.getGlobalsData()->dblSidedLight = false;
 
 			if (!strcmp(local, "true"))
-				globalsData.localLight = true;
+				objetosDaCena.getGlobalsData()->localLight = true;
 			else if (!strcmp(local, "false"))
-				globalsData.localLight = false;
+				objetosDaCena.getGlobalsData()->localLight = false;
 
 			if (!strcmp(enabled, "true"))
-				globalsData.lightEnabled = true;
+				objetosDaCena.getGlobalsData()->lightEnabled = true;
 			else if (!strcmp(enabled, "false"))
-				globalsData.lightEnabled = false;
+				objetosDaCena.getGlobalsData()->lightEnabled = false;
 
 			cout << "Background values checked!\n" << endl;
 

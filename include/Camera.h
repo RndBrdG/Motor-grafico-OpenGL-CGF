@@ -5,8 +5,8 @@
 
 class Camera {
 	char* id;
-	char *type;
-	char *direction;
+	char* type;
+	char* direction;
 	float near, far;
 	float angle;
 	float tarX,tarY,tarZ;

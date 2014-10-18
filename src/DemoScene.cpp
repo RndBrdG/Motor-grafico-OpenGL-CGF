@@ -2,7 +2,7 @@
 #include "CGFapplication.h"
 #include "CGFaxis.h"
 #include "DemoScene.h"
-#include "Primitivas.h"
+#include "Primitiva.h"
 #include "TPinterface.h"
 #include <math.h>
 
@@ -97,7 +97,7 @@ void DemoScene::display() {
 	glLoadIdentity();
 	
 	int id = 0;
-	for (int i = 0; i < camaras.size(); i++){
+	for (unsigned int i = 0; i < camaras.size(); i++) {
 		if (camaras[i]->getId() == elementos.getCameraDefault()) {
 			id = i;
 			break;

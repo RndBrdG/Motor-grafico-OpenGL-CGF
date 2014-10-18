@@ -1,30 +1,24 @@
-#ifndef PRIMITIVAS_H
-#define PRIMITIVAS_H
+#ifndef PRIMITIVA_H
+#define PRIMITIVA_H
 
 #include "CGFobject.h"
 
-class Primitivas {
+class Primitiva {
 public:
 	virtual void draw(float textS, float textT) = 0;
 	virtual void draw() = 0;
-	~Primitivas(){
-		delete(this);
-	}
 };
 
-class Rectangle : public Primitivas{
+class Rectangle : public Primitiva {
 	float x1, x2;
 	float y1, y2;
 public:
 	Rectangle(float x1, float x2, float y1, float y2);
 	void draw(float textS, float textT);
 	void draw();
-	~Rectangle(){
-		delete(this);
-	}
 };
 
-class Triangle : public Primitivas{
+class Triangle : public Primitiva {
 	float x1, x2, x3;
 	float y1, y2, y3;
 	float z1, z2, z3;
@@ -32,12 +26,9 @@ public:
 	Triangle(float x1, float x2, float x3, float y1, float y2, float y3, float z1, float z2, float z3);
 	void draw(float textS, float textT);
 	void draw();
-	~Triangle(){
-		delete(this);
-	}
 };
 
-class Cylinder : public Primitivas{
+class Cylinder : public Primitiva {
 	GLUquadric *cylin;
 	float base, top, height;
 	int slices, stacks;
@@ -47,11 +38,10 @@ public:
 	void draw();
 	~Cylinder(){
 		delete(cylin);
-		delete(this);
 	}
 };
 
-class Sphere : public Primitivas{
+class Sphere : public Primitiva {
 	GLUquadric *sph;
 	float radius;
 	int slices, stacks;
@@ -61,20 +51,16 @@ public:
 	void draw();
 	~Sphere(){
 		delete(sph);
-		delete(this);
 	}
 };
 
-class Torus : public Primitivas{
-	float inner, outer, slices;
-	float loops;
+class Torus : public Primitiva {
+	float inner, outer;
+	int slices, loops;
 public:
-	Torus(float inner, float outer, float slices,float loops);
+	Torus(float inner, float outer, int slices, int loops);
 	void draw(float textS, float textT);
 	void draw();
-	~Torus(){
-		delete(this);
-	}
 };
 
 #endif

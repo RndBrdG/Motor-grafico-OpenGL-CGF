@@ -77,7 +77,7 @@ vector<std::string>& Node::getDescendencia(){
 	return this->descendencia;
 }
 
-vector<Primitivas*>& Node::getPrimitivas(){
+vector<Primitiva*>& Node::getPrimitivas(){
 	return primitivas;
 }
 
@@ -112,7 +112,7 @@ void Node::draw(std::map<std::string, Node*>& grafo, std::map <std::string, Apar
 		aparencias[referenciaApp]->apply();
 		this->appRef = referenciaApp;
 	}
-	int size = this->primitivas.size();
+	unsigned int size = this->primitivas.size();
 
 	for (unsigned int i = 0; i < size; i++){
 		if (aparencias[appRef]->getTextRef() != "null"){

@@ -9,7 +9,7 @@
 #include "CGFappearance.h"
 #include "Globals.h"
 #include "Light.h"
-#include "Primitivas.h"
+#include "Primitiva.h"
 
 class Textura {
 	std::string id;
@@ -42,7 +42,7 @@ public:
 class Node {
 	string id;
 	string appRef;   // appeareance reference
-	vector<Primitivas*> primitivas;
+	vector<Primitiva*> primitivas;
 	vector<string> descendencia;
 	GLfloat matrix[16];
 	bool root;
@@ -51,7 +51,7 @@ public:
 	~Node();
 	string getId();
 	string getAppRef();
-	vector<Primitivas*>& getPrimitivas();
+	vector<Primitiva*>& getPrimitivas();
 	vector<std::string>& getDescendencia();
 	bool getRoot();
 	void setMatrix(float matrix[16]);

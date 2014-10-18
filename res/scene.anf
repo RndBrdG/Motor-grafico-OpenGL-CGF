@@ -1,4 +1,4 @@
-<anf>
+﻿<anf>
   <!-- bloco de configuracoes globais -->
   <!-- a declaracao dos componentes deste bloco e' obrigatoria -->
   <globals>
@@ -93,8 +93,8 @@
     <node id="Chao">
       <transforms>
         <transform type="translate" to="0. 0. 30." />
-        <transform type="scale" factor="1. 1. 1.5" />
         <transform type="rotate" axis="x" angle="-90." />
+        <transform type="scale" factor="1. 1.5 1." />
       </transforms>
       <appearanceref id="inherit" />
       <primitives>

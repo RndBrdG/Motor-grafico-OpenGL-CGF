@@ -113,7 +113,7 @@ void DemoScene::display() {
 		if (it->second->onOff) it->second->enable();
 		else it->second->disable();
 
-		if (it->second->getMarker()) it->second->draw();
+		if (it->second->onOff && it->second->getMarker()) it->second->draw();
 		else it->second->update();
 	}
 

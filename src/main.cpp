@@ -22,13 +22,14 @@ int main(int argc, char* argv[]) {
 	try {
 		app.init(&argc, argv);
 
-		std::stringstream file;
-		file << "../res/";
+		std::stringstream filename;
+		filename << "../res/";
+		std::cout << endl << "Introduza o nome do ficheiro da cena\npresente em /res, incluindo a extensao: ";
 		std::string temp;
-		cin >> temp;
-		file << temp << ".anf";
+		getline(std::cin, temp);
+		filename << temp;
 
-		app.setScene(new DemoScene(const_cast<char*>(file.str().c_str())));
+		app.setScene(new DemoScene(const_cast<char*>(filename.str().c_str())));
 		app.setInterface(new TPinterface());
 		
 		app.run();

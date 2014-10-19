@@ -16,7 +16,7 @@ public:
 	const Graph& getElementos();
 	vector<Camera*>& getCamaras();
 
-	DemoScene();
+	DemoScene(char* filename);
 	~DemoScene();
 private:
 	XMLScene parser;

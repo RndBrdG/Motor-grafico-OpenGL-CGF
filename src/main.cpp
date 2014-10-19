@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <exception>
+#include <sstream>
 
 #include "CGFapplication.h"
 #include "DemoScene.h"
@@ -21,7 +22,13 @@ int main(int argc, char* argv[]) {
 	try {
 		app.init(&argc, argv);
 
-		app.setScene(new DemoScene());
+		std::stringstream file;
+		file << "../res/";
+		std::string temp;
+		cin >> temp;
+		file << temp << ".anf";
+
+		app.setScene(new DemoScene(const_cast<char*>(file.str().c_str())));
 		app.setInterface(new TPinterface());
 		
 		app.run();

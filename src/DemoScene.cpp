@@ -6,7 +6,7 @@
 #include "TPinterface.h"
 #include <math.h>
 
-DemoScene::DemoScene() : parser(XMLScene("../res/scene.anf")) {
+DemoScene::DemoScene(char* filename) : parser(XMLScene(filename)) {
 }
 
 const Graph& DemoScene::getElementos() {

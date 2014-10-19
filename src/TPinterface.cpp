@@ -54,7 +54,7 @@ void TPinterface::initGUI() {
 	GLUI_Panel* panelCam = addPanel("Camaras");
 	GLUI_RadioGroup* radioCam = addRadioGroupToPanel(panelCam, &cameraMode, 10);
 
-	for (int i = 0; i < static_cast<DemoScene*>(scene)->getCamaras().size(); i++) {
+	for (unsigned int i = 0; i < static_cast<DemoScene*>(scene)->getCamaras().size(); i++) {
 		if (static_cast<DemoScene*>(scene)->elementos.getCameraDefault() == static_cast<DemoScene*>(scene)->getCamaras()[i]->getId())
 			cameraMode = i;
 		addRadioButtonToGroup(radioCam, static_cast<DemoScene*>(scene)->getCamaras()[i]->getId());

@@ -24,11 +24,11 @@ int main(int argc, char* argv[]) {
 
 		std::stringstream filename;
 		filename << "../res/";
-		std::cout << endl << "Introduza o nome do ficheiro da cena\npresente em /res, incluindo a extensao: ";
+		std::cout << endl << "Introduza o nome do ficheiro .anf\nda cena presente em /res (sem extensao): ";
 		std::string temp;
 		getline(std::cin, temp);
+		filename << temp << ".anf";
 		std::cout << endl;
-		filename << temp;
 
 		app.setScene(new DemoScene(const_cast<char*>(filename.str().c_str())));
 		app.setInterface(new TPinterface());

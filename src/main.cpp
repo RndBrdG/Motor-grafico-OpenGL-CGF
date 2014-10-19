@@ -27,6 +27,7 @@ int main(int argc, char* argv[]) {
 		std::cout << endl << "Introduza o nome do ficheiro da cena\npresente em /res, incluindo a extensao: ";
 		std::string temp;
 		getline(std::cin, temp);
+		std::cout << endl;
 		filename << temp;
 
 		app.setScene(new DemoScene(const_cast<char*>(filename.str().c_str())));

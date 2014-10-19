@@ -95,7 +95,7 @@ void DemoScene::display() {
 	// Initialize Model-View matrix as identity (no transformations)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	
+
 	int id = 0;
 	for (unsigned int i = 0; i < camaras.size(); i++) {
 		if (camaras[i]->getId() == elementos.getCameraDefault()) {

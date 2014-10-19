@@ -14,10 +14,11 @@
     <lighting doublesided="false" local="true" enabled="true" ambient=".5 .5 .5 1." />
   </globals>
   <!-- bloco de camaras: o atributo "initial" identifica a camara/ponto de vista inicial, que tem de existir -->
-  <cameras initial="Perspetiva">
+  <cameras initial="Longe">
     <!-- tem de existir, pelo menos uma camara dos tipos seguintes (perspective ou ortho) -->
     <!-- no caso da camara ortho, o atributo "direction" define o eixo segundo o qual se efetua a projecao -->
-    <perspective id="Perspetiva" near="0.2" far="300" angle="45" pos="30 30 30" target="0 0 0" />
+    <perspective id="Longe" near="0.2" far="300" angle="45" pos="30 30 30" target="0 0 0" />
+    <perspective id="Perto" near="0.2" far="300" angle="45" pos="20 10 25" target="0 0 0" />
     <ortho id="OrtogonalX" direction="x" near="-30" far="200" left="-20" right="5" top="30" bottom="-10" />
     <ortho id="OrtogonalY" direction="y" near="-30" far="200" left="-10" right="30" top="20" bottom="-20" />
     <ortho id="OrtogonalZ" direction="z" near="-30" far="200" left="-10" right="30" top="20" bottom="-20" />

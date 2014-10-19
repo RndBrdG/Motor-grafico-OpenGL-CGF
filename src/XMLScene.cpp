@@ -29,8 +29,8 @@ XMLScene::XMLScene(char *filename)
 	globElement = dgxElement->FirstChildElement("globals");
 	camElement = dgxElement->FirstChildElement("cameras");
 	lightsElement = dgxElement->FirstChildElement("lights");
-	texElement =  dgxElement->FirstChildElement( "textures" );
-	appsElement =  dgxElement->FirstChildElement( "appearances" );
+	texElement = dgxElement->FirstChildElement("textures");
+	appsElement = dgxElement->FirstChildElement("appearances");
 	graphElement = dgxElement->FirstChildElement("graph");
 
 	parserGlobals();

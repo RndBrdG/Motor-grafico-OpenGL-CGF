@@ -97,13 +97,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\asas.jpg" />
+    <None Include="res\ceu.jpg" />
     <None Include="res\cloth.jpg" />
     <None Include="res\cloud.jpg" />
     <None Include="res\cloud.png" />
     <None Include="res\face.jpg" />
+    <None Include="res\poste.jpg" />
     <None Include="res\scene.anf" />
-    <None Include="res\texshader.frag" />
-    <None Include="res\texshader.vert" />
+    <None Include="res\wc.jpg" />
     <None Include="res\wood.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -94,12 +94,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\texshader.frag">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\texshader.vert">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="res\cloud.jpg">
       <Filter>Resource Files</Filter>
     </None>
@@ -119,6 +113,15 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\scene.anf">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\wc.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ceu.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\poste.jpg">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

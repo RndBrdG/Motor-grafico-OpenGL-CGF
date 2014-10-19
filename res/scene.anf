@@ -19,9 +19,9 @@
     <!-- no caso da camara ortho, o atributo "direction" define o eixo segundo o qual se efetua a projecao -->
     <perspective id="Longe" near="0.2" far="300" angle="45" pos="30 30 30" target="0 0 0" />
     <perspective id="Perto" near="0.2" far="300" angle="45" pos="20 10 25" target="0 0 0" />
-    <ortho id="OrtogonalX" direction="x" near="-30" far="200" left="-20" right="5" top="30" bottom="-10" />
-    <ortho id="OrtogonalY" direction="y" near="-30" far="200" left="-10" right="30" top="20" bottom="-20" />
-    <ortho id="OrtogonalZ" direction="z" near="-30" far="200" left="-10" right="30" top="20" bottom="-20" />
+    <ortho id="Ortogonal X" direction="x" near="-30" far="200" left="-35" right="5" top="25" bottom="-5" />
+    <ortho id="Ortogonal Y" direction="y" near="-30" far="200" left="-5" right="35" top="5" bottom="-35" />
+    <ortho id="Ortogonal Z" direction="z" near="-30" far="200" left="-5" right="35" top="25" bottom="-5" />
   </cameras>
   <!-- bloco de luzes -->
   <lights>

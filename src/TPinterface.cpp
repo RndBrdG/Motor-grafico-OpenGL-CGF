@@ -51,7 +51,7 @@ void TPinterface::initGUI() {
 
 	addColumn();
 
-	GLUI_Panel* panelCam = addPanel("Cameras");
+	GLUI_Panel* panelCam = addPanel("Camaras");
 	GLUI_RadioGroup* radioCam = addRadioGroupToPanel(panelCam, &cameraMode, 10);
 
 	for (int i = 0; i < static_cast<DemoScene*>(scene)->getCamaras().size(); i++) {

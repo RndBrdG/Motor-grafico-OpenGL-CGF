@@ -1,5 +1,7 @@
 #include <Graph.h>
 
+bool Node::firstTime = true;
+bool Node::controlList = false;
 
 Textura::Textura(std::string id, std::string file, float texlength_s, float texlength_t){
 	this->id = id;
@@ -59,6 +61,7 @@ map<std::string, Light*>& Graph::getLuzes() {
 
 Node::Node(std::string id){
 	this->id = id;
+	this->controlList = false;
 }
 
 Node::~Node(){
@@ -102,33 +105,72 @@ void Node::setRoot(bool root){
 	this->root = root;
 }
 
-void Node::draw(std::map<std::string, Node*>& grafo, std::map <std::string, Aparencia*>& aparencias, std::string referenciaApp, std::map <std::string, Textura*>& texturas){
-	glMultMatrixf(&this->matrix[0]);
+bool Node::getDisplayList(){
+	return this->displayList;
+}
 
-	if (this->appRef != "inherit"){
-		aparencias[this->appRef]->apply();
+void Node::setDisplayList(bool displayList){
+	this->displayList = displayList;
+}
+
+void Node::setIndex(GLuint index){
+	this->index = index;
+}
+
+void Node::draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas){
+
+	if (this->firstTime){
+		createDisplayList(grafo, aparencias, referenciaApp, texturas);
+		this->firstTime = false;
+	}
+	else if (this->displayList){
+		glPushMatrix();
+		glCallList(this->index);
+		typedef std::vector<std::string>::iterator iter;
+		for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it++){
+			glPushMatrix();
+			grafo[*it]->draw(grafo, aparencias, this->appRef, texturas);
+			glPopMatrix();
+		}
+		glPopMatrix();
+	}
+	else if (!this->displayList && this->insideList && this->controlList){
+		cout << this->id << endl << endl;
+		glPushMatrix();
+		
+		unsigned int size = this->primitivas.size();
+		typedef vector<string>::iterator iter;
+		for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it++){
+			glPushMatrix();
+			grafo[*it]->draw(grafo, aparencias, this->appRef, texturas);
+			glPopMatrix();
+		}
+		glPopMatrix();
 	}
 	else {
-		aparencias[referenciaApp]->apply();
-		this->appRef = referenciaApp;
-	}
-	unsigned int size = this->primitivas.size();
-
-	for (unsigned int i = 0; i < size; i++){
-		if (aparencias[appRef]->getTextRef() != "null"){
-			float texS = texturas[aparencias[appRef]->getTextRef()]->getTexLenS();
-			float texT = texturas[aparencias[appRef]->getTextRef()]->getTexLenT();
-			primitivas[i]->draw(texS, texT);
+		glMultMatrixf(&this->matrix[0]);
+		if (this->appRef != "inherit"){
+			aparencias[this->appRef]->apply();
 		}
-		else primitivas[i]->draw();
-	}
-	typedef std::vector<std::string>::iterator iter;
-	
-	for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it ++){
-		glPushMatrix();
-		grafo[*it]->draw(grafo, aparencias, this->appRef,texturas);
-		glPopMatrix();
-	
+		else {
+			aparencias[referenciaApp]->apply();
+			this->appRef = referenciaApp;
+		}
+		unsigned int size = this->primitivas.size();
+		for (unsigned int i = 0; i < size; i++){
+			if (aparencias[appRef]->getTextRef() != "null"){
+				float texS = texturas[aparencias[appRef]->getTextRef()]->getTexLenS();
+				float texT = texturas[aparencias[appRef]->getTextRef()]->getTexLenT();
+				primitivas[i]->draw(texS, texT);
+			}
+			else primitivas[i]->draw();
+		}
+		typedef std::vector<std::string>::iterator iter;
+		for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it++){
+			glPushMatrix();
+			grafo[*it]->draw(grafo, aparencias, this->appRef, texturas);
+			glPopMatrix();
+		}
 	}
 }
 
@@ -136,7 +178,7 @@ string Graph::getRoot(){
 	return this->root;
 }
 
-map<std::string,Aparencia*>& Graph::getAparencias(){
+map<std::string, Aparencia*>& Graph::getAparencias(){
 	return this->aparencias;
 }
 
@@ -145,8 +187,9 @@ void Graph::setRoot(std::string root){
 }
 
 void Graph::draw(){
-	
+
 	Node *noActual = this->getGrafo()[this->getRoot()];
+
 	noActual->draw(this->getGrafo(), this->getAparencias(), this->getGrafo()[this->getRoot()]->getAppRef(), this->texturas);
 }
 
@@ -164,4 +207,67 @@ void Graph::setDefaultCamera(std::string cameraDefault){
 
 string Graph::getCameraDefault(){
 	return this->cameraDefault;
+}
+
+void Node::createDisplayList(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas){
+	
+	if (this->displayList){
+		this->controlList = true;
+		this->index = glGenLists(1);
+		this->insideList = false;
+		glNewList(this->index, GL_COMPILE);
+		glPushMatrix();
+		glMultMatrixf(&this->matrix[0]);
+
+		if (this->appRef != "inherit"){
+			aparencias[this->appRef]->apply();
+		}
+		else {
+			aparencias[referenciaApp]->apply();
+			this->appRef = referenciaApp;
+		}
+		unsigned int size = this->primitivas.size();
+		for (unsigned int i = 0; i < size; i++){
+			if (aparencias[appRef]->getTextRef() != "null"){
+				float texS = texturas[aparencias[appRef]->getTextRef()]->getTexLenS();
+				float texT = texturas[aparencias[appRef]->getTextRef()]->getTexLenT();
+				primitivas[i]->draw(texS, texT);
+			}
+			else primitivas[i]->draw();
+		}
+		typedef vector<string>::iterator iter;
+		for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it++){
+			glPushMatrix();
+			grafo[*it]->createDisplayList(grafo, aparencias, this->appRef, texturas);
+			glPopMatrix();
+		}
+		glPopMatrix();
+		glEndList();
+	}
+	else {
+		glMultMatrixf(&this->matrix[0]);
+		if (this->controlList) this->insideList = true; else this->insideList = false;
+		if (this->appRef != "inherit"){
+			aparencias[this->appRef]->apply();
+		}
+		else {
+			aparencias[referenciaApp]->apply();
+			this->appRef = referenciaApp;
+		}
+		unsigned int size = this->primitivas.size();
+		for (unsigned int i = 0; i < size; i++){
+			if (aparencias[appRef]->getTextRef() != "null"){
+				float texS = texturas[aparencias[appRef]->getTextRef()]->getTexLenS();
+				float texT = texturas[aparencias[appRef]->getTextRef()]->getTexLenT();
+				primitivas[i]->draw(texS, texT);
+			}
+			else primitivas[i]->draw();
+		}
+		typedef std::vector<std::string>::iterator iter;
+		for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it++){
+			glPushMatrix();
+			grafo[*it]->createDisplayList(grafo, aparencias, this->appRef, texturas);
+			glPopMatrix();
+		}
+	}
 }

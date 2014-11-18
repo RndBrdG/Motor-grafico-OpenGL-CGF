@@ -45,7 +45,12 @@ class Node {
 	vector<Primitiva*> primitivas;
 	vector<string> descendencia;
 	GLfloat matrix[16];
+	GLuint index;
+	bool displayList;
 	bool root;
+	static bool firstTime;
+	static bool controlList; // false se ainda não existir lista, true se já existir.
+	bool insideList;
 public:
 	Node(std::string id);
 	~Node();
@@ -54,10 +59,14 @@ public:
 	vector<Primitiva*>& getPrimitivas();
 	vector<std::string>& getDescendencia();
 	bool getRoot();
+	bool getDisplayList();
+	void setDisplayList(bool displayList);
 	void setMatrix(float matrix[16]);
 	void setAppRef(std::string appRef);
 	void setId(std::string id);
 	void setRoot(bool root);
+	void setIndex(GLuint index);
+	void createDisplayList(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas);
 	void draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas);
 };
 
@@ -81,6 +90,7 @@ public:
 	string getRoot();
 	string getCameraDefault();
 	void draw();
+	void preencherListas();
 	void setRoot(string root);
 	void setDefaultCamera(string cameraDefault);
 };

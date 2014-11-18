@@ -24,6 +24,13 @@ void XMLScene::parserGraph(){
 
 				atualizarInserirNode(id, novoNode);
 
+				char* displayL = NULL;
+				displayL = (char*) node->Attribute("displayList");
+				if (displayL != NULL && strcmp(displayL, "true") == 0){
+					novoNode->setDisplayList(true);
+				}
+				else novoNode->setDisplayList(false);
+
 				TiXmlElement *childs = node->FirstChildElement();
 
 				while (childs){

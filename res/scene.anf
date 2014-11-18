@@ -102,7 +102,7 @@
   </appearances>
   <!-- bloco do grafo; "rootid" identifica o no de raiz -->
   <graph rootid="root">
-    <node id="root">
+    <node id="root" displayList="false">
       <transforms></transforms>
       <appearanceref id="nuvens" />
       <primitives>
@@ -137,7 +137,7 @@
         <rectangle xy1="0. 0." xy2="30. 20." />
       </primitives>
     </node>
-    <node id="Anjo">
+    <node id="Anjo" displayList="true">
       <transforms>
         <transform type="translate" to="15. 0. 15." />
         <transform type="rotate" axis="y" angle="45." />
@@ -241,7 +241,7 @@
         <triangle xyz1="0. 0. 0." xyz2="7.5 1.5 0." xyz3="3.75 3.5 0." />
       </primitives>
     </node>
-    <node id="Direcoes">
+    <node id="Direcoes" displayList="true">
       <transforms>
         <transform type="translate" to="9. 0. 9." />
         <transform type="rotate" axis="x" angle="-90." />
@@ -275,7 +275,7 @@
         <triangle xyz1="1.5 0. 0." xyz2="1.85 .375 0." xyz3="1.5 .75 .0" />
       </primitives>
     </node>
-    <node id="PlacaCeu">
+    <node id="PlacaCeu" >
       <transforms>
         <transform type="translate" to="-.2 0. 8.5" />
         <transform type="rotate" axis="x" angle="90." />

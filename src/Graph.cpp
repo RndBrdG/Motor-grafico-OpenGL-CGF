@@ -34,10 +34,6 @@ Aparencia::Aparencia(std::string id, float shininess, std::string textRef, float
 	this->textRef = textRef;
 }
 
-Aparencia::~Aparencia(){
-	delete(this);
-}
-
 string Aparencia::getId(){
 	return this->id;
 }

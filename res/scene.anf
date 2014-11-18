@@ -107,12 +107,13 @@
       <appearanceref id="nuvens" />
       <primitives>
         <rectangle xy1="0. 0." xy2="30. 20." />
+        <plane parts="25" />
       </primitives>
       <descendants>
-        <noderef id="Chao" />
+        <!--<noderef id="Chao" />
         <noderef id="ParedeLateralEsquerda" />
         <noderef id="Anjo" />
-        <noderef id="Direcoes" />
+        <noderef id="Direcoes" />-->
       </descendants>
     </node>
     <node id="Chao">

@@ -6,6 +6,7 @@
 #include "Globals.h"
 #include "Graph.h"
 #include "Light.h"
+#include "Plane.h"
 
 class XMLScene
 {

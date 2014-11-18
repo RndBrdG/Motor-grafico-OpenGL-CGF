@@ -174,6 +174,14 @@ void XMLScene::parserGraphPrimitives(Node* novoNode, TiXmlElement *childs){
 				}
 				else std::cout << "\n\nWhoops! You did something wrong with Torus.";
 			}
+			else if (primitivas->ValueTStr() == "plane") {
+				int parts;
+				if (primitivas->QueryIntAttribute("parts", &parts) == TIXML_SUCCESS) {
+					Plane* a1 = new Plane(parts);
+					novoNode->getPrimitivas().push_back(a1);
+				}
+				else std::cout << "\n\nWhoops! You did something wrong with Torus.";
+			}
 			else {
 				std::cout << "Weirds... No primitives found\n";
 			}

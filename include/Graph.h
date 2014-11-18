@@ -34,7 +34,6 @@ class Aparencia : public CGFappearance {
 	float especular[4];
 public:
 	Aparencia(std::string id, float shininess,string textRef, float ambient[4], float difusa[4], float especular[4]);
-	~Aparencia();
 	string getId();
 	string getTextRef();
 };

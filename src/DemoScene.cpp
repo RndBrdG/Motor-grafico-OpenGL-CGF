@@ -105,8 +105,8 @@ void DemoScene::display() {
 	}
 
 	// Trocar comentários das 2 linhas seguintes para aceder às câmaras da cena vs. câmara predefinida
-	activateCamera(id);
-	//CGFscene::activeCamera->applyView();
+	//activateCamera(id);
+	CGFscene::activeCamera->applyView();
 
 	// Draw (and update) lights
 	for (auto it = elementos.getLuzes().cbegin(); it != elementos.getLuzes().cend(); it++) {

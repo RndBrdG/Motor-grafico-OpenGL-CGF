@@ -79,6 +79,7 @@
     <ClCompile Include="src\parserGraph.cpp" />
     <ClCompile Include="src\parserLights.cpp" />
     <ClCompile Include="src\parserTextures.cpp" />
+    <ClCompile Include="src\Plane.cpp" />
     <ClCompile Include="src\Primitiva.cpp" />
     <ClCompile Include="src\TPinterface.cpp" />
     <ClCompile Include="src\XMLScene.cpp" />
@@ -89,6 +90,7 @@
     <ClInclude Include="include\Globals.h" />
     <ClInclude Include="include\Graph.h" />
     <ClInclude Include="include\Light.h" />
+    <ClInclude Include="include\Plane.h" />
     <ClInclude Include="include\Primitiva.h" />
     <ClInclude Include="include\tinystr.h" />
     <ClInclude Include="include\tinyxml.h" />
@@ -103,7 +105,9 @@
     <None Include="res\cloud.png" />
     <None Include="res\face.jpg" />
     <None Include="res\poste.jpg" />
-    <None Include="res\scene.anf" />
+    <None Include="res\scene.anf">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="res\wc.jpg" />
     <None Include="res\wood.png" />
   </ItemGroup>

@@ -32,6 +32,8 @@ private:
 	void parserTextures();
 	// Appearances tag
 	void parserAppearance();
+	// Animations tag
+	void parserAnimations();
 	// graph tag
 	void parserGraph();
 	void parserGraphTransforms(Node* novoNode, TiXmlElement *childs);
@@ -46,6 +48,7 @@ protected:
 	TiXmlElement* lightsElement;
 	TiXmlElement* texElement;
 	TiXmlElement* appsElement;
+	TiXmlElement* AnimElement;
 	TiXmlElement* graphElement;
 };
 

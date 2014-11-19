@@ -4,16 +4,9 @@
 #include "DemoScene.h"
 #include "Primitiva.h"
 #include "TPinterface.h"
-#include <math.h>
+#include <cmath>
 
 DemoScene::DemoScene(char* filename) : parser(XMLScene(filename)) {
-	Ponto* a2 = new Ponto(0, 0, 0); pontos.push_back(a2);
-	Ponto* a3 = new Ponto(4, 0, 0); pontos.push_back(a3);
-	Ponto* a4 = new Ponto(4, 4, 0); pontos.push_back(a4);
-	Ponto* a5 = new Ponto(8, 4, 0); pontos.push_back(a5);
-	Ponto* a6 = new Ponto(8, 8, 0); pontos.push_back(a6);
-	Ponto* a7 = new Ponto(12, 8, 0); pontos.push_back(a7);
-	this->a1 = new LinearAnimation("tiago", 5, pontos);
 }
 
 const Graph& DemoScene::getElementos() {
@@ -86,12 +79,13 @@ void DemoScene::init() {
 	for (auto it = elementos.getCamaras().begin(); it != elementos.getCamaras().end(); it++){
 		camaras.push_back(it->second);
 	}
-
 	setUpdatePeriod(30);
 }
 
 void DemoScene::update(unsigned long t) {
-	a1->update(30);
+	for (map<string, Animation*>::iterator it = this->elementos.getAnimations().begin(); it != this->elementos.getAnimations().end(); it++){
+		it->second->update(t);
+	}
 }
 
 void DemoScene::display() {
@@ -133,8 +127,6 @@ void DemoScene::display() {
 	// ---- BEGIN feature demos
 	glPolygonMode(GL_FRONT_AND_BACK, elementos.getGlobalsData()->getPolygonMode()); // Sets (variable) drawing mode.
 	elementos.draw();
-	a1->draw();
-	
 	//system("pause");
 	// ---- END feature demos
 

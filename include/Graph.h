@@ -10,6 +10,7 @@
 #include "Globals.h"
 #include "Light.h"
 #include "Primitiva.h"
+#include "Animation.h"
 
 class Textura {
 	std::string id;
@@ -19,16 +20,16 @@ class Textura {
 public:
 	Textura(std::string id, std::string file, float texlength_s, float texlength_t);
 	~Textura();
-	std::string getId();
-	std::string getFile();
+	string getId();
+	string getFile();
 	float getTexLenS();
 	float getTexLenT();
 };
 
 class Aparencia : public CGFappearance {
 	float shininess;
-	std::string id;
-	std::string textRef;
+	string id;
+	string textRef;
 	float ambient[4];
 	float difusa[4];
 	float especular[4];
@@ -43,6 +44,7 @@ class Node {
 	string appRef;   // appeareance reference
 	vector<Primitiva*> primitivas;
 	vector<string> descendencia;
+	vector<string> animacoes;
 	GLfloat matrix[16];
 	GLuint index;
 	bool displayList;
@@ -56,7 +58,8 @@ public:
 	string getId();
 	string getAppRef();
 	vector<Primitiva*>& getPrimitivas();
-	vector<std::string>& getDescendencia();
+	vector<string>& getDescendencia();
+	vector<string>& getAnimations();
 	bool getRoot();
 	bool getDisplayList();
 	void setDisplayList(bool displayList);
@@ -65,8 +68,8 @@ public:
 	void setId(std::string id);
 	void setRoot(bool root);
 	void setIndex(GLuint index);
-	void createDisplayList(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas);
-	void draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas);
+	void createDisplayList(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas, map<string, Animation*> animacoes);
+	void draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas, map<string, Animation*> animacoes);
 };
 
 class Graph {
@@ -75,6 +78,7 @@ class Graph {
 	map<string, Light*> luzes;
 	map<string, Textura*> texturas;
 	map<string, Aparencia*> aparencias;
+	map<string, Animation*> animacoes;
 	map<string, Node*> grafo;
 	string root;
 	string cameraDefault;
@@ -86,6 +90,7 @@ public:
 	map<string, Textura*>& getTexturas();
 	map<string, Aparencia*>& getAparencias();
 	map<string, Node*>& getGrafo();
+	map<string,Animation*>& getAnimations();
 	string getRoot();
 	string getCameraDefault();
 	void draw();

@@ -74,6 +74,7 @@
     <ClCompile Include="src\Graph.cpp" />
     <ClCompile Include="src\Light.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\parserAnimations.cpp" />
     <ClCompile Include="src\parserAppearances.cpp" />
     <ClCompile Include="src\parserCameras.cpp" />
     <ClCompile Include="src\parserGlobals.cpp" />

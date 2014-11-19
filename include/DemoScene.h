@@ -20,8 +20,6 @@ public:
 	DemoScene(char* filename);
 	~DemoScene();
 private:
-	vector<Ponto*> pontos;
-	LinearAnimation* a1;
 	XMLScene parser;
 	Graph elementos;
 	vector<Camera*> camaras;

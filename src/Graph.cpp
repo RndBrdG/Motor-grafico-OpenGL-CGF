@@ -55,6 +55,7 @@ map<std::string, Light*>& Graph::getLuzes() {
 	return luzes;
 }
 
+
 Node::Node(std::string id){
 	this->id = id;
 	this->controlList = false;
@@ -70,6 +71,10 @@ string Node::getId(){
 
 string Node::getAppRef(){
 	return this->appRef;
+}
+
+vector<string>& Node::getAnimations(){
+	return this->animacoes;
 }
 
 vector<std::string>& Node::getDescendencia(){
@@ -113,10 +118,10 @@ void Node::setIndex(GLuint index){
 	this->index = index;
 }
 
-void Node::draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas){
+void Node::draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas, map<string, Animation*> anime){
 
 	if (this->firstTime){
-		createDisplayList(grafo, aparencias, referenciaApp, texturas);
+		createDisplayList(grafo, aparencias, referenciaApp, texturas,anime);
 		this->firstTime = false;
 	}
 	else if (this->displayList){
@@ -125,7 +130,7 @@ void Node::draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, 
 		typedef vector<string>::iterator iter;
 		for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it++){
 			glPushMatrix();
-			grafo[*it]->draw(grafo, aparencias, this->appRef, texturas);
+			grafo[*it]->draw(grafo, aparencias, this->appRef, texturas,anime);
 			glPopMatrix();
 		}
 		glPopMatrix();
@@ -137,12 +142,13 @@ void Node::draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, 
 		typedef vector<string>::iterator iter;
 		for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it++){
 			glPushMatrix();
-			grafo[*it]->draw(grafo, aparencias, this->appRef, texturas);
+			grafo[*it]->draw(grafo, aparencias, this->appRef, texturas,anime);
 			glPopMatrix();
 		}
 		glPopMatrix();
 	}
 	else {
+		glPushMatrix();
 		glMultMatrixf(&this->matrix[0]);
 		if (this->appRef != "inherit"){
 			aparencias[this->appRef]->apply();
@@ -151,6 +157,13 @@ void Node::draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, 
 			aparencias[referenciaApp]->apply();
 			this->appRef = referenciaApp;
 		}
+
+		if (this->animacoes.size() != 0){
+			for (int i = 0; i < this->animacoes.size(); i++){ // alterar
+				anime[animacoes[i]]->draw();
+			}
+		}
+
 		unsigned int size = this->primitivas.size();
 		for (unsigned int i = 0; i < size; i++){
 			if (aparencias[appRef]->getTextRef() != "null"){
@@ -163,9 +176,10 @@ void Node::draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, 
 		typedef std::vector<std::string>::iterator iter;
 		for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it++){
 			glPushMatrix();
-			grafo[*it]->draw(grafo, aparencias, this->appRef, texturas);
+			grafo[*it]->draw(grafo, aparencias, this->appRef, texturas,anime);
 			glPopMatrix();
 		}
+		glPopMatrix();
 	}
 }
 
@@ -185,7 +199,7 @@ void Graph::draw(){
 
 	Node *noActual = this->getGrafo()[this->getRoot()];
 
-	noActual->draw(this->getGrafo(), this->getAparencias(), this->getGrafo()[this->getRoot()]->getAppRef(), this->texturas);
+	noActual->draw(this->getGrafo(), this->getAparencias(), this->getGrafo()[this->getRoot()]->getAppRef(), this->texturas,this->animacoes);
 }
 
 map<std::string, Textura*>& Graph::getTexturas(){
@@ -196,6 +210,9 @@ map < std::string, Camera*>& Graph::getCamaras(){
 	return this->camaras;
 }
 
+map<string, Animation*>& Graph::getAnimations(){
+	return this->animacoes;
+}
 void Graph::setDefaultCamera(std::string cameraDefault){
 	this->cameraDefault = cameraDefault;
 }
@@ -204,7 +221,8 @@ string Graph::getCameraDefault(){
 	return this->cameraDefault;
 }
 
-void Node::createDisplayList(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas){
+
+void Node::createDisplayList(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, string referenciaApp, map<string, Textura*>& texturas,map<string, Animation*> anime){
 	
 	if (this->displayList){
 		this->controlList = true;
@@ -233,7 +251,7 @@ void Node::createDisplayList(map<string, Node*>& grafo, map<string, Aparencia*>&
 		typedef vector<string>::iterator iter;
 		for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it++){
 			glPushMatrix();
-			grafo[*it]->createDisplayList(grafo, aparencias, this->appRef, texturas);
+			grafo[*it]->createDisplayList(grafo, aparencias, this->appRef, texturas,anime);
 			glPopMatrix();
 		}
 		glPopMatrix();
@@ -261,7 +279,7 @@ void Node::createDisplayList(map<string, Node*>& grafo, map<string, Aparencia*>&
 		typedef std::vector<std::string>::iterator iter;
 		for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it++){
 			glPushMatrix();
-			grafo[*it]->createDisplayList(grafo, aparencias, this->appRef, texturas);
+			grafo[*it]->createDisplayList(grafo, aparencias, this->appRef, texturas,anime);
 			glPopMatrix();
 		}
 	}

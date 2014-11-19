@@ -16,6 +16,8 @@ void Plane::draw(float textS, float textT) {
 	glEnable(GL_MAP2_TEXTURE_COORD_2);
 
 	draw();
+	
+	glDisable(GL_MAP2_TEXTURE_COORD_2);
 }
 
 void Plane::draw() {
@@ -40,4 +42,7 @@ void Plane::draw() {
 
 	glMapGrid2f(parts, 0., 1., parts, 0., 1.);
 	glEvalMesh2(GL_FILL, 0, parts, 0, parts);
+
+	glDisable(GL_MAP2_VERTEX_3);
+	glDisable(GL_MAP2_NORMAL);
 }

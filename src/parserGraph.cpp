@@ -25,7 +25,7 @@ void XMLScene::parserGraph(){
 				atualizarInserirNode(id, novoNode);
 
 				char* displayL = NULL;
-				displayL = (char*) node->Attribute("displayList");
+				displayL = (char*)node->Attribute("displayList");
 				if (displayL != NULL && strcmp(displayL, "true") == 0){
 					novoNode->setDisplayList(true);
 				}
@@ -48,7 +48,7 @@ void XMLScene::parserGraph(){
 					}
 					childs = childs->NextSiblingElement();
 				} // end of child while
-				atualizarInserirNode(id,novoNode);
+				atualizarInserirNode(id, novoNode);
 				std::cout << "Node " << id << " checked!" << endl;
 				node = node->NextSiblingElement();
 			} // end of node while
@@ -66,7 +66,7 @@ void XMLScene::parserGraphTransforms(Node* novoNode, TiXmlElement *childs){
 	while (elem){
 		type = elem->Attribute("type");
 
-		if ( type == "translate"){
+		if (type == "translate"){
 			std::string to = "";
 			to = elem->Attribute("to");
 			float x1, y1, z1;
@@ -77,7 +77,7 @@ void XMLScene::parserGraphTransforms(Node* novoNode, TiXmlElement *childs){
 			else
 				std::cout << "Error reading perspective tag\n";
 		}
-		else if ( type ==  "rotate"){
+		else if (type == "rotate"){
 			std::string axis = "";
 			axis = elem->Attribute("axis");
 			float angle;
@@ -93,8 +93,8 @@ void XMLScene::parserGraphTransforms(Node* novoNode, TiXmlElement *childs){
 			else
 				std::cout << "Error reading perspective tag\n";
 		}
-		else if ( type == "scale"){
-			float fac1,fac2,fac3;
+		else if (type == "scale"){
+			float fac1, fac2, fac3;
 			std::string fac = "";
 			fac = elem->Attribute("factor");
 
@@ -104,7 +104,7 @@ void XMLScene::parserGraphTransforms(Node* novoNode, TiXmlElement *childs){
 			else
 				std::cout << "Error reading perspective tag\n";
 		}
-		elem=elem->NextSiblingElement();
+		elem = elem->NextSiblingElement();
 	}
 	float m[16];
 	glGetFloatv(GL_MODELVIEW_MATRIX, &m[0]);
@@ -175,7 +175,7 @@ void XMLScene::parserGraphPrimitives(Node* novoNode, TiXmlElement *childs){
 				float inner, outer;
 				int slices, loops;
 				if (primitivas->QueryFloatAttribute("inner", &inner) == TIXML_SUCCESS && primitivas->QueryFloatAttribute("outer", &outer) == TIXML_SUCCESS
-					&& primitivas->QueryIntAttribute("slices", &slices) == TIXML_SUCCESS && primitivas->QueryIntAttribute("loops", &loops) == TIXML_SUCCESS){	
+					&& primitivas->QueryIntAttribute("slices", &slices) == TIXML_SUCCESS && primitivas->QueryIntAttribute("loops", &loops) == TIXML_SUCCESS){
 					Torus* a1 = new Torus(inner, outer, slices, loops);
 					novoNode->getPrimitivas().push_back(a1);
 				}
@@ -188,6 +188,33 @@ void XMLScene::parserGraphPrimitives(Node* novoNode, TiXmlElement *childs){
 					novoNode->getPrimitivas().push_back(a1);
 				}
 				else std::cout << "\n\nWhoops! You did something wrong with Torus.";
+			}
+			else if (primitivas->ValueTStr() == "patch") {
+				int order, partsU, partsV;
+				GLenum compute;
+
+				string computeString = primitivas->Attribute("compute");
+				if (computeString == "point")
+					compute = GL_POINT;
+				else if (computeString == "line")
+					compute = GL_LINE;
+				else if (computeString == "fill")
+					compute = GL_FILL;
+
+				if (primitivas->QueryIntAttribute("order", &order) == TIXML_SUCCESS && primitivas->QueryIntAttribute("partsU", &partsU) == TIXML_SUCCESS && primitivas->QueryIntAttribute("partsV", &partsV) == TIXML_SUCCESS) {
+					Patch* a1 = new Patch(order, partsU, partsV, compute);
+					TiXmlElement* pointElem = primitivas->FirstChildElement();
+					while (pointElem != NULL) {
+						float x, y, z;
+						pointElem->QueryFloatAttribute("x", &x); pointElem->QueryFloatAttribute("y", &y); pointElem->QueryFloatAttribute("z", &z);
+						vector<float> point;
+						point.push_back(x); point.push_back(y); point.push_back(z);
+						a1->addCtrlPoint(point);
+
+						pointElem = pointElem->NextSiblingElement();
+					}
+					novoNode->getPrimitivas().push_back(a1);
+				}
 			}
 			else {
 				std::cout << "Weirds... No primitives found\n";
@@ -215,7 +242,7 @@ void XMLScene::parserGraphdescendants(Node* novoNode, TiXmlElement *childs){
 void XMLScene::atualizarInserirNode(std::string id, Node* novoNode){
 	std::map<std::string, Node*>::iterator it = objetosDaCena.getGrafo().find(id);
 
-	if ( it != objetosDaCena.getGrafo().end()){
+	if (it != objetosDaCena.getGrafo().end()){
 		it->second = novoNode;
 	}
 	else {

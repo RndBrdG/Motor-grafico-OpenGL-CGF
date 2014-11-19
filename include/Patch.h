@@ -10,7 +10,7 @@ protected:
 	int partsU;
 	int partsV;
 	GLenum compute;
-	std::vector<std::vector<float>> ctrlPoints;
+	std::vector<std::vector<float> > ctrlPoints;
 public:
 	Patch(int, int, int, GLenum);
 

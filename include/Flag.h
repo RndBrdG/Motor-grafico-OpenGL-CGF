@@ -2,13 +2,15 @@
 #define FLAG_H
 
 #include <string>
-#include "CGFshader.h"
+#include "DemoShader.h"
+#include "Plane.h"
 #include "Primitiva.h"
 
 class Flag : public Primitiva {
 protected:
 	std::string texture;
-	CGFshader* shader;
+	Plane* object;
+	DemoShader* shader;
 public:
 	Flag(std::string);
 	~Flag();

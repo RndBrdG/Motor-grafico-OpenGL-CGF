@@ -72,6 +72,15 @@
     <ClCompile Include="src\parserAnimations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Flag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vehicle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DemoShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\tinystr.h">
@@ -113,6 +122,15 @@
     <ClInclude Include="include\Plane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Flag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Vehicle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DemoShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\cloud.jpg">
@@ -143,6 +161,15 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\poste.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\flag.jpg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\shader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\shader.frag">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -113,7 +113,7 @@ void CircularAnimation::update(unsigned long t)
 		else {
 			cout << (t - this->initialStart)*0.001 << endl;
 			obj_rotate += (t - this->initialStart)*0.001 * this->rot_ang / this->span;
-			obj_radius += 0;
+			obj_radius += this->radius;
 		}
 		this->initialStart = t;
 	}

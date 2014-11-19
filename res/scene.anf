@@ -110,26 +110,28 @@
   <!-- bloco do grafo; "rootid" identifica o no de raiz -->
   <graph rootid="root">
     <node id="root">
-      <animationref id="Tiago" />
-      <animationref id="Gustavo" />
       <transforms></transforms>
       <appearanceref id="nuvens" />
       <primitives>
-        <rectangle xy1="0. 0." xy2="5. 5." />
         <!--<rectangle xy1="0. 0." xy2="30. 20." />-->
-        <patch order="1" partsU="25" partsV="25" compute="fill">
-          <controlpoint x="0." y="0." z="0." />
-          <controlpoint x="1." y="0." z="0." />
-          <controlpoint x="0." y="0." z="1." />
-          <controlpoint x="1." y="0." z="1." />
-        </patch>
       </primitives>
       <descendants>
+        <noderef id="Bandeira" />
         <!--<noderef id="Chao" />
         <noderef id="ParedeLateralEsquerda" />
         <noderef id="Anjo" />
         <noderef id="Direcoes" />-->
       </descendants>
+    </node>
+    <node id="Bandeira">
+      <transforms>
+        <transform type="translate" to="-3. 0. -3." />
+        <transform type="scale" factor="6. 6. 6." />
+      </transforms>
+      <appearanceref id="cloths" />
+      <primitives>
+        <flag texture="../res/flag.jpg" />
+      </primitives>
     </node>
     <node id="Chao">
       <transforms>

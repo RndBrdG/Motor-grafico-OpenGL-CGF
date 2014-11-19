@@ -1,9 +1,14 @@
-/*#include <GL/glew.h>
-#include <GL/glut.h>*/
 #include "Flag.h"
 
 Flag::Flag(std::string texture) {
 	this->texture = texture;
+	shader = new DemoShader("../res/flag.jpg");
+	object = new Plane(20);
+}
+
+Flag::~Flag() {
+	delete object;
+	delete shader;
 }
 
 void Flag::draw(float textS, float textT) {
@@ -11,8 +16,7 @@ void Flag::draw(float textS, float textT) {
 }
 
 void Flag::draw() {
-/*	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	char* vertexShaderName = "shader.vert";
-	int vertexShaderNameLen = sizeof(vertexShaderName);
-	glShaderSource(vertexShader, 1, &vertexShaderName, &vertexShaderNameLen);*/
+	shader->bind();
+	object->draw();
+	shader->unbind();
 }

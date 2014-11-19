@@ -23,6 +23,7 @@ private:
 	XMLScene parser;
 	Graph elementos;
 	vector<Camera*> camaras;
+	int wind;
 };
 
 #endif

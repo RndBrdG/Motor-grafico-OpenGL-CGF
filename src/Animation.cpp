@@ -112,7 +112,7 @@ void CircularAnimation::update(unsigned long t)
 		if (obj_rotate >= 360 + this->start_ang) this->reset();
 		else {
 			cout << (t - this->initialStart)*0.001 << endl;
-			obj_rotate += (t - this->initialStart)*0.01 * this->rot_ang / this->span;
+			obj_rotate += (t - this->initialStart)*0.001 * this->rot_ang / this->span;
 			obj_radius += 0;
 		}
 		this->initialStart = t;
@@ -127,7 +127,7 @@ void CircularAnimation::reset(){
 
 void CircularAnimation::draw()
 {
-	glTranslatef(center->x, center->y, center->z);
-	glRotatef(this->obj_rotate, 0, 1, 0);
 	glTranslatef(this->obj_radius, 0, 0);
+	glRotatef(this->obj_rotate, 0, 1, 0);
+	glTranslatef(center->x, center->y, center->z);
 }

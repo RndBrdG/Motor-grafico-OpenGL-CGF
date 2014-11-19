@@ -33,11 +33,24 @@ void TPinterface::initGUI() {
 	addSpinnerToPanel(varPanel, "Val 2(scene)", 2, &(((DemoScene*)scene)->sceneVar), 2);
 	*/
 
+	GLUI_Panel* panelCam = addPanel("Camaras");
+	GLUI_RadioGroup* radioCam = addRadioGroupToPanel(panelCam, &cameraMode, 10);
+
+	for (unsigned int i = 0; i < static_cast<DemoScene*>(scene)->getCamaras().size(); i++) {
+		if (static_cast<DemoScene*>(scene)->elementos.getCameraDefault() == static_cast<DemoScene*>(scene)->getCamaras()[i]->getId())
+			cameraMode = i;
+		addRadioButtonToGroup(radioCam, static_cast<DemoScene*>(scene)->getCamaras()[i]->getId());
+	}
+
+	addColumn();
+
 	GLUI_Panel* panelDesenho = addPanel("Modo de desenho");
 	GLUI_RadioGroup* radioDesenho = addRadioGroupToPanel(panelDesenho, &drawingMode, 1);
 	addRadioButtonToGroup(radioDesenho, "Preencher");
 	addRadioButtonToGroup(radioDesenho, "Linhas");
 	addRadioButtonToGroup(radioDesenho, "Pontos");
+
+	GLUI_Spinner* spinnerWind = addSpinner("Vento", 2, &static_cast<DemoScene*>(scene)->wind);
 
 	addColumn();
 
@@ -48,18 +61,6 @@ void TPinterface::initGUI() {
 		lightName << it->first;
 		addCheckboxToPanel(panelLuzes, const_cast<char*>(lightName.str().c_str()), &it->second->onOff, id++);
 	}
-
-	addColumn();
-
-	GLUI_Panel* panelCam = addPanel("Camaras");
-	GLUI_RadioGroup* radioCam = addRadioGroupToPanel(panelCam, &cameraMode, 10);
-
-	for (unsigned int i = 0; i < static_cast<DemoScene*>(scene)->getCamaras().size(); i++) {
-		if (static_cast<DemoScene*>(scene)->elementos.getCameraDefault() == static_cast<DemoScene*>(scene)->getCamaras()[i]->getId())
-			cameraMode = i;
-		addRadioButtonToGroup(radioCam, static_cast<DemoScene*>(scene)->getCamaras()[i]->getId());
-	}
-
 }
 
 void TPinterface::processGUI(GLUI_Control *ctrl) {

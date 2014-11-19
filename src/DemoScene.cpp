@@ -7,6 +7,7 @@
 #include <cmath>
 
 DemoScene::DemoScene(char* filename) : parser(XMLScene(filename)) {
+	wind = 1;
 }
 
 const Graph& DemoScene::getElementos() {

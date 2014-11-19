@@ -14,6 +14,7 @@ DemoScene::DemoScene(char* filename) : parser(XMLScene(filename)) {
 	Ponto* a6 = new Ponto(8, 8, 0); pontos.push_back(a6);
 	Ponto* a7 = new Ponto(12, 8, 0); pontos.push_back(a7);
 	this->a1 = new LinearAnimation("tiago", 5, pontos);
+	wind = 1;
 }
 
 const Graph& DemoScene::getElementos() {

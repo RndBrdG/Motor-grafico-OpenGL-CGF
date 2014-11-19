@@ -193,7 +193,7 @@ void XMLScene::parserGraphPrimitives(Node* novoNode, TiXmlElement *childs){
 				int order, partsU, partsV;
 				GLenum compute;
 
-				string computeString = primitivas->Attribute("compute");
+				std::string computeString = primitivas->Attribute("compute");
 				if (computeString == "point")
 					compute = GL_POINT;
 				else if (computeString == "line")
@@ -215,6 +215,16 @@ void XMLScene::parserGraphPrimitives(Node* novoNode, TiXmlElement *childs){
 					}
 					novoNode->getPrimitivas().push_back(a1);
 				}
+			}
+			else if (primitivas->ValueTStr() == "vehicle") {
+				Vehicle* a1 = new Vehicle();
+				novoNode->getPrimitivas().push_back(a1);
+			}
+			else if (primitivas->ValueTStr() == "flag") {
+				std::string textureString = primitivas->Attribute("texture");
+
+				Flag* a1 = new Flag(textureString);
+				novoNode->getPrimitivas().push_back(a1);
 			}
 			else {
 				std::cout << "Weirds... No primitives found\n";

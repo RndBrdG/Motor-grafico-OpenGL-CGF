@@ -69,6 +69,7 @@
   <ItemGroup>
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\DemoScene.cpp" />
+    <ClCompile Include="src\Flag.cpp" />
     <ClCompile Include="src\Globals.cpp" />
     <ClCompile Include="src\Graph.cpp" />
     <ClCompile Include="src\Light.cpp" />
@@ -83,11 +84,13 @@
     <ClCompile Include="src\Plane.cpp" />
     <ClCompile Include="src\Primitiva.cpp" />
     <ClCompile Include="src\TPinterface.cpp" />
+    <ClCompile Include="src\Vehicle.cpp" />
     <ClCompile Include="src\XMLScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Camera.h" />
     <ClInclude Include="include\DemoScene.h" />
+    <ClInclude Include="include\Flag.h" />
     <ClInclude Include="include\Globals.h" />
     <ClInclude Include="include\Graph.h" />
     <ClInclude Include="include\Light.h" />
@@ -97,6 +100,7 @@
     <ClInclude Include="include\tinystr.h" />
     <ClInclude Include="include\tinyxml.h" />
     <ClInclude Include="include\TPinterface.h" />
+    <ClInclude Include="include\Vehicle.h" />
     <ClInclude Include="include\XMLScene.h" />
   </ItemGroup>
   <ItemGroup>

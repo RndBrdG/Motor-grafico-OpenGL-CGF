@@ -3,11 +3,13 @@
 
 #include "tinyxml.h"
 #include "CGFscene.h"
+#include "Flag.h"
 #include "Globals.h"
 #include "Graph.h"
 #include "Light.h"
 #include "Patch.h"
 #include "Plane.h"
+#include "Vehicle.h"
 
 class XMLScene
 {

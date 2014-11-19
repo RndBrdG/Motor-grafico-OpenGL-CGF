@@ -102,26 +102,27 @@
   </appearances>
   <!-- bloco do grafo; "rootid" identifica o no de raiz -->
   <graph rootid="root">
-    <node id="root" displayList="false">
+    <node id="root">
       <transforms></transforms>
       <appearanceref id="nuvens" />
       <primitives>
-        <rectangle xy1="0. 0." xy2="30. 20." />
+        <!--<rectangle xy1="0. 0." xy2=".30 .20" />-->
         <!--<plane parts="25" />-->
-        <patch order="2" partsU="25" partsV="25" compute="fill">
-          <controlpoint x="0." y="0." z="0." />
-          <controlpoint x="1." y="0." z="0." />
-          <controlpoint x="0." y="0." z="1." />
-          <controlpoint x="1." y="0." z="1." />
-        </patch>
+		<patch order="2" partsU="25" partsV="25" compute="fill">
+			<controlpoint x="0." y="0." z="0." />
+			<controlpoint x="1." y="0." z="0." />
+			<controlpoint x="0." y="0." z="1." />
+			<controlpoint x="1." y="0." z="1." />
+		</patch>
       </primitives>
       <descendants>
-        <!--<noderef id="Chao" />
+      	<!--
+        <noderef id="Chao" />
         <noderef id="ParedeLateralEsquerda" />
         <noderef id="Anjo" />
-        <noderef id="Direcoes" />-->
+        <noderef id="Direcoes" /> -->
       </descendants>
-    </node>
+    </node><!--
     <node id="Chao">
       <transforms>
         <transform type="translate" to="0. 0. 30." />
@@ -292,5 +293,6 @@
         <triangle xyz1="-1.5 0. 0." xyz2="-1.85 -.375 0." xyz3="-1.5 -.75 .0" />
       </primitives>
     </node>
+-->
   </graph>
 </anf>

@@ -60,10 +60,7 @@
     <ClCompile Include="src\Primitiva.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Plane.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Patch.cpp">
+    <ClCompile Include="src\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,10 +95,7 @@
     <ClInclude Include="include\Primitiva.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Plane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Patch.h">
+    <ClInclude Include="include\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

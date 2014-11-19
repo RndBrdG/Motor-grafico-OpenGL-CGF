@@ -5,6 +5,7 @@
 #include "CGFshader.h"
 #include "Graph.h"
 #include "XMLScene.h"
+#include "Animation.h"
 
 class DemoScene : public CGFscene {
 	friend class TPinterface;
@@ -19,6 +20,8 @@ public:
 	DemoScene(char* filename);
 	~DemoScene();
 private:
+	vector<Ponto*> pontos;
+	LinearAnimation* a1;
 	XMLScene parser;
 	Graph elementos;
 	vector<Camera*> camaras;

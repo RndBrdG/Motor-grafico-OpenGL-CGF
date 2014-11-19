@@ -122,7 +122,7 @@ void Node::draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, 
 	else if (this->displayList){
 		glPushMatrix();
 		glCallList(this->index);
-		typedef std::vector<std::string>::iterator iter;
+		typedef vector<string>::iterator iter;
 		for (iter it = this->getDescendencia().begin(); it != this->getDescendencia().end(); it++){
 			glPushMatrix();
 			grafo[*it]->draw(grafo, aparencias, this->appRef, texturas);
@@ -131,7 +131,6 @@ void Node::draw(map<string, Node*>& grafo, map<string, Aparencia*>& aparencias, 
 		glPopMatrix();
 	}
 	else if (!this->displayList && this->insideList && this->controlList){
-		cout << this->id << endl << endl;
 		glPushMatrix();
 		
 		unsigned int size = this->primitivas.size();

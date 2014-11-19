@@ -31,12 +31,14 @@ XMLScene::XMLScene(char *filename)
 	lightsElement = dgxElement->FirstChildElement("lights");
 	texElement = dgxElement->FirstChildElement("textures");
 	appsElement = dgxElement->FirstChildElement("appearances");
+	AnimElement = dgxElement->FirstChildElement("animations");
 	graphElement = dgxElement->FirstChildElement("graph");
 
 	parserGlobals();
 	parserCameras();
 	parserAppearance();
 	parserTextures();
+	parserAnimations();
 	parserLights();
 	parserGraph();
 

@@ -23,6 +23,13 @@
     <ortho id="Ortogonal Y" direction="y" near="-30" far="200" left="-5" right="35" top="5" bottom="-35" />
     <ortho id="Ortogonal Z" direction="z" near="-30" far="200" left="-5" right="35" top="25" bottom="-5" />
   </cameras>
+  <animations>
+      <animation id="Tiago" span="5" type="linear">
+            <controlpoint xx="0." yy="0." zz="0." />
+            <controlpoint xx="5." yy="0." zz="0." />
+      </animation>
+      <animation id="Gustavo" span="5" type="circular" center="0. 0. 0." radius="5." startang="20." rotang="2." />
+</animations>
   <!-- bloco de luzes -->
   <lights>
     <!-- Deve existir pelo menos uma luz declarada -->
@@ -102,19 +109,30 @@
   </appearances>
   <!-- bloco do grafo; "rootid" identifica o no de raiz -->
   <graph rootid="root">
-    <node id="root" displayList="false">
+    <node id="root">
+      <animationref id="Tiago" />
+      <animationref id="Gustavo" />
       <transforms></transforms>
       <appearanceref id="nuvens" />
       <primitives>
-        <rectangle xy1="0. 0." xy2="30. 20." />
+      	<rectangle xy1="0. 0." xy2="5. 5." />
+        <!--<rectangle xy1="0. 0." xy2=".30 .20" />-->
+        <!--<plane parts="25" />-->
+		<patch order="2" partsU="25" partsV="25" compute="fill">
+			<controlpoint x="0." y="0." z="0." />
+			<controlpoint x="1." y="0." z="0." />
+			<controlpoint x="0." y="0." z="1." />
+			<controlpoint x="1." y="0." z="1." />
+		</patch>
       </primitives>
       <descendants>
+      	<!--
         <noderef id="Chao" />
         <noderef id="ParedeLateralEsquerda" />
         <noderef id="Anjo" />
-        <noderef id="Direcoes" />
+        <noderef id="Direcoes" /> -->
       </descendants>
-    </node>
+    </node><!--
     <node id="Chao">
       <transforms>
         <transform type="translate" to="0. 0. 30." />
@@ -285,5 +303,6 @@
         <triangle xyz1="-1.5 0. 0." xyz2="-1.85 -.375 0." xyz3="-1.5 -.75 .0" />
       </primitives>
     </node>
+-->
   </graph>
 </anf>

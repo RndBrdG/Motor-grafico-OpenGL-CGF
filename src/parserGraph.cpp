@@ -31,9 +31,15 @@ void XMLScene::parserGraph(){
 				}
 				else novoNode->setDisplayList(false);
 
+
 				TiXmlElement *childs = node->FirstChildElement();
 
 				while (childs){
+					if (childs->ValueTStr() == "animationref"){
+						string id = "";
+						id = childs->Attribute("id");
+						novoNode->getAnimations().push_back(id);
+					}
 					if (childs->ValueTStr() == "transforms"){
 						parserGraphTransforms(novoNode, childs);
 					}

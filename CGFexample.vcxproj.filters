@@ -63,16 +63,13 @@
     <ClCompile Include="src\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Vehicle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Flag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Patch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Plane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\parserAnimations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -108,12 +105,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Vehicle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Flag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Patch.h">
@@ -152,9 +143,6 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\poste.jpg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\flag.jpg">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

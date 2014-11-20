@@ -1,8 +1,7 @@
 #include "Flag.h"
 
 Flag::Flag(std::string texture) {
-	this->texture = texture;
-	shader = new DemoShader("../res/flag.jpg");
+	shader = new DemoShader(texture);
 	object = new Plane(20);
 }
 

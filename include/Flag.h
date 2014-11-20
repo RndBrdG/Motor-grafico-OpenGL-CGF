@@ -8,7 +8,6 @@
 
 class Flag : public Primitiva {
 protected:
-	std::string texture;
 	Plane* object;
 	DemoShader* shader;
 public:

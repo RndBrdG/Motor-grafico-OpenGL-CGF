@@ -7,11 +7,14 @@
 class DemoShader : public CGFshader {
 protected:
 	CGFtexture* feupTexture;
+	int feupImageLocation;
+	int deltaTime;
+	int wind;
 public:
 	DemoShader(std::string);
 	~DemoShader();
 
-	void bind();
+	void bind(float dt);
 	void unbind();
 };
 

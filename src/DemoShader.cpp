@@ -8,8 +8,14 @@ DemoShader::DemoShader(std::string texture) {
 
 	CGFshader::bind();
 
-	GLint feupImageLocation = glGetUniformLocation(id(), "feupImage");
+	feupImageLocation = glGetUniformLocation(id(), "feupImage");
 	glUniform1i(feupImageLocation, 0);
+
+	deltaTime = glGetUniformLocation(id(), "time");
+	glUniform1i(deltaTime,0);
+
+	wind = glGetUniformLocation(id(), "wind");
+	glUniform1i(wind, 10);
 
 	feupTexture = new CGFtexture(texture);
 
@@ -20,8 +26,11 @@ DemoShader::~DemoShader() {
 	delete feupTexture;
 }
 
-void DemoShader::bind() {
+void DemoShader::bind(float dt) {
 	CGFshader::bind();
+
+	glUniform1i(deltaTime, dt);
+	glUniform1i(wind, 2);
 
 	glActiveTexture(GL_TEXTURE0);
 	feupTexture->apply();

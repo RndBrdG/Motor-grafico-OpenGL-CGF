@@ -28,6 +28,7 @@ protected:
 	float span;
 	vector<Ponto*> pontosDeControlo;
 	vector<unsigned int> distancias;
+	bool firstTime;
 public:
 	Animation(string id, float span);
 	Animation(string id, float span, const vector<Ponto*> pontosDeControlo);

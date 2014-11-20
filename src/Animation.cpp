@@ -1,5 +1,6 @@
 #include "Animation.h"
 #include "Primitiva.h"
+#include "CGFapplication.h"
 
 Ponto::Ponto(float x, float y, float z){
 	this->x = x;
@@ -20,6 +21,7 @@ Animation::Animation(string id, float span, const vector<Ponto*> pontosDeControl
 	this->id = id;
 	this->span = span;
 	this->pontosDeControlo = pontosDeControlo;
+	this->firstTime = true;
 }
 
 Animation::Animation(string id, float span){
@@ -32,13 +34,13 @@ unsigned int Animation::calculateDistance(Ponto* partida, Ponto* chegada){
 }
 
 LinearAnimation::LinearAnimation(string id, float span, const vector<Ponto*> pontosDeControlo) : Animation(id, span, pontosDeControlo){
-	this->doReset = false;
+	this->doReset = true;
 	this->indicePontoControlo = 0;
 	this->PontoActual = new Ponto(this->pontosDeControlo[0]->x, this->pontosDeControlo[0]->y, this->pontosDeControlo[0]->z);
 	for (int i = 0; i < pontosDeControlo.size() - 1; i++){
 		this->distancias.push_back(this->calculateDistance(pontosDeControlo[i], pontosDeControlo[i + 1]));
 	}
-	this->speed = 0.030 * this->distancias[0] / (this->span / this->pontosDeControlo.size());
+	this->speed = 0.030* this->distancias[0] / (this->span / this->pontosDeControlo.size());
 }
 
 void LinearAnimation::init(unsigned long t){
@@ -48,7 +50,11 @@ void LinearAnimation::init(unsigned long t){
 	this->PontoActual->y = this->pontosDeControlo[0]->y;
 	this->PontoActual->z = this->pontosDeControlo[0]->z;
 	this->speed = (t - this->initialStart) * 0.001 * this->distancias[0] / (this->span / this->pontosDeControlo.size());
-	this->initialStart = t;
+	if (firstTime) {
+		this->initialStart = CGFapplication::getTime();
+		firstTime = false;
+	}
+	else this->initialStart = t;
 }
 void LinearAnimation::reset(){
 	this->doReset = true;
@@ -92,14 +98,18 @@ CircularAnimation::CircularAnimation(string id, float span, Ponto* ponto, float 
 	this->radius = radius;
 	this->obj_rotate = START_ANGLE;
 	this->obj_radius = START_RADIUS;
-	this->doReset = false;
+	this->doReset = true;
 }
 
 void CircularAnimation::init(unsigned long t){
 	this->obj_rotate = START_ANGLE;
 	this->obj_radius = START_RADIUS;
 	doReset = false;
-	this->initialStart = t;
+	if (firstTime) {
+		this->initialStart = CGFapplication::getTime();
+		firstTime = false;
+	}
+	else this->initialStart = t;
 }
 
 void CircularAnimation::update(unsigned long t)
@@ -109,9 +119,9 @@ void CircularAnimation::update(unsigned long t)
 	}
 	else
 	{
-		if (obj_rotate >= 360 + this->start_ang) this->reset();
+		if ( (t - this->initialStart)*0.001 > this->span) 
+			this->reset();
 		else {
-			cout << (t - this->initialStart)*0.001 << endl;
 			obj_rotate += (t - this->initialStart)*0.001 * this->rot_ang / this->span;
 			obj_radius += this->radius;
 		}

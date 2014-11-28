@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Primitivas">
+      <UniqueIdentifier>{89887ba8-44e9-4db4-8514-743a60470825}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Primitivas">
+      <UniqueIdentifier>{b33c75c0-d0bf-4bd0-b3eb-8cab8d8558d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -57,29 +63,38 @@
     <ClCompile Include="src\Graph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Primitiva.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Patch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Plane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\parserAnimations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Flag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Vehicle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\DemoShader.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Flag.cpp">
+      <Filter>Source Files\Primitivas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Patch.cpp">
+      <Filter>Source Files\Primitivas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Plane.cpp">
+      <Filter>Source Files\Primitivas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cylinder.cpp">
+      <Filter>Source Files\Primitivas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rectangle.cpp">
+      <Filter>Source Files\Primitivas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sphere.cpp">
+      <Filter>Source Files\Primitivas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Torus.cpp">
+      <Filter>Source Files\Primitivas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Triangle.cpp">
+      <Filter>Source Files\Primitivas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,19 +131,34 @@
     <ClInclude Include="include\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Patch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Plane.h">
+    <ClInclude Include="include\DemoShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Flag.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Primitivas</Filter>
     </ClInclude>
-    <ClInclude Include="include\Vehicle.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\Patch.h">
+      <Filter>Header Files\Primitivas</Filter>
     </ClInclude>
-    <ClInclude Include="include\DemoShader.h">
+    <ClInclude Include="include\Plane.h">
+      <Filter>Header Files\Primitivas</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Sphere.h">
+      <Filter>Header Files\Primitivas</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Torus.h">
+      <Filter>Header Files\Primitivas</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Triangle.h">
+      <Filter>Header Files\Primitivas</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Cylinder.h">
+      <Filter>Header Files\Primitivas</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rectangle.h">
+      <Filter>Header Files\Primitivas</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PecaTabuleiro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

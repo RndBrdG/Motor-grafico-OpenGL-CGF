@@ -1,3 +1,14 @@
+#include "CGFscene.h"
+#include "Cylinder.h"
+#include "Flag.h"
+#include "Globals.h"
+#include "Light.h"
+#include "Patch.h"
+#include "Plane.h"
+#include "Rectangle.h"
+#include "Sphere.h"
+#include "Torus.h"
+#include "Triangle.h"
 #include "XMLScene.h"
 
 void XMLScene::parserGraph(){
@@ -221,10 +232,6 @@ void XMLScene::parserGraphPrimitives(Node* novoNode, TiXmlElement *childs){
 					}
 					novoNode->getPrimitivas().push_back(a1);
 				}
-			}
-			else if (primitivas->ValueTStr() == "vehicle") {
-				Vehicle* a1 = new Vehicle();
-				novoNode->getPrimitivas().push_back(a1);
 			}
 			else if (primitivas->ValueTStr() == "flag") {
 				std::string textureString = primitivas->Attribute("texture");
